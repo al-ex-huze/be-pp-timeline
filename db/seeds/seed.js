@@ -10,18 +10,18 @@ const seed = ({ topicData, userData, articleData, commentData }) => {
   return db
     .query(`DROP TABLE IF EXISTS comments;`)
     .then(() => {
-      return db.query(`DROP TABLE IF EXISTS articles;`);
+      return db.query(`DROP TABLE IF EXISTS events;`);
     })
     .then(() => {
       return db.query(`DROP TABLE IF EXISTS users;`);
     })
     .then(() => {
-      return db.query(`DROP TABLE IF EXISTS topics;`);
+      return db.query(`DROP TABLE IF EXISTS timelines;`);
     })
     .then(() => {
       const topicsTablePromise = db.query(`
-      CREATE TABLE topics (
-        slug VARCHAR PRIMARY KEY,
+      CREATE TABLE timelines (
+        timeline_name VARCHAR PRIMARY KEY,
         description VARCHAR
       );`);
 
@@ -36,15 +36,15 @@ const seed = ({ topicData, userData, articleData, commentData }) => {
     })
     .then(() => {
       return db.query(`
-      CREATE TABLE articles (
-        article_id SERIAL PRIMARY KEY,
+      CREATE TABLE events (
+        event_id SERIAL PRIMARY KEY,
         title VARCHAR NOT NULL,
-        topic VARCHAR NOT NULL REFERENCES topics(slug),
+        timeline VARCHAR NOT NULL REFERENCES timelines(timeline_name),
         author VARCHAR NOT NULL REFERENCES users(username),
         body VARCHAR NOT NULL,
         created_at TIMESTAMP DEFAULT NOW(),
         votes INT DEFAULT 0 NOT NULL,
-        article_img_url VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700'
+        event_img_url VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700'
       );`);
     })
     .then(() => {
@@ -52,18 +52,18 @@ const seed = ({ topicData, userData, articleData, commentData }) => {
       CREATE TABLE comments (
         comment_id SERIAL PRIMARY KEY,
         body VARCHAR NOT NULL,
-        article_id INT REFERENCES articles(article_id) NOT NULL,
+        event_id INT REFERENCES events(event_id) NOT NULL,
         author VARCHAR REFERENCES users(username) NOT NULL,
         votes INT DEFAULT 0 NOT NULL,
         created_at TIMESTAMP DEFAULT NOW()
       );`);
     })
     .then(() => {
-      const insertTopicsQueryStr = format(
-        'INSERT INTO topics (slug, description) VALUES %L;',
-        topicData.map(({ slug, description }) => [slug, description])
+      const insertTimelinesQueryStr = format(
+        'INSERT INTO timelines (timeline_name, description) VALUES %L;',
+        topicData.map(({ timeline_name, description }) => [timeline_name, description])
       );
-      const topicsPromise = db.query(insertTopicsQueryStr);
+      const timelinesPromise = db.query(insertTimelinesQueryStr);
 
       const insertUsersQueryStr = format(
         'INSERT INTO users ( username, name, avatar_url) VALUES %L;',
@@ -75,38 +75,38 @@ const seed = ({ topicData, userData, articleData, commentData }) => {
       );
       const usersPromise = db.query(insertUsersQueryStr);
 
-      return Promise.all([topicsPromise, usersPromise]);
+      return Promise.all([timelinesPromise, usersPromise]);
     })
     .then(() => {
-      const formattedArticleData = articleData.map(convertTimestampToDate);
-      const insertArticlesQueryStr = format(
-        'INSERT INTO articles (title, topic, author, body, created_at, votes, article_img_url) VALUES %L RETURNING *;',
-        formattedArticleData.map(
+      const formattedEventData = eventData.map(convertTimestampToDate);
+      const insertEventsQueryStr = format(
+        'INSERT INTO events (title, timeline, author, body, created_at, votes, event_img_url) VALUES %L RETURNING *;',
+        formattedEventData.map(
           ({
             title,
-            topic,
+            timeline,
             author,
             body,
             created_at,
             votes = 0,
-            article_img_url,
-          }) => [title, topic, author, body, created_at, votes, article_img_url]
+            event_img_url,
+          }) => [title, timeline, author, body, created_at, votes, event_img_url]
         )
       );
 
-      return db.query(insertArticlesQueryStr);
+      return db.query(insertEvenntsQueryStr);
     })
-    .then(({ rows: articleRows }) => {
-      const articleIdLookup = createRef(articleRows, 'title', 'article_id');
-      const formattedCommentData = formatComments(commentData, articleIdLookup);
+    .then(({ rows: eventRows }) => {
+      const eventIdLookup = createRef(eventRows, 'title', 'event_id');
+      const formattedCommentData = formatComments(commentData, eventIdLookup);
 
       const insertCommentsQueryStr = format(
-        'INSERT INTO comments (body, author, article_id, votes, created_at) VALUES %L;',
+        'INSERT INTO comments (body, author, event_id, votes, created_at) VALUES %L;',
         formattedCommentData.map(
-          ({ body, author, article_id, votes = 0, created_at }) => [
+          ({ body, author, event_id, votes = 0, created_at }) => [
             body,
             author,
-            article_id,
+            event_id,
             votes,
             created_at,
           ]

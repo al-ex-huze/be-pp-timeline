@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS nc_news_test;
-DROP DATABASE IF EXISTS nc_news;
+DROP DATABASE IF EXISTS pp_timeline_test;
+DROP DATABASE IF EXISTS pp_timeline;
 
-CREATE DATABASE nc_news_test;
-CREATE DATABASE nc_news;
+CREATE DATABASE pp_timeline_test;
+CREATE DATABASE pp_timeline;
