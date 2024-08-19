@@ -116,3 +116,26 @@ describe("DELETE /api/timelines/:timeline_name", () => {
             });
     });
 });
+
+describe("GET /api/events", () => {
+    test("200 returns all events", () => {
+        return request(app)
+            .get("/api/events")
+            .expect(200)
+            .expect("Content-Type", "application/json; charset=utf-8")
+            .then(({ body }) => {
+                const { events } = body;
+                events.forEach((event) => {
+                    expect(typeof event.author).toBe("string");
+                    expect(typeof event.title).toBe("string");
+                    expect(typeof event.event_id).toBe("number");
+                    expect(typeof event.timeline).toBe("string");
+                    expect(typeof event.created_at).toBe("string");
+                    expect(typeof event.votes).toBe("number");
+                    expect(typeof event.event_img_url).toBe("string");
+
+                });
+            });
+    });
+    
+});
