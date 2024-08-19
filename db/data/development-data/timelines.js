@@ -1,5 +1,5 @@
 module.exports = [
-  { description: 'Code is love, code is life', slug: 'coding' },
-  { description: 'FOOTIE!', slug: 'football' },
-  { description: 'Hey good looking, what you got cooking?', slug: 'cooking' }
+  { timeline_name: "Northcoders Bootcamp", description: "What I learnt at Northcoders" },
+  { timeline_name: "Pre Bootcamp", description: "What I learnt before Northcoders" },
+  { timeline_name: "Post Bootcamp", description: "What I learnt after Northcoders" },
 ];

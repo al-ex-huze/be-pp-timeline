@@ -6,7 +6,7 @@ const {
   formatComments,
 } = require('./utils');
 
-const seed = ({ topicData, userData, articleData, commentData }) => {
+const seed = ({ timelineData, userData, eventData, commentData }) => {
   return db
     .query(`DROP TABLE IF EXISTS comments;`)
     .then(() => {
@@ -19,7 +19,7 @@ const seed = ({ topicData, userData, articleData, commentData }) => {
       return db.query(`DROP TABLE IF EXISTS timelines;`);
     })
     .then(() => {
-      const topicsTablePromise = db.query(`
+      const timelinesTablePromise = db.query(`
       CREATE TABLE timelines (
         timeline_name VARCHAR PRIMARY KEY,
         description VARCHAR
@@ -32,7 +32,7 @@ const seed = ({ topicData, userData, articleData, commentData }) => {
         avatar_url VARCHAR
       );`);
 
-      return Promise.all([topicsTablePromise, usersTablePromise]);
+      return Promise.all([timelinesTablePromise, usersTablePromise]);
     })
     .then(() => {
       return db.query(`
@@ -61,7 +61,7 @@ const seed = ({ topicData, userData, articleData, commentData }) => {
     .then(() => {
       const insertTimelinesQueryStr = format(
         'INSERT INTO timelines (timeline_name, description) VALUES %L;',
-        topicData.map(({ timeline_name, description }) => [timeline_name, description])
+        timelineData.map(({ timeline_name, description }) => [timeline_name, description])
       );
       const timelinesPromise = db.query(insertTimelinesQueryStr);
 
@@ -94,7 +94,7 @@ const seed = ({ topicData, userData, articleData, commentData }) => {
         )
       );
 
-      return db.query(insertEvenntsQueryStr);
+      return db.query(insertEventsQueryStr);
     })
     .then(({ rows: eventRows }) => {
       const eventIdLookup = createRef(eventRows, 'title', 'event_id');
