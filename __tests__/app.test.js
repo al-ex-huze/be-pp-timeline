@@ -59,3 +59,54 @@ describe("GET /api/timelines", () => {
     //     });
     // });
 });
+
+describe("POST /api/timelines", () => {
+    test("201 returns created timeline", () => {
+        const newTimeline = {
+            timeline_name: "Timeline Name",
+            description: "Timeline description",
+        };
+        return request(app)
+            .post("/api/timelines")
+            .send(newTimeline)
+            .expect(201)
+            .then(({ body }) => {
+                const { timeline } = body;
+                expect(typeof timeline.timeline_name).toBe("string");
+                expect(typeof timeline.description).toBe("string");
+                expect(timeline.timeline_name).toEqual("Timeline Name");
+                expect(timeline.description).toEqual("Timeline description");
+            });
+    });
+    test("201 successful post, additional properties ignored", () => {
+        const newTimeline = {
+            newProperty: "ignore",
+            timeline_name: "Timeline Name",
+            description: "Timeline description",
+        };
+        return request(app)
+            .post("/api/timelines")
+            .send(newTimeline)
+            .expect(201)
+            .then(({ body }) => {
+                const { timeline } = body;
+                expect(typeof timeline.timeline_name).toBe("string");
+                expect(typeof timeline.description).toBe("string");
+                expect(timeline.timeline_name).toEqual("Timeline Name");
+                expect(timeline.description).toEqual("Timeline description");
+            });
+    });
+    test("400 missing required fields", () => {
+        const newTimeline = {
+            timeline_name: null,
+            description: "test body",
+        };
+        return request(app)
+            .post("/api/timelines")
+            .send(newTimeline)
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("PSQL ERROR - 23502 - Failing row contains (null, test body).");
+            });
+    });
+});
