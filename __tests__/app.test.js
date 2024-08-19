@@ -38,26 +38,13 @@ describe("GET /api/timelines", () => {
         .get("/api/timelines")
         .expect(200)
         .then(({ body }) => {
-            console.log("body : " + body);
             const { timelines } = body;
-            console.log("timelines : " + timelines);
             timelines.forEach((timeline) => {
-                console.log("timeline : " + timeline)
-                console.log("timeline.timeline_name : " + timeline.timeline_name)
-                console.log("timeline.description : " + timeline.description)
                 expect(typeof timeline.timeline_name).toBe("string");
                 expect(typeof timeline.description).toBe("string");
             });
         });
     });
-    // test("404 responds when nothing found", () => {
-    //     return request(app)
-    //     .get("/api/timelines")
-    //     .expect(404)
-    //     .then(({ body }) => {
-    //         expect(body.msg).toBe("Not Found");
-    //     });
-    // });
 });
 
 describe("POST /api/timelines", () => {
@@ -107,6 +94,25 @@ describe("POST /api/timelines", () => {
             .expect(400)
             .then(({ body }) => {
                 expect(body.msg).toBe("PSQL ERROR - 23502 - Failing row contains (null, test body).");
+            });
+    });
+});
+
+describe("DELETE /api/timelines/:timeline_name", () => {
+    test("204 responds with no content", () => {
+        return request(app)
+            .delete("/api/timelines/Pre Bootcamp")
+            .expect(204)
+            .then(({ body }) => {
+                expect(body).toEqual({});
+            });
+    });
+    test("404 responds when timeline not found", () => {
+        return request(app)
+            .delete("/api/timelines/Poo Bootcamp")
+            .expect(404)
+            .then(({ body }) => {
+                expect(body.msg).toBe("timeline Poo Bootcamp does not exist");
             });
     });
 });

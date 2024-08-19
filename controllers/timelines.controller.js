@@ -1,4 +1,4 @@
-const { selectTimelines, insertTimeline } = require("../models/timelines.model.js");
+const { selectTimelines, insertTimeline, deleteTimeline } = require("../models/timelines.model.js");
 
 exports.getTimelines = (req, res, next) => {
     selectTimelines()
@@ -9,13 +9,19 @@ exports.getTimelines = (req, res, next) => {
 };
 
 exports.createTimeline = (req, res, next) => {
-    console.log("tl-ctrl create > insert")
-    console.log("req: " + req)
-    console.log("req.body: " + req.body)
     insertTimeline(req.body)
     .then((timeline) => {
         res.status(201);
         res.send({ timeline });
     })
     .catch(next);
-}
+};
+
+exports.removeTimeline = (req, res, next) => {
+    const { timeline_name } = req.params;
+    deleteTimeline(timeline_name)
+    .then(() => {
+        res.status(204).send();
+    })
+    .catch(next);
+};
