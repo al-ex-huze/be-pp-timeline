@@ -1,14 +1,5 @@
 module.exports = [
-  {
-    description: 'The man, the Mitch, the legend',
-    slug: 'mitch'
-  },
-  {
-    description: 'Not dogs',
-    slug: 'cats'
-  },
-  {
-    description: 'what books are made of',
-    slug: 'paper'
-  }
+  { timeline_name: "Northcoders Bootcamp", description: "What I learnt at Northcoders" },
+  { timeline_name: "Pre Bootcamp", description: "What I learnt before Northcoders" },
+  { timeline_name: "Post Bootcamp", description: "What I learnt after Northcoders" },
 ];

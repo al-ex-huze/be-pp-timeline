@@ -1,0 +1,29 @@
+{
+  "GET /api": {
+    "description": "serves up a json representation of all the available endpoints of the api"
+  },
+  "GET /api/timelines": {
+    "description": "serves an array of all timelines",
+    "queries": [],
+    "exampleResponse": {
+      "timelines": [{ "timeline_name": "Northcoders Bootcamp", "description": "What I learnt at Northcoders" }]
+    }
+  },
+  "GET /api/events": {
+    "description": "serves an array of all events",
+    "queries": ["author", "timeline", "sort_by", "order"],
+    "exampleResponse": {
+      "events": [
+        {
+          "title": "Intro Week",
+          "timeline_name": "Northcoders Bootcamp",
+          "author": "al-ex-huze",
+          "body": "We learnt to type and to code and to program",
+          "created_at": "2024-08-19T15:30:45.600Z",
+          "votes": 0,
+          "comment_count": 0
+        }
+      ]
+    }
+  }
+}
