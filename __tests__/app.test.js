@@ -93,7 +93,9 @@ describe("POST /api/timelines", () => {
             .send(newTimeline)
             .expect(400)
             .then(({ body }) => {
-                expect(body.msg).toBe("PSQL ERROR - 23502 - Failing row contains (null, test body).");
+                expect(body.msg).toBe(
+                    "PSQL ERROR - 23502 - Missing input."
+                );
             });
     });
 });
@@ -133,55 +135,216 @@ describe("GET /api/events", () => {
                     expect(typeof event.created_at).toBe("string");
                     expect(typeof event.votes).toBe("number");
                     expect(typeof event.event_img_url).toBe("string");
-
                 });
             });
     });
+});
 
-    describe("GET /api/events/:event_id", () => {
-        test("200 returns an event object with corresponding ID", () => {
-            return request(app)
-                .get("/api/events/1")
-                .expect(200)
-                .then(({ body }) => {
-                    const { event } = body;
-                    expect(event.event_id).toEqual(1);
-                    expect(typeof event.author).toBe("string");
-                    expect(typeof event.title).toBe("string");
-                    expect(typeof event.event_id).toBe("number");
-                    expect(typeof event.body).toBe("string");
-                    expect(typeof event.timeline).toBe("string");
-                    expect(typeof event.created_at).toBe("string");
-                    expect(typeof event.votes).toBe("number");
-                    expect(typeof event.event_img_url).toBe("string");
-                });
-        });
-        // test("200 returns, now with comment count", () => {
-        //     return request(app)
-        //         .get("/api/events/1")
-        //         .expect(200)
-        //         .then(({ body }) => {
-        //             const { event } = body;
-        //             expect(typeof event.comment_count).toBe("number");
-        //         });
-        // });
-        test("400 responds when valid path but invalid id", () => {
-            return request(app)
-                .get("/api/events/invalidId")
-                .expect(400)
-                .then(({ body }) => {
-                    expect(body.msg).toBe("PSQL 22P02 - 23502 - Invalid input.");
-
-                });
-        });
-        test("404 responds when valid id but is non-existent", () => {
-            return request(app)
-                .get("/api/events/111111")
-                .expect(404)
-                .then(({ body }) => {
-                    expect(body.msg).toBe("event 111111 does not exist");
-                });
-        });
+describe("GET /api/events/:event_id", () => {
+    test("200 returns an event object with corresponding ID", () => {
+        return request(app)
+            .get("/api/events/1")
+            .expect(200)
+            .then(({ body }) => {
+                const { event } = body;
+                expect(event.event_id).toEqual(1);
+                expect(typeof event.author).toBe("string");
+                expect(typeof event.title).toBe("string");
+                expect(typeof event.event_id).toBe("number");
+                expect(typeof event.body).toBe("string");
+                expect(typeof event.timeline).toBe("string");
+                expect(typeof event.created_at).toBe("string");
+                expect(typeof event.votes).toBe("number");
+                expect(typeof event.event_img_url).toBe("string");
+            });
     });
+    // test("200 returns, now with comment count", () => {
+    //     return request(app)
+    //         .get("/api/events/1")
+    //         .expect(200)
+    //         .then(({ body }) => {
+    //             const { event } = body;
+    //             expect(typeof event.comment_count).toBe("number");
+    //         });
+    // });
+    test("400 responds when valid path but invalid id", () => {
+        return request(app)
+            .get("/api/events/invalidId")
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("PSQL 22P02 - 23502 - Invalid input.");
+            });
+    });
+    test("404 responds when valid id but is non-existent", () => {
+        return request(app)
+            .get("/api/events/111111")
+            .expect(404)
+            .then(({ body }) => {
+                expect(body.msg).toBe("Event ID does not exist: 111111");
+            });
+    });
+});
 
+describe("POST /api/events", () => {
+    test("201 returns newly created event", () => {
+        const newevent = {
+            author: "al-ex-huze",
+            title: "Test Title - New event",
+            body: "Test body - one, two, three",
+            timeline: "Northcoders Bootcamp",
+            event_img_url:
+                "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        };
+        return request(app)
+            .post("/api/events")
+            .send(newevent)
+            .expect(201)
+            .then(({ body }) => {
+                const { event } = body;
+                expect(typeof event.author).toBe("string");
+                expect(typeof event.title).toBe("string");
+                expect(typeof event.event_id).toBe("number");
+                expect(typeof event.body).toBe("string");
+                expect(typeof event.timeline).toBe("string");
+                expect(typeof event.created_at).toBe("string");
+                expect(typeof event.votes).toBe("number");
+                expect(typeof event.event_img_url).toBe("string");
+            });
+    });
+    test("201 successful post, additional properties ignored", () => {
+        const newevent = {
+            surplus: "test ignore",
+            author: "al-ex-huze",
+            title: "Test Title - New event",
+            body: "Test body - one, two, three",
+            timeline: "Northcoders Bootcamp",
+            event_img_url:
+                "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+            extra: 12345,
+        };
+        const expected = {
+            author: "al-ex-huze",
+            title: "Test Title - New event",
+            event_id: 6,
+            body: "Test body - one, two, three",
+            timeline: "Northcoders Bootcamp",
+            created_at: expect.any(String),
+            votes: 0,
+            event_img_url:
+                "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        };
+        return request(app)
+            .post("/api/events")
+            .send(newevent)
+            .expect(201)
+            .then(({ body }) => {
+                const { event } = body;
+                expect(event).toMatchObject(expected);
+            });
+    });
+    test("201 successful post with default img url if not included", () => {
+        const newevent = {
+            author: "al-ex-huze",
+            title: "Test Title - New event",
+            body: "Test body - one, two, three",
+            timeline: "Northcoders Bootcamp",
+        };
+        return request(app)
+            .post("/api/events")
+            .send(newevent)
+            .expect(201)
+            .then(({ body }) => {
+                const { event } = body;
+                expect(event.event_img_url).toBe(
+                    "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700"
+                );
+            });
+    });
+    test("201 successful post with default img url is null", () => {
+        const newevent = {
+            author: "al-ex-huze",
+            title: "Test Title - New event",
+            body: "Test body - one, two, three",
+            timeline: "Northcoders Bootcamp",
+            event_img_url: null,
+        };
+        return request(app)
+            .post("/api/events")
+            .send(newevent)
+            .expect(201)
+            .then(({ body }) => {
+                const { event } = body;
+                expect(event.event_img_url).toBe(
+                    "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700"
+                );
+            });
+    });
+    test("404 valid but non existent timeline", () => {
+        const newevent = {
+            author: "al-ex-huze",
+            title: "Test Title - New event",
+            body: "Test body - one, two, three",
+            timeline: "Southcoders Bootcamp",
+            event_img_url:
+                "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        };
+        return request(app)
+            .post("/api/events")
+            .send(newevent)
+            .expect(404)
+            .then(({ body }) => {
+                expect(body.msg).toBe("Timeline does not exist: Southcoders Bootcamp");
+            });
+    });
+    test("404 valid but non existent author", () => {
+        const newevent = {
+            author: "al",
+            title: "Test Title - New event",
+            body: "Test body - one, two, three",
+            timeline: "Northcoders Bootcamp",
+            event_img_url:
+                "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        };
+        return request(app)
+            .post("/api/events")
+            .send(newevent)
+            .expect(404)
+            .then(({ body }) => {
+                expect(body.msg).toBe("User does not exist: al");
+            });
+    });
+    test("400 missing required fields", () => {
+        const newevent = {
+            author: "al-ex-huze",
+            title: null,
+            body: "Test body - one, two, three",
+            timeline: "Northcoders Bootcamp",
+            event_img_url:
+                "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        };
+        return request(app)
+            .post("/api/events")
+            .send(newevent)
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("PSQL ERROR - 23502 - Missing input.");
+            });
+    });
+    test("400 missing required fields", () => {
+        const newevent = {
+            author: "al-ex-huze",
+            title: "Test Title - New event",
+            body: null,
+            timeline: "Northcoders Bootcamp",
+            event_img_url:
+                "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        };
+        return request(app)
+            .post("/api/events")
+            .send(newevent)
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("PSQL ERROR - 23502 - Missing input.");
+            });
+    });
 });

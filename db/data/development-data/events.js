@@ -7,7 +7,7 @@ module.exports = [
     created_at: 1594329060000,
     votes: 0,
     event_img_url:
-    "https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700",
+    "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
   },
   {
     title: "Fundamentals",
@@ -17,7 +17,7 @@ module.exports = [
     created_at: 1594329060000,
     votes: 0,
     event_img_url:
-    "https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700",
+    "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
   },
   {
     title: "Back End",
@@ -27,7 +27,7 @@ module.exports = [
     created_at: 1594329060000,
     votes: 0,
     event_img_url:
-    "https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700",
+    "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
   },
   {
     title: "Front End",
@@ -37,7 +37,7 @@ module.exports = [
     created_at: 1594329060000,
     votes: 0,
     event_img_url:
-    "https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700",
+    "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
   },
   {
     title: "Project Phase",
@@ -47,6 +47,6 @@ module.exports = [
     created_at: 1594329060000,
     votes: 0,
     event_img_url:
-    "https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700",
+    "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
   }
 ];
