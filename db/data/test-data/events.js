@@ -58,5 +58,17 @@ module.exports = [
     votes: 0,
     event_img_url:
     "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+  },
+  {
+    title: "After Bootcamp",
+    timeline: "Northcoders Bootcamp",
+    author: "al-ex-huze",
+    body: "What next",
+    created_at: 1594329060000,
+    start_date: "2024-07-15",
+    end_date: "2024-07-19",
+    votes: 0,
+    event_img_url:
+    "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
   }
 ];

@@ -93,9 +93,7 @@ describe("POST /api/timelines", () => {
             .send(newTimeline)
             .expect(400)
             .then(({ body }) => {
-                expect(body.msg).toBe(
-                    "PSQL ERROR: 23502 - Missing input."
-                );
+                expect(body.msg).toBe("PSQL ERROR: 23502 - Missing input.");
             });
     });
 });
@@ -233,7 +231,7 @@ describe("POST /api/events", () => {
         const expected = {
             author: "al-ex-huze",
             title: "Test Title - New event",
-            event_id: 6,
+            event_id: 7,
             body: "Test body - one, two, three",
             timeline: "Northcoders Bootcamp",
             created_at: expect.any(String),
@@ -309,7 +307,9 @@ describe("POST /api/events", () => {
             .send(newevent)
             .expect(404)
             .then(({ body }) => {
-                expect(body.msg).toBe("Timeline does not exist: Southcoders Bootcamp");
+                expect(body.msg).toBe(
+                    "Timeline does not exist: Southcoders Bootcamp"
+                );
             });
     });
     test("404 valid but non existent author", () => {
@@ -394,6 +394,101 @@ describe("DELETE /api/events/:event_id", () => {
             .expect(404)
             .then(({ body }) => {
                 expect(body.msg).toBe("Event does not exist: 333333333");
+            });
+    });
+});
+
+describe("PATCH /api/events/:event_id", () => {
+    test("200 returns updated event", () => {
+        const patchID = 6;
+        const update = {
+            new_start_date: "2024-07-20",
+            new_end_date: "2024-07-25",
+        };
+        return request(app)
+            .patch(`/api/events/${patchID}`)
+            .send(update)
+            .expect(200)
+            .then(({ body }) => {
+                const { event } = body;
+                expect(event.start_date).toEqual("2024-07-20");
+                expect(event.end_date).toEqual("2024-07-25");
+                expect(typeof event.author).toBe("string");
+                expect(typeof event.title).toBe("string");
+                expect(typeof event.event_id).toBe("number");
+                expect(typeof event.body).toBe("string");
+                expect(typeof event.timeline).toBe("string");
+                expect(typeof event.created_at).toBe("string");
+                expect(typeof event.start_date).toBe("string");
+                expect(typeof event.end_date).toBe("string");
+                expect(typeof event.votes).toBe("number");
+                expect(typeof event.event_img_url).toBe("string");
+            });
+    });
+    test("200 returns updated event", () => {
+        const patchID = 6;
+        const update = {
+            new_start_date: "2024-07-28",
+            new_end_date: "2024-07-29",
+        };
+        return request(app)
+            .patch(`/api/events/${patchID}`)
+            .send(update)
+            .expect(200)
+            .then(({ body }) => {
+                const { event } = body;
+                expect(event.start_date).toEqual("2024-07-28");
+                expect(event.end_date).toEqual("2024-07-29");
+            });
+    });
+    test("400 missing required fields when request key is null", () => {
+        const patchID = 6;
+        const update = {
+            new_start_date: "2024-07-20",
+            new_end_date: null,
+        };
+        return request(app)
+            .patch(`/api/events/${patchID}`)
+            .send(update)
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("PSQL ERROR: 23502 - Missing input.");
+            });
+    });
+    test("400 missing required fields when request is null", () => {
+        const patchID = 6;
+        const update = null;
+        return request(app)
+            .patch(`/api/events/${patchID}`)
+            .send(update)
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("PSQL ERROR: 23502 - Missing input.");
+            });
+    });
+    test("400 incorrect fields of wrong property type", () => {
+        const patchID = 6;
+        const update = {
+            new_start_date: "2024-07-20",
+            new_end_date: 9999,
+        };
+        return request(app)
+            .patch(`/api/events/${patchID}`)
+            .send(update)
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("Date input is an integer");
+            });
+    });
+    test("400 incorrect type of request", () => {
+        const patchID = 6;
+        const update = ["2024-07-20"];
+        return request(app)
+            .patch(`/api/events/${patchID}`)
+            .send(update)
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("PSQL ERROR: 23502 - Missing input.");
             });
     });
 });
