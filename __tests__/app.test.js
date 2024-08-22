@@ -94,7 +94,7 @@ describe("POST /api/timelines", () => {
             .expect(400)
             .then(({ body }) => {
                 expect(body.msg).toBe(
-                    "PSQL ERROR - 23502 - Missing input."
+                    "PSQL ERROR: 23502 - Missing input."
                 );
             });
     });
@@ -154,6 +154,8 @@ describe("GET /api/events/:event_id", () => {
                 expect(typeof event.body).toBe("string");
                 expect(typeof event.timeline).toBe("string");
                 expect(typeof event.created_at).toBe("string");
+                expect(typeof event.start_date).toBe("string");
+                expect(typeof event.end_date).toBe("string");
                 expect(typeof event.votes).toBe("number");
                 expect(typeof event.event_img_url).toBe("string");
             });
@@ -172,7 +174,7 @@ describe("GET /api/events/:event_id", () => {
             .get("/api/events/invalidId")
             .expect(400)
             .then(({ body }) => {
-                expect(body.msg).toBe("PSQL ERROR 22P02 - Invalid input.");
+                expect(body.msg).toBe("PSQL ERROR: 22P02 - Invalid input.");
             });
     });
     test("404 responds when valid id but is non-existent", () => {
@@ -192,6 +194,8 @@ describe("POST /api/events", () => {
             title: "Test Title - New event",
             body: "Test body - one, two, three",
             timeline: "Northcoders Bootcamp",
+            start_date: "2024-07-15",
+            end_date: "2024-07-19",
             event_img_url:
                 "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         };
@@ -207,6 +211,8 @@ describe("POST /api/events", () => {
                 expect(typeof event.body).toBe("string");
                 expect(typeof event.timeline).toBe("string");
                 expect(typeof event.created_at).toBe("string");
+                expect(typeof event.start_date).toBe("string");
+                expect(typeof event.end_date).toBe("string");
                 expect(typeof event.votes).toBe("number");
                 expect(typeof event.event_img_url).toBe("string");
             });
@@ -218,6 +224,8 @@ describe("POST /api/events", () => {
             title: "Test Title - New event",
             body: "Test body - one, two, three",
             timeline: "Northcoders Bootcamp",
+            start_date: "2024-07-15",
+            end_date: "2024-07-19",
             event_img_url:
                 "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
             extra: 12345,
@@ -229,6 +237,8 @@ describe("POST /api/events", () => {
             body: "Test body - one, two, three",
             timeline: "Northcoders Bootcamp",
             created_at: expect.any(String),
+            start_date: "2024-07-15",
+            end_date: "2024-07-19",
             votes: 0,
             event_img_url:
                 "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
@@ -248,6 +258,8 @@ describe("POST /api/events", () => {
             title: "Test Title - New event",
             body: "Test body - one, two, three",
             timeline: "Northcoders Bootcamp",
+            start_date: "2024-07-15",
+            end_date: "2024-07-19",
         };
         return request(app)
             .post("/api/events")
@@ -266,6 +278,8 @@ describe("POST /api/events", () => {
             title: "Test Title - New event",
             body: "Test body - one, two, three",
             timeline: "Northcoders Bootcamp",
+            start_date: "2024-07-15",
+            end_date: "2024-07-19",
             event_img_url: null,
         };
         return request(app)
@@ -285,6 +299,8 @@ describe("POST /api/events", () => {
             title: "Test Title - New event",
             body: "Test body - one, two, three",
             timeline: "Southcoders Bootcamp",
+            start_date: "2024-07-15",
+            end_date: "2024-07-19",
             event_img_url:
                 "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         };
@@ -302,6 +318,8 @@ describe("POST /api/events", () => {
             title: "Test Title - New event",
             body: "Test body - one, two, three",
             timeline: "Northcoders Bootcamp",
+            start_date: "2024-07-15",
+            end_date: "2024-07-19",
             event_img_url:
                 "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         };
@@ -319,6 +337,8 @@ describe("POST /api/events", () => {
             title: null,
             body: "Test body - one, two, three",
             timeline: "Northcoders Bootcamp",
+            start_date: "2024-07-15",
+            end_date: "2024-07-19",
             event_img_url:
                 "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         };
@@ -327,7 +347,7 @@ describe("POST /api/events", () => {
             .send(newevent)
             .expect(400)
             .then(({ body }) => {
-                expect(body.msg).toBe("PSQL ERROR - 23502 - Missing input.");
+                expect(body.msg).toBe("PSQL ERROR: 23502 - Missing input.");
             });
     });
     test("400 missing required fields", () => {
@@ -336,6 +356,8 @@ describe("POST /api/events", () => {
             title: "Test Title - New event",
             body: null,
             timeline: "Northcoders Bootcamp",
+            start_date: "2024-07-15",
+            end_date: "2024-07-19",
             event_img_url:
                 "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         };
@@ -344,7 +366,7 @@ describe("POST /api/events", () => {
             .send(newevent)
             .expect(400)
             .then(({ body }) => {
-                expect(body.msg).toBe("PSQL ERROR - 23502 - Missing input.");
+                expect(body.msg).toBe("PSQL ERROR: 23502 - Missing input.");
             });
     });
 });
@@ -363,7 +385,7 @@ describe("DELETE /api/events/:event_id", () => {
             .delete("/api/events/invalidId")
             .expect(400)
             .then(({ body }) => {
-                expect(body.msg).toBe("PSQL ERROR 22P02 - Invalid input.");
+                expect(body.msg).toBe("PSQL ERROR: 22P02 - Invalid input.");
             });
     });
     test("404 responds when event not found", () => {

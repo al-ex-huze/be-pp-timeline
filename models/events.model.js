@@ -1,7 +1,7 @@
 const db = require("../db/connection.js");
 
 exports.selectEvents = () => {
-    const queryStr = "SELECT author, title, event_id, timeline, created_at, votes, event_img_url FROM events;";
+    const queryStr = "SELECT author, title, event_id, timeline, created_at, start_date, end_date, votes, event_img_url FROM events;";
 
     return db.query(queryStr).then(({ rows }) => {
         return rows;
@@ -9,7 +9,7 @@ exports.selectEvents = () => {
 };
 
 exports.selectEventByID = (event_id) => {
-    const queryStr = "SELECT author, timeline, title, event_id, body, created_at, votes, event_img_url FROM events WHERE event_id = $1;";
+    const queryStr = "SELECT author, timeline, title, event_id, body, created_at, start_date, end_date, votes, event_img_url FROM events WHERE event_id = $1;";
 
     const queryValue = [event_id];
 
@@ -26,7 +26,7 @@ exports.selectEventByID = (event_id) => {
 };
 
 exports.insertEvent = (newEvent) => {
-    const { author, title, timeline, body, event_img_url } = newEvent;
+    const { author, title, timeline, body, start_date, end_date, event_img_url } = newEvent;
     
     const checkAuthorQueryStr =
         "SELECT username FROM users WHERE EXISTS (SELECT username FROM users WHERE username = $1);";
@@ -39,13 +39,13 @@ exports.insertEvent = (newEvent) => {
     const queryValues = [];
 
     if (event_img_url === null || event_img_url === undefined) {
-        queryValues.push(author, title, body, timeline);
+        queryValues.push(author, title, body, timeline, start_date, end_date,);
         queryStr =
-            "INSERT INTO events (author, title, body, timeline) VALUES ($1, $2, $3, $4) RETURNING event_id;";
+            "INSERT INTO events (author, title, body, timeline, start_date, end_date) VALUES ($1, $2, $3, $4, $5, $6) RETURNING event_id;";
     } else {
-        queryValues.push(author, title, body, timeline, event_img_url);
+        queryValues.push(author, title, body, timeline, start_date, end_date, event_img_url);
         queryStr =
-            "INSERT INTO events (author, title, body, timeline, event_img_url) VALUES ($1, $2, $3, $4, $5) RETURNING event_id;";
+            "INSERT INTO events (author, title, body, timeline, start_date, end_date, event_img_url) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING event_id;";
     }
 
     return db.query(checkAuthorQueryStr, [author]).then((isAuthorValid) => {
