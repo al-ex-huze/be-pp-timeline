@@ -8,8 +8,7 @@
     "seed": "node ./db/seeds/run-seed.js",
     "start": "node listen.js",
     "seed-prod": "NODE_ENV=production npm run seed",
-    "test": "jest",
-    "prepare": "husky install"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,7 +22,7 @@
   },
   "homepage": "",
   "devDependencies": {
-    "husky": "^8.0.2",
+    "@flydotio/dockerfile": "^0.5.8",
     "jest": "^27.5.1",
     "jest-extended": "^2.0.0",
     "pg-format": "^1.0.4",
