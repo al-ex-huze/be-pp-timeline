@@ -7,8 +7,9 @@ exports.handleCustomErrors = (err, req, res, next) => {
 exports.handlePsqlErrors = (err, req, res, next) => {
     if (err.code === "23502") {
         res.status(400).send({ msg: "PSQL ERROR - 23502 - Failing row contains (null, test body)." });
-    } else
-    if (err.code) {
+    } else if (err.code === "22P02") {
+        res.status(400).send({ msg: "PSQL 22P02 - 23502 - Invalid input." });
+    } else if (err.code) {
         console.log(err, "PSQL ERROR");
     } else next(err);
 };

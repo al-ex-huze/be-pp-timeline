@@ -13,37 +13,37 @@ afterAll(() => db.end());
 describe("GET /api", () => {
     test("200 responds with endpoints object", () => {
         return request(app)
-        .get("/api")
-        .expect(200)
-        .expect("Content-Type", "application/json; charset=utf-8")
-        .then(({ body }) => {
-            expect(JSON.stringify(body)).toBe(
-                JSON.stringify(currentEndpointsTest)
-            );
-        });
+            .get("/api")
+            .expect(200)
+            .expect("Content-Type", "application/json; charset=utf-8")
+            .then(({ body }) => {
+                expect(JSON.stringify(body)).toBe(
+                    JSON.stringify(currentEndpointsTest)
+                );
+            });
     });
     test("404 responds when route not found", () => {
         return request(app)
-        .get("/nonValidRoute")
-        .expect(404)
-        .then(({ body }) => {
-            expect(body.msg).toBe("route not found");
-        });
+            .get("/nonValidRoute")
+            .expect(404)
+            .then(({ body }) => {
+                expect(body.msg).toBe("route not found");
+            });
     });
 });
 
 describe("GET /api/timelines", () => {
     test("200 returns all timelines", () => {
         return request(app)
-        .get("/api/timelines")
-        .expect(200)
-        .then(({ body }) => {
-            const { timelines } = body;
-            timelines.forEach((timeline) => {
-                expect(typeof timeline.timeline_name).toBe("string");
-                expect(typeof timeline.description).toBe("string");
+            .get("/api/timelines")
+            .expect(200)
+            .then(({ body }) => {
+                const { timelines } = body;
+                timelines.forEach((timeline) => {
+                    expect(typeof timeline.timeline_name).toBe("string");
+                    expect(typeof timeline.description).toBe("string");
+                });
             });
-        });
     });
 });
 
@@ -137,5 +137,51 @@ describe("GET /api/events", () => {
                 });
             });
     });
-    
+
+    describe("GET /api/events/:event_id", () => {
+        test("200 returns an event object with corresponding ID", () => {
+            return request(app)
+                .get("/api/events/1")
+                .expect(200)
+                .then(({ body }) => {
+                    const { event } = body;
+                    expect(event.event_id).toEqual(1);
+                    expect(typeof event.author).toBe("string");
+                    expect(typeof event.title).toBe("string");
+                    expect(typeof event.event_id).toBe("number");
+                    expect(typeof event.body).toBe("string");
+                    expect(typeof event.timeline).toBe("string");
+                    expect(typeof event.created_at).toBe("string");
+                    expect(typeof event.votes).toBe("number");
+                    expect(typeof event.event_img_url).toBe("string");
+                });
+        });
+        // test("200 returns, now with comment count", () => {
+        //     return request(app)
+        //         .get("/api/events/1")
+        //         .expect(200)
+        //         .then(({ body }) => {
+        //             const { event } = body;
+        //             expect(typeof event.comment_count).toBe("number");
+        //         });
+        // });
+        test("400 responds when valid path but invalid id", () => {
+            return request(app)
+                .get("/api/events/invalidId")
+                .expect(400)
+                .then(({ body }) => {
+                    expect(body.msg).toBe("PSQL 22P02 - 23502 - Invalid input.");
+
+                });
+        });
+        test("404 responds when valid id but is non-existent", () => {
+            return request(app)
+                .get("/api/events/111111")
+                .expect(404)
+                .then(({ body }) => {
+                    expect(body.msg).toBe("event 111111 does not exist");
+                });
+        });
+    });
+
 });
