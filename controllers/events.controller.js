@@ -1,4 +1,4 @@
-const { selectEvents, selectEventByID } = require("../models/events.model.js");
+const { selectEvents, selectEventByID, insertEvent } = require("../models/events.model.js");
 
 exports.getEvents = (req, res, next) => {
     selectEvents()
@@ -13,6 +13,18 @@ exports.getEventByID = (req, res, next) => {
     selectEventByID(event_id)
     .then((event) => {
         res.status(200).send({ event });
+    })
+    .catch(next);
+}
+
+exports.createEvent = (req, res, next) => {
+    insertEvent(req.body)
+    .then((event_id) => {
+        return selectEventByID(event_id.toString());
+    })
+    .then((event) => {
+        res.status(201);
+        res.send({ event });
     })
     .catch(next);
 }
