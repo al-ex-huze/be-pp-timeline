@@ -43,6 +43,8 @@ const seed = ({ timelineData, userData, eventData, commentData }) => {
         author VARCHAR NOT NULL REFERENCES users(username),
         body VARCHAR NOT NULL,
         created_at TIMESTAMP DEFAULT NOW(),
+        start_date VARCHAR NOT NULL,
+        end_date VARCHAR NOT NULL,
         votes INT DEFAULT 0 NOT NULL,
         event_img_url VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700'
       );`);
@@ -80,7 +82,7 @@ const seed = ({ timelineData, userData, eventData, commentData }) => {
     .then(() => {
       const formattedEventData = eventData.map(convertTimestampToDate);
       const insertEventsQueryStr = format(
-        'INSERT INTO events (title, timeline, author, body, created_at, votes, event_img_url) VALUES %L RETURNING *;',
+        'INSERT INTO events (title, timeline, author, body, created_at, start_date, end_date, votes, event_img_url) VALUES %L RETURNING *;',
         formattedEventData.map(
           ({
             title,
@@ -88,9 +90,11 @@ const seed = ({ timelineData, userData, eventData, commentData }) => {
             author,
             body,
             created_at,
+            start_date,
+            end_date,
             votes = 0,
             event_img_url,
-          }) => [title, timeline, author, body, created_at, votes, event_img_url]
+          }) => [title, timeline, author, body, created_at, start_date, end_date, votes, event_img_url]
         )
       );
 
