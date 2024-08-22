@@ -74,3 +74,17 @@ exports.insertEvent = (newEvent) => {
         }))
     })
 }
+
+exports.deleteEvent = (event_id) => {
+    const queryStr = "DELETE FROM events WHERE event_id = $1 RETURNING *;";
+    const queryValue = [event_id];
+
+    return db.query(queryStr, queryValue).then(({ rowCount }) => {
+        if (rowCount === 0) {
+            return Promise.reject({
+                status: 404,
+                msg: `Event does not exist: ${event_id}`,
+            });
+        };
+    });
+};

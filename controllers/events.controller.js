@@ -1,4 +1,4 @@
-const { selectEvents, selectEventByID, insertEvent } = require("../models/events.model.js");
+const { selectEvents, selectEventByID, insertEvent, deleteEvent } = require("../models/events.model.js");
 
 exports.getEvents = (req, res, next) => {
     selectEvents()
@@ -25,6 +25,15 @@ exports.createEvent = (req, res, next) => {
     .then((event) => {
         res.status(201);
         res.send({ event });
+    })
+    .catch(next);
+}
+
+exports.removeEvent = (req, res, next) => {
+    const { event_id } = req.params;
+    deleteEvent(event_id)
+    .then(() => {
+        res.status(204).send();
     })
     .catch(next);
 }

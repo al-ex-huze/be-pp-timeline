@@ -172,7 +172,7 @@ describe("GET /api/events/:event_id", () => {
             .get("/api/events/invalidId")
             .expect(400)
             .then(({ body }) => {
-                expect(body.msg).toBe("PSQL 22P02 - 23502 - Invalid input.");
+                expect(body.msg).toBe("PSQL ERROR 22P02 - Invalid input.");
             });
     });
     test("404 responds when valid id but is non-existent", () => {
@@ -345,6 +345,33 @@ describe("POST /api/events", () => {
             .expect(400)
             .then(({ body }) => {
                 expect(body.msg).toBe("PSQL ERROR - 23502 - Missing input.");
+            });
+    });
+});
+
+describe("DELETE /api/events/:event_id", () => {
+    test("204 responds with no content", () => {
+        return request(app)
+            .delete("/api/events/5")
+            .expect(204)
+            .then(({ body }) => {
+                expect(body).toEqual({});
+            });
+    });
+    test("400 responds when invalid event id", () => {
+        return request(app)
+            .delete("/api/events/invalidId")
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("PSQL ERROR 22P02 - Invalid input.");
+            });
+    });
+    test("404 responds when event not found", () => {
+        return request(app)
+            .delete("/api/events/333333333")
+            .expect(404)
+            .then(({ body }) => {
+                expect(body.msg).toBe("Event does not exist: 333333333");
             });
     });
 });
