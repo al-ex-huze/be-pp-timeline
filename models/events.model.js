@@ -1,10 +1,52 @@
 const db = require("../db/connection.js");
 
-exports.selectEvents = () => {
-    const queryStr =
-        "SELECT author, title, event_id, timeline, created_at, start_date, end_date, votes, event_img_url FROM events;";
+exports.selectEvents = (validTimelines, timeline, sort_by, order) => {
+    const validSortBy = [
+        "author",
+        "title",
+        "event_id",
+        "timeline",
+        "created_at",
+        "start_date",
+        "end_date",
+        "votes",
+    ];
 
-    return db.query(queryStr).then(({ rows }) => {
+    if (sort_by && !validSortBy.includes(sort_by)) {
+        return Promise.reject({ status: 400, msg: "Invalid query: sort_by" });
+    }
+
+    if (order && !["asc", "desc"].includes(order)) {
+        return Promise.reject({ status: 400, msg: "Invalid query: order" });
+    }
+
+    if (timeline && !validTimelines.includes(timeline)) {
+        return Promise.reject({ status: 400, msg: "Invalid query" });
+    }
+
+    const queryValues = [];
+
+    let queryStr =
+        "SELECT author, title, event_id, timeline, created_at, start_date, end_date, votes, event_img_url FROM events";
+
+    if (timeline) {
+        queryStr += " WHERE timeline = $1";
+        queryValues.push(timeline);
+    }
+
+    queryStr += " GROUP BY events.event_id";
+
+    if (sort_by && order) {
+        queryStr += ` ORDER BY ${sort_by} ${order};`;
+    } else if (sort_by) {
+        queryStr += ` ORDER BY ${sort_by};`;
+    } else if (order) {
+        queryStr += ` ORDER BY events.created_at ${order};`;
+    } else {
+        queryStr += " ORDER BY events.created_at ASC;";
+    }
+
+    return db.query(queryStr, queryValues).then(({ rows }) => {
         return rows;
     });
 };
@@ -110,7 +152,10 @@ exports.deleteEvent = (event_id) => {
 
 exports.updateEventDates = (update, event_id) => {
     const { new_start_date, new_end_date } = update;
-    if (typeof new_start_date === "number" || typeof new_end_date === "number") {
+    if (
+        typeof new_start_date === "number" ||
+        typeof new_end_date === "number"
+    ) {
         return Promise.reject({
             status: 400,
             msg: "Date input is an integer",
