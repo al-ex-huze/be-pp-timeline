@@ -136,24 +136,44 @@ describe("GET /api/events", () => {
                 });
             });
     });
-    test("200 returns sorted by ascending date order as default", () => {
+    test("200 returns sorted by ascending start date order as default", () => {
         return request(app)
             .get("/api/events")
             .expect(200)
             .then(({ body }) => {
                 const { events } = body;
-                expect(events).toBeSortedBy("created_at", {
-                    descending: true,
-                });
+                expect(events).toBeSortedBy("start_date");
             });
     });
-    test("200 returns sorted by descending date order query", () => {
+    test("200 returns sorted by descending start date order query", () => {
         return request(app)
             .get("/api/events?order=desc")
             .expect(200)
             .then(({ body }) => {
                 const { events } = body;
-                expect(events).toBeSortedBy("created_at");
+                expect(events).toBeSortedBy("start_date", {
+                    descending: true,
+                });
+            });
+    });
+    test("200 returns sorted by query... end date", () => {
+        return request(app)
+            .get("/api/events?sort_by=end_date")
+            .expect(200)
+            .then(({ body }) => {
+                const { events } = body;
+                expect(events).toBeSortedBy("end_date");
+            });
+    });
+    test("200 returns sorted by query... end date desc", () => {
+        return request(app)
+            .get("/api/events?sort_by=end_date&order=desc")
+            .expect(200)
+            .then(({ body }) => {
+                const { events } = body;
+                expect(events).toBeSortedBy("end_date", {
+                    descending: true,
+                });
             });
     });
     test("200 returns array of events filtered by timeline query", () => {

@@ -41,9 +41,9 @@ exports.selectEvents = (validTimelines, timeline, sort_by, order) => {
     } else if (sort_by) {
         queryStr += ` ORDER BY ${sort_by};`;
     } else if (order) {
-        queryStr += ` ORDER BY events.created_at ${order};`;
+        queryStr += ` ORDER BY start_date ${order};`;
     } else {
-        queryStr += " ORDER BY events.created_at ASC;";
+        queryStr += " ORDER BY start_date ASC;";
     }
 
     return db.query(queryStr, queryValues).then(({ rows }) => {
