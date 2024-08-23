@@ -1,3 +1,5 @@
+const { selectTimelines } = require("../models/timelines.model.js");
+
 const {
     selectEvents,
     selectEventByID,
@@ -7,11 +9,18 @@ const {
 } = require("../models/events.model.js");
 
 exports.getEvents = (req, res, next) => {
-    selectEvents()
-        .then((events) => {
-            res.status(200).send({ events });
-        })
-        .catch(next);
+    const { timeline, sort_by, order } = req.query;
+    selectTimelines().then((timelines) => {
+        const validTimelines = [];
+        timelines.forEach((timeline) => {
+            validTimelines.push(timeline.timeline_name);
+        });
+        return selectEvents(validTimelines, timeline, sort_by, order)
+            .then((events) => {
+                res.status(200).send({ events });
+            })
+            .catch(next);
+    });
 };
 
 exports.getEventByID = (req, res, next) => {

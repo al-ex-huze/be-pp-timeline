@@ -136,6 +136,79 @@ describe("GET /api/events", () => {
                 });
             });
     });
+    test("200 returns sorted by ascending date order as default", () => {
+        return request(app)
+            .get("/api/events")
+            .expect(200)
+            .then(({ body }) => {
+                const { events } = body;
+                expect(events).toBeSortedBy("created_at", {
+                    descending: true,
+                });
+            });
+    });
+    test("200 returns sorted by descending date order query", () => {
+        return request(app)
+            .get("/api/events?order=desc")
+            .expect(200)
+            .then(({ body }) => {
+                const { events } = body;
+                expect(events).toBeSortedBy("created_at");
+            });
+    });
+    test("200 returns array of events filtered by timeline query", () => {
+        return request(app)
+            .get("/api/events?timeline=Northcoders Bootcamp")
+            .expect(200)
+            .then(({ body }) => {
+                const { events } = body;
+                events.forEach((event) => {
+                    expect(event.timeline).toBe("Northcoders Bootcamp");
+                });
+            });
+    });
+    test("200 returns empty array for valid timeline with no events", () => {
+        return request(app)
+            .get("/api/events?timeline=Post Bootcamp")
+            .expect(200)
+            .then(({ body }) => {
+                const { events } = body;
+                expect(events).toEqual([]);
+            });
+    });
+    test("200 returns sorted by query...author", () => {
+        return request(app)
+            .get("/api/events?sort_by=author")
+            .expect(200)
+            .then(({ body }) => {
+                const { events } = body;
+                expect(events).toBeSortedBy("author");
+            });
+    });
+    test("400 returns invalid timeline query", () => {
+        return request(app)
+            .get("/api/events?timeline=invalid_timeline")
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("Invalid query");
+            });
+    });
+    test("400 valid path but invalid sort_by query", () => {
+        return request(app)
+            .get("/api/events?sort_by=sausage")
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("Invalid query: sort_by");
+            });
+    });
+    test("400 valid path but invalid order query", () => {
+        return request(app)
+            .get("/api/events?order=sideways")
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("Invalid query: order");
+            });
+    });
 });
 
 describe("GET /api/events/:event_id", () => {
@@ -187,7 +260,7 @@ describe("GET /api/events/:event_id", () => {
 
 describe("POST /api/events", () => {
     test("201 returns newly created event", () => {
-        const newevent = {
+        const newEvent = {
             author: "al-ex-huze",
             title: "Test Title - New event",
             body: "Test body - one, two, three",
@@ -199,7 +272,7 @@ describe("POST /api/events", () => {
         };
         return request(app)
             .post("/api/events")
-            .send(newevent)
+            .send(newEvent)
             .expect(201)
             .then(({ body }) => {
                 const { event } = body;
@@ -216,7 +289,7 @@ describe("POST /api/events", () => {
             });
     });
     test("201 successful post, additional properties ignored", () => {
-        const newevent = {
+        const newEvent = {
             surplus: "test ignore",
             author: "al-ex-huze",
             title: "Test Title - New event",
@@ -243,7 +316,7 @@ describe("POST /api/events", () => {
         };
         return request(app)
             .post("/api/events")
-            .send(newevent)
+            .send(newEvent)
             .expect(201)
             .then(({ body }) => {
                 const { event } = body;
@@ -251,7 +324,7 @@ describe("POST /api/events", () => {
             });
     });
     test("201 successful post with default img url if not included", () => {
-        const newevent = {
+        const newEvent = {
             author: "al-ex-huze",
             title: "Test Title - New event",
             body: "Test body - one, two, three",
@@ -261,7 +334,7 @@ describe("POST /api/events", () => {
         };
         return request(app)
             .post("/api/events")
-            .send(newevent)
+            .send(newEvent)
             .expect(201)
             .then(({ body }) => {
                 const { event } = body;
@@ -271,7 +344,7 @@ describe("POST /api/events", () => {
             });
     });
     test("201 successful post with default img url is null", () => {
-        const newevent = {
+        const newEvent = {
             author: "al-ex-huze",
             title: "Test Title - New event",
             body: "Test body - one, two, three",
@@ -282,7 +355,7 @@ describe("POST /api/events", () => {
         };
         return request(app)
             .post("/api/events")
-            .send(newevent)
+            .send(newEvent)
             .expect(201)
             .then(({ body }) => {
                 const { event } = body;
@@ -292,7 +365,7 @@ describe("POST /api/events", () => {
             });
     });
     test("404 valid but non existent timeline", () => {
-        const newevent = {
+        const newEvent = {
             author: "al-ex-huze",
             title: "Test Title - New event",
             body: "Test body - one, two, three",
@@ -304,7 +377,7 @@ describe("POST /api/events", () => {
         };
         return request(app)
             .post("/api/events")
-            .send(newevent)
+            .send(newEvent)
             .expect(404)
             .then(({ body }) => {
                 expect(body.msg).toBe(
@@ -313,7 +386,7 @@ describe("POST /api/events", () => {
             });
     });
     test("404 valid but non existent author", () => {
-        const newevent = {
+        const newEvent = {
             author: "al",
             title: "Test Title - New event",
             body: "Test body - one, two, three",
@@ -325,14 +398,14 @@ describe("POST /api/events", () => {
         };
         return request(app)
             .post("/api/events")
-            .send(newevent)
+            .send(newEvent)
             .expect(404)
             .then(({ body }) => {
                 expect(body.msg).toBe("User does not exist: al");
             });
     });
     test("400 missing required fields", () => {
-        const newevent = {
+        const newEvent = {
             author: "al-ex-huze",
             title: null,
             body: "Test body - one, two, three",
@@ -344,14 +417,14 @@ describe("POST /api/events", () => {
         };
         return request(app)
             .post("/api/events")
-            .send(newevent)
+            .send(newEvent)
             .expect(400)
             .then(({ body }) => {
                 expect(body.msg).toBe("PSQL ERROR: 23502 - Missing input.");
             });
     });
     test("400 missing required fields", () => {
-        const newevent = {
+        const newEvent = {
             author: "al-ex-huze",
             title: "Test Title - New event",
             body: null,
@@ -363,7 +436,7 @@ describe("POST /api/events", () => {
         };
         return request(app)
             .post("/api/events")
-            .send(newevent)
+            .send(newEvent)
             .expect(400)
             .then(({ body }) => {
                 expect(body.msg).toBe("PSQL ERROR: 23502 - Missing input.");

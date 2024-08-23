@@ -1,29 +1,87 @@
 {
-  "GET /api": {
-    "description": "serves up a json representation of all the available endpoints of the api"
-  },
-  "GET /api/timelines": {
-    "description": "serves an array of all timelines",
-    "queries": [],
-    "exampleResponse": {
-      "timelines": [{ "timeline_name": "Northcoders Bootcamp", "description": "What I learnt at Northcoders" }]
-    }
-  },
-  "GET /api/events": {
-    "description": "serves an array of all events",
-    "queries": ["author", "timeline", "sort_by", "order"],
-    "exampleResponse": {
-      "events": [
-        {
-          "title": "Intro Week",
-          "timeline_name": "Northcoders Bootcamp",
-          "author": "al-ex-huze",
-          "body": "We learnt to type and to code and to program",
-          "created_at": "2024-08-19T15:30:45.600Z",
-          "votes": 0,
-          "comment_count": 0
+    "GET /api": {
+        "description": "serves up a json representation of all the available endpoints of the api"
+    },
+    "GET /api/timelines": {
+        "description": "serves an array of all timelines",
+        "queries": [],
+        "exampleResponse": {
+            "timelines": [
+                {
+                    "timeline_name": "Northcoders Bootcamp",
+                    "description": "What I learnt at Northcoders"
+                }
+            ]
         }
-      ]
+    },
+    "POST /api/timelines": {
+        "description": "",
+        "newTimeline": {
+            "timeline_name": "NEW TL TEST 2",
+            "descriptiion": "Test description 1"
+        }
+    },
+    "DELETE /api/timelines": {
+        "description": "delete timeline by name"
+    },
+    "GET /api/events": {
+        "description": "serves an array of all events",
+        "queries": ["author", "timeline", "sort_by", "order"],
+        "exampleResponse": {
+            "events": [
+                {
+                    "title": "Intro Week",
+                    "timeline_name": "Northcoders Bootcamp",
+                    "author": "al-ex-huze",
+                    "body": "We learnt to type and to code and to program",
+                    "created_at": "2024-08-19T15:30:45.600Z",
+                    "start_date": "2024-07-15",
+                    "end_date": "2024-07-19",
+                    "votes": 0,
+                    "comment_count": 0
+                }
+            ]
+        }
+    },
+    "POST /api/events": {
+        "description": "",
+        "newevent": {
+            "author": "al-ex-huze",
+            "title": "Test Title - New event",
+            "body": "Test body - one, two, three",
+            "timeline": "Northcoders Bootcamp",
+            "start_date": "2024-07-15",
+            "end_date": "2024-07-19",
+            "event_img_url": "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg"
+        }
+    },
+    "GET /api/events/:event_id": {
+        "description": "",
+        "exampleResponse": {
+            "events": [
+                {
+                    "title": "Intro Week",
+                    "timeline_name": "Northcoders Bootcamp",
+                    "author": "al-ex-huze",
+                    "body": "We learnt to type and to code and to program",
+                    "created_at": "2024-08-19T15:30:45.600Z",
+                    "start_date": "2024-07-15",
+                    "end_date": "2024-07-19",
+                    "votes": 0,
+                    "comment_count": 0
+                }
+            ]
+        }
+    },
+    "DELETE /api/events/:event_id": {
+        "description": ""
+    },
+    "PATCH /api/events/:event_id": {
+        "description": "serves up a json representation of all the available endpoints of the api",
+        "update, event_id": "new_start_date, new_end_date",
+        "update": {
+            "new_start_date": "2024-07-28",
+            "new_end_date": "2024-07-29"
+        }
     }
-  }
 }
