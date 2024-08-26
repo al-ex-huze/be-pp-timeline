@@ -12,11 +12,12 @@ const {
     handleServerErrors,
 } = require("./errors/app.errors.js");
 const { getEndpoints } = require("./controllers/api.controller.js");
-const { getTimelines, createTimeline, removeTimeline } = require("./controllers/timelines.controller.js");
+const { getTimelines, createTimeline, removeTimeline, getTimelineByName } = require("./controllers/timelines.controller.js");
 const { getEvents, getEventByID, createEvent, removeEvent, patchEventDates } = require("./controllers/events.controller.js");
 
 app.get("/api", getEndpoints);
 app.get("/api/timelines", getTimelines);
+app.get("/api/timelines/:timeline_name", getTimelineByName);
 app.post("/api/timelines", createTimeline);
 app.delete("/api/timelines/:timeline_name", removeTimeline);
 

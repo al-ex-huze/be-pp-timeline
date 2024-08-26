@@ -47,6 +47,37 @@ describe("GET /api/timelines", () => {
     });
 });
 
+describe("GET /api/timelines/:timeline_name", () => {
+    test("200 returns timeline object for name", () => {
+        return request(app)
+            .get("/api/timelines/Northcoders Bootcamp")
+            .expect(200)
+            .then(({ body }) => {
+                const { timelines } = body;
+                timelines.forEach((timeline) => {
+                    expect(typeof timeline.timeline_name).toBe("string");
+                    expect(typeof timeline.description).toBe("string");
+                });
+            });
+    });
+    test("400 responds when valid path but invalid id", () => {
+        return request(app)
+            .get("/api/timelines/invalidId")
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("PSQL ERROR: 22P02 - Invalid input.");
+            });
+    });
+    test("404 responds when valid id but is non-existent", () => {
+        return request(app)
+            .get("/api/timelines/111111")
+            .expect(404)
+            .then(({ body }) => {
+                expect(body.msg).toBe("Timeline does not exist: 111111");
+            });
+    });
+});
+
 describe("POST /api/timelines", () => {
     test("201 returns created timeline", () => {
         const newTimeline = {
@@ -251,15 +282,6 @@ describe("GET /api/events/:event_id", () => {
                 expect(typeof event.event_img_url).toBe("string");
             });
     });
-    // test("200 returns, now with comment count", () => {
-    //     return request(app)
-    //         .get("/api/events/1")
-    //         .expect(200)
-    //         .then(({ body }) => {
-    //             const { event } = body;
-    //             expect(typeof event.comment_count).toBe("number");
-    //         });
-    // });
     test("400 responds when valid path but invalid id", () => {
         return request(app)
             .get("/api/events/invalidId")
