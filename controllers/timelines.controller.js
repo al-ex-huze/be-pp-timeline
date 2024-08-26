@@ -1,4 +1,4 @@
-const { selectTimelines, insertTimeline, deleteTimeline } = require("../models/timelines.model.js");
+const { selectTimelines, insertTimeline, deleteTimeline, selectTimelineByName } = require("../models/timelines.model.js");
 
 exports.getTimelines = (req, res, next) => {
     selectTimelines()
@@ -7,6 +7,15 @@ exports.getTimelines = (req, res, next) => {
     })
     .catch(next);
 };
+
+exports.getTimelineByName = (req, res, next) => {
+    const { timeline_name } = req.params;
+    selectTimelineByName(timeline_name)
+    .then((timeline) => {
+        res.status(200).send({ timeline })
+        .catch(next);
+    })
+}
 
 exports.createTimeline = (req, res, next) => {
     insertTimeline(req.body)

@@ -15,13 +15,13 @@
         }
     },
     "POST /api/timelines": {
-        "description": "",
+        "description": "Creates new timeline",
         "newTimeline": {
             "timeline_name": "NEW TL TEST 2",
             "descriptiion": "Test description 1"
         }
     },
-    "DELETE /api/timelines": {
+    "DELETE /api/timelines/:timeline_name": {
         "description": "delete timeline by name"
     },
     "GET /api/events": {
