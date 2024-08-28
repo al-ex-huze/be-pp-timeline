@@ -14,19 +14,60 @@ const ghApi = axios.create({
     baseURL: "https://api.github.com",
 });
 
-exports.getWeeklyCommitsCall = () => {
-    console.log("DEBUG 1")
+exports.getAuthUserCall = (user) => {
+    console.log(user)
     return ghApi
-        .get(`/repos/${user}/${repo}/stats/code_frequency`, {
+        .get(`/${user}`, {
             headers: {
-                "Accept": "application/vnd.github+json",
-                "Authorization": `Bearer ${process.env.GH_TOKEN}`,
+                Accept: "application/vnd.github+json",
+                Authorization: `Bearer ${process.env.GH_TOKEN}`,
                 "Content-Type": "application/json",
                 "X-GitHub-Api-Version": "2022-11-28",
             },
         })
         .then((response) => {
-            // console.log("API WEEKLY " + response.data)
+            console.log(reponse)
+            console.dir(response, { depth: null });
+            return response;
+        })
+        .catch((error) => {
+            return error;
+        });
+};
+
+exports.getPublicUserCall = (user) => {
+    console.log(user)
+    return ghApi
+        .get(`/users/${user}`, {
+            headers: {
+                Accept: "application/vnd.github+json",
+                Authorization: `Bearer ${process.env.GH_TOKEN}`,
+                "Content-Type": "application/json",
+                "X-GitHub-Api-Version": "2022-11-28",
+            },
+        })
+        .then((response) => {
+            console.log(reponse)
+            console.dir(response, { depth: null });
+            return response;
+        })
+        .catch((error) => {
+            return error;
+        });
+};
+
+exports.getWeeklyCommitsCall = (repo) => {
+    return ghApi
+        .get(`/repos/${user}/${repo}/stats/code_frequency`, {
+            headers: {
+                Accept: "application/vnd.github+json",
+                Authorization: `Bearer ${process.env.GH_TOKEN}`,
+                "Content-Type": "application/json",
+                "X-GitHub-Api-Version": "2022-11-28",
+            },
+        })
+        .then((response) => {
+            // console.dir(response.data, { depth: null });
             return response.data;
         })
         .catch((error) => {
@@ -34,23 +75,40 @@ exports.getWeeklyCommitsCall = () => {
         });
 };
 
-exports.getYearlyActivityCall = () => {
-    console.log("DEBUG 2")
+exports.getYearlyActivityCall = (repo) => {
     return ghApi
         .get(`/repos/${user}/${repo}/stats/commit_activity`, {
             headers: {
-                "Accept": "application/vnd.github+json",
-                "Authorization": `Bearer ${process.env.GH_TOKEN}`,
+                Accept: "application/vnd.github+json",
+                Authorization: `Bearer ${process.env.GH_TOKEN}`,
                 "Content-Type": "application/json",
                 "X-GitHub-Api-Version": "2022-11-28",
             },
         })
         .then((response) => {
-            console.log("API YEARLY " + response.total)
-            return response.total;
+            // console.dir(response.data, { depth: null });
+            return response.data;
         })
         .catch((error) => {
             return error;
         });
 };
 
+exports.getLanguagesUsedByRepoCall = (repo) => {
+    return ghApi
+        .get(`/repos/${user}/${repo}/languages`, {
+            headers: {
+                Accept: "application/vnd.github+json",
+                Authorization: `Bearer ${process.env.GH_TOKEN}`,
+                "Content-Type": "application/json",
+                "X-GitHub-Api-Version": "2022-11-28",
+            },
+        })
+        .then((response) => {
+            // console.dir(response.data, { depth: null });
+            return response.data;
+        })
+        .catch((error) => {
+            return error;
+        });
+};
