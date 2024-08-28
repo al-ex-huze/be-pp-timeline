@@ -54,8 +54,8 @@ describe("GET /api/timelines/:timeline_name", () => {
             .expect(200)
             .then(({ body }) => {
                 const { timeline } = body;
-                    expect(typeof timeline.timeline_name).toBe("string");
-                    expect(typeof timeline.description).toBe("string");
+                expect(typeof timeline.timeline_name).toBe("string");
+                expect(typeof timeline.description).toBe("string");
             });
     });
     test("404 responds when valid id but is non-existent", () => {

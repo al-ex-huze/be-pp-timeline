@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "be-pp-timeline",
   "version": "1.0.0",
   "description": "be-pp-timeline",
@@ -27,9 +28,13 @@
     "supertest": "^7.0.0"
   },
   "dependencies": {
+    "@octokit/oauth-app": "^7.1.3",
+    "axios": "^1.7.5",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.19.2",
+    "node": "^22.7.0",
+    "octokit": "^4.0.2",
     "pg": "^8.12.0"
   },
   "jest": {
