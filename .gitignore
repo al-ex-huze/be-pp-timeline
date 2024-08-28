@@ -1,5 +1,5 @@
 node_modules
+.env
 .env.*
 .endpoints.json
 .error-handling.node_modules
-.env*
