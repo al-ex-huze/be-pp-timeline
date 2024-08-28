@@ -17,7 +17,7 @@ const ghApi = axios.create({
 exports.getGhApiCb = (req, res, next) => {
     getGhApi()
         .then((response) => {
-            console.log(response);
+            console.log("response in controller" +response);
             res.status(200).send(response);
         })
         .catch(next);
@@ -25,7 +25,7 @@ exports.getGhApiCb = (req, res, next) => {
 
 const getGhApi = () => {
     return ghApi
-        .get(`/repos/${user}/${repo}`, {
+        .get(`/repos/${user}/${repo}/stats/code_frequency`, {
             headers: {
                 Accept: "application/vnd.github+json",
                 Authorization: `Bearer ${process.env.GH_TOKEN}`,
@@ -35,7 +35,7 @@ const getGhApi = () => {
             // auth: {}
         })
         .then((response) => {
-            console.log("response in API");
+            console.log("response in API: " + response);
         })
         .catch((error) => {
             console.log("&*&* GET ERROR: " + error)
