@@ -10,6 +10,18 @@ const currentEndpointsTest = require("../endpoints.json");
 beforeEach(() => seed(testData));
 afterAll(() => db.end());
 
+describe("GET ghApiCb", () => {
+    test("200 data array", () => {
+        return request(app)
+            .get("/ghapi")
+            .expect(200)
+            .then(({ body }) => {
+                const { weeklyCommits } = body;
+                console.log("TEST --> " + weeklyCommits + " <-- TEST");
+            });
+    });
+});
+
 describe("GET /api", () => {
     test("200 responds with endpoints object", () => {
         return request(app)

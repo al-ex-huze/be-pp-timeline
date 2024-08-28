@@ -10,7 +10,6 @@ exports.handlePsqlErrors = (err, req, res, next) => {
     } else if (err.code === "22P02") {
         res.status(400).send({ msg: "PSQL ERROR: 22P02 - Invalid input." });
     } else if (err.code) {
-        console.log(err.code, "err.code");
         console.log(err, "PSQL ERROR");
     } else next(err);
 };

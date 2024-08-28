@@ -14,16 +14,7 @@ const ghApi = axios.create({
     baseURL: "https://api.github.com",
 });
 
-exports.getGhApiCb = (req, res, next) => {
-    getGhApi()
-        .then((response) => {
-            console.log("response in controller" +response);
-            res.status(200).send(response);
-        })
-        .catch(next);
-};
-
-const getGhApi = () => {
+exports.getWeeklyCommitsCall = () => {
     return ghApi
         .get(`/repos/${user}/${repo}/stats/code_frequency`, {
             headers: {
@@ -32,12 +23,11 @@ const getGhApi = () => {
                 "Content-Type": "application/json",
                 "X-GitHub-Api-Version": "2022-11-28",
             },
-            // auth: {}
         })
         .then((response) => {
-            console.log("response in API: " + response);
+            return response;
         })
         .catch((error) => {
-            console.log("&*&* GET ERROR: " + error)
+            return error;
         });
 };
