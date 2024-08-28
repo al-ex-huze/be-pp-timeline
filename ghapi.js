@@ -10,7 +10,15 @@ const ghApi = axios.create({
     baseUrl: `https://api.github.com`,
 });
 
-exports.getGhApi = () => {
+exports.getGhApiCb = (req, res, next) => {
+    getGhApi().then((response) => {
+        console.log(response);
+        res.status(200).send({ response });
+    })
+    .catch(next);
+};
+
+const getGhApi = () => {
     return ghApi
         .get(`/repos/${user}/${repo}`, {
             headers: {
@@ -20,6 +28,6 @@ exports.getGhApi = () => {
             // auth: {}
         })
         .then((response) => {
-            console.log("response in API")
+            console.log("response in API");
         });
 };

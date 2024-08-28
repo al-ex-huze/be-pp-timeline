@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const { getGhAPi } = require("./ghapi.js");
+const { getGhApiCb } = require("./ghapi.js");
 
 const {
     handleCustomErrors,
@@ -28,7 +28,7 @@ const {
     patchEventDates,
 } = require("./controllers/events.controller.js");
 
-app.get("/ghapi", getGhAPi);
+app.get("/ghapi", getGhApiCb);
 
 app.get("/api", getEndpoints);
 app.get("/api/timelines", getTimelines);
