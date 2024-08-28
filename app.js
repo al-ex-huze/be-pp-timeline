@@ -6,7 +6,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const { getWeeklyCommits } = require("./controllers/gh.controller.js")
+const {
+    getWeeklyCommits,
+    getYearlyActivity,
+} = require("./controllers/gh.controller.js");
 const {
     handleCustomErrors,
     handlePsqlErrors,
@@ -27,7 +30,8 @@ const {
     patchEventDates,
 } = require("./controllers/events.controller.js");
 
-app.get("/ghapi/weekly_commits", getWeeklyCommit);
+app.get("/ghapi/weekly_commits", getWeeklyCommits);
+app.get("/ghapi/yearly_activity", getYearlyActivity);
 
 app.get("/api", getEndpoints);
 app.get("/api/timelines", getTimelines);

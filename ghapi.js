@@ -15,19 +15,42 @@ const ghApi = axios.create({
 });
 
 exports.getWeeklyCommitsCall = () => {
+    console.log("DEBUG 1")
     return ghApi
         .get(`/repos/${user}/${repo}/stats/code_frequency`, {
             headers: {
-                Accept: "application/vnd.github+json",
-                Authorization: `Bearer ${process.env.GH_TOKEN}`,
+                "Accept": "application/vnd.github+json",
+                "Authorization": `Bearer ${process.env.GH_TOKEN}`,
                 "Content-Type": "application/json",
                 "X-GitHub-Api-Version": "2022-11-28",
             },
         })
         .then((response) => {
-            return response;
+            // console.log("API WEEKLY " + response.data)
+            return response.data;
         })
         .catch((error) => {
             return error;
         });
 };
+
+exports.getYearlyActivityCall = () => {
+    console.log("DEBUG 2")
+    return ghApi
+        .get(`/repos/${user}/${repo}/stats/commit_activity`, {
+            headers: {
+                "Accept": "application/vnd.github+json",
+                "Authorization": `Bearer ${process.env.GH_TOKEN}`,
+                "Content-Type": "application/json",
+                "X-GitHub-Api-Version": "2022-11-28",
+            },
+        })
+        .then((response) => {
+            console.log("API YEARLY " + response.total)
+            return response.total;
+        })
+        .catch((error) => {
+            return error;
+        });
+};
+

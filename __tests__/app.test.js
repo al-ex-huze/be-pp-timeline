@@ -10,14 +10,26 @@ const currentEndpointsTest = require("../endpoints.json");
 beforeEach(() => seed(testData));
 afterAll(() => db.end());
 
-describe("GET ghApiCb", () => {
+describe("GET getWeeklyCommits", () => {
     test("200 data array", () => {
         return request(app)
-            .get("/ghapi")
+            .get("/ghapi/weekly_commits")
             .expect(200)
             .then(({ body }) => {
                 const { weeklyCommits } = body;
-                console.log("TEST --> " + weeklyCommits + " <-- TEST");
+                // console.log("TEST --> " + weeklyCommits + " <-- TEST");
+            });
+    });
+});
+
+describe("GET getYearActivity", () => {
+    test("200 data array", () => {
+        return request(app)
+            .get("/ghapi/yearly_activity")
+            .expect(200)
+            .then(({ body }) => {
+                const { yearlyActivity } = body;
+                console.log("TEST --> " + yearlyActivity + " <-- TEST");
             });
     });
 });
