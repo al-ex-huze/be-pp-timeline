@@ -7,8 +7,11 @@ app.use(express.json());
 app.use(cors());
 
 const {
+    getAuthUser,
+    getPublicUser,
     getWeeklyCommits,
     getYearlyActivity,
+    getLanguagesUsedByRepo,
 } = require("./controllers/gh.controller.js");
 const {
     handleCustomErrors,
@@ -30,8 +33,11 @@ const {
     patchEventDates,
 } = require("./controllers/events.controller.js");
 
-app.get("/ghapi/weekly_commits", getWeeklyCommits);
-app.get("/ghapi/yearly_activity", getYearlyActivity);
+app.get("/ghapi/auth_user/:user", getAuthUser);
+app.get("/ghapi/public_user/:user", getPublicUser);
+app.get("/ghapi/weekly_commits/:repo", getWeeklyCommits);
+app.get("/ghapi/yearly_activity/:repo", getYearlyActivity);
+app.get("/ghapi/languages_used/:repo", getLanguagesUsedByRepo);
 
 app.get("/api", getEndpoints);
 app.get("/api/timelines", getTimelines);

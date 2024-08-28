@@ -10,10 +10,35 @@ const currentEndpointsTest = require("../endpoints.json");
 beforeEach(() => seed(testData));
 afterAll(() => db.end());
 
+
+describe("GET getAuthUser", () => {
+    test("200 data object", () => {
+        return request(app)
+            .get("/ghapi/auth_user/al-ex-huze")
+            .expect(200)
+            .then(({ body }) => {
+                const { user_details } = body;
+                // console.log("TEST --> " + languages + " <-- TEST");
+            });
+    });
+});
+
+describe("GET getPublicUser", () => {
+    test("200 data object", () => {
+        return request(app)
+            .get("/ghapi/public_user/al-ex-huze")
+            .expect(200)
+            .then(({ body }) => {
+                const { user_details } = body;
+                // console.log("TEST --> " + languages + " <-- TEST");
+            });
+    });
+});
+
 describe("GET getWeeklyCommits", () => {
     test("200 data array", () => {
         return request(app)
-            .get("/ghapi/weekly_commits")
+            .get("/ghapi/weekly_commits/be-pp-timeline")
             .expect(200)
             .then(({ body }) => {
                 const { weeklyCommits } = body;
@@ -23,13 +48,25 @@ describe("GET getWeeklyCommits", () => {
 });
 
 describe("GET getYearActivity", () => {
-    test("200 data array", () => {
+    test("200 data object", () => {
         return request(app)
-            .get("/ghapi/yearly_activity")
+            .get("/ghapi/yearly_activity/be-pp-timeline")
             .expect(200)
             .then(({ body }) => {
                 const { yearlyActivity } = body;
-                console.log("TEST --> " + yearlyActivity + " <-- TEST");
+                // console.log("TEST --> " + yearlyActivity + " <-- TEST");
+            });
+    });
+});
+
+describe("GET getLanguages", () => {
+    test("200 object", () => {
+        return request(app)
+            .get("/ghapi/languages_used/be-pp-timeline")
+            .expect(200)
+            .then(({ body }) => {
+                const { languages } = body;
+                // console.log("TEST --> " + languages + " <-- TEST");
             });
     });
 });
