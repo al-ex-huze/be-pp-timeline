@@ -53,19 +53,9 @@ describe("GET /api/timelines/:timeline_name", () => {
             .get("/api/timelines/Northcoders Bootcamp")
             .expect(200)
             .then(({ body }) => {
-                const { timelines } = body;
-                timelines.forEach((timeline) => {
+                const { timeline } = body;
                     expect(typeof timeline.timeline_name).toBe("string");
                     expect(typeof timeline.description).toBe("string");
-                });
-            });
-    });
-    test("400 responds when valid path but invalid id", () => {
-        return request(app)
-            .get("/api/timelines/invalidId")
-            .expect(400)
-            .then(({ body }) => {
-                expect(body.msg).toBe("PSQL ERROR: 22P02 - Invalid input.");
             });
     });
     test("404 responds when valid id but is non-existent", () => {

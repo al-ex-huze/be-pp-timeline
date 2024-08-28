@@ -16,7 +16,7 @@ exports.selectTimelineByName = (timeline_name) => {
         if (timeline === undefined) {
             return Promise.reject({
                 status: 404,
-                msg: `Timeline does not exist: ${event_id}`,
+                msg: `Timeline does not exist: ${timeline_name}`,
             });
         }
         return timeline;

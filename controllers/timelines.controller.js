@@ -13,8 +13,8 @@ exports.getTimelineByName = (req, res, next) => {
     selectTimelineByName(timeline_name)
     .then((timeline) => {
         res.status(200).send({ timeline })
-        .catch(next);
     })
+    .catch(next);
 }
 
 exports.createTimeline = (req, res, next) => {
