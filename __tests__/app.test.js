@@ -35,6 +35,18 @@ describe("GET getPublicUser", () => {
     });
 });
 
+describe("GET getPublicRepos", () => {
+    test("200 data object", () => {
+        return request(app)
+            .get("/ghapi/public_repos/al-ex-huze")
+            .expect(200)
+            .then(({ body }) => {
+                const { public_repos } = body;
+                // console.log("TEST --> " + languages + " <-- TEST");
+            });
+    });
+});
+
 describe("GET getWeeklyCommits", () => {
     test("200 data array", () => {
         return request(app)

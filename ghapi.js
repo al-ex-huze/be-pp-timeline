@@ -56,6 +56,27 @@ exports.getPublicUserCall = (user) => {
         });
 };
 
+exports.getPublicReposCall = (user) => {
+    console.log(user)
+    return ghApi
+        .get(`/${user}/repos`, {
+            headers: {
+                Accept: "application/vnd.github+json",
+                Authorization: `Bearer ${process.env.GH_TOKEN}`,
+                "Content-Type": "application/json",
+                "X-GitHub-Api-Version": "2022-11-28",
+            },
+        })
+        .then((response) => {
+            console.log(reponse)
+            console.dir(response, { depth: null });
+            return response;
+        })
+        .catch((error) => {
+            return error;
+        });
+};
+
 exports.getWeeklyCommitsCall = (repo) => {
     return ghApi
         .get(`/repos/${user}/${repo}/stats/code_frequency`, {
