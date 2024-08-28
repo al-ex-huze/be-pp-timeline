@@ -42,6 +42,8 @@ describe("GET /api/timelines", () => {
                 timelines.forEach((timeline) => {
                     expect(typeof timeline.timeline_name).toBe("string");
                     expect(typeof timeline.description).toBe("string");
+                    // expect(typeof timeline.begin_date).toBe("string");
+                    // expect(typeof timeline.finish_date).toBe("string");
                 });
             });
     });
@@ -56,6 +58,10 @@ describe("GET /api/timelines/:timeline_name", () => {
                 const { timeline } = body;
                 expect(typeof timeline.timeline_name).toBe("string");
                 expect(typeof timeline.description).toBe("string");
+                // expect(typeof timeline.begin_date).toBe("string");
+                // expect(typeof timeline.finish_date).toBe("string");
+                // expect(timeline.begin_date).toBe("2024-04-15");
+                // expect(timeline.finish_date).toBe("2024-07-12");
             });
     });
     test("404 responds when valid id but is non-existent", () => {
@@ -210,7 +216,7 @@ describe("GET /api/events", () => {
     });
     test("200 returns empty array for valid timeline with no events", () => {
         return request(app)
-            .get("/api/events?timeline=Post Bootcamp")
+            .get("/api/events?timeline=Pre Bootcamp")
             .expect(200)
             .then(({ body }) => {
                 const { events } = body;

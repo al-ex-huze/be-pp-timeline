@@ -22,7 +22,9 @@ const seed = ({ timelineData, userData, eventData, commentData }) => {
       const timelinesTablePromise = db.query(`
       CREATE TABLE timelines (
         timeline_name VARCHAR PRIMARY KEY,
-        description VARCHAR
+        description VARCHAR,
+        begin_date VARCHAR,
+        finish_date VARCHAR
       );`);
 
       const usersTablePromise = db.query(`
