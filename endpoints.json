@@ -1,4 +1,36 @@
 {
+    "GET /ghapi/weekly_commits": {
+        "description": "servrs array data of comits in last week"
+    },
+    "GET /ghapi/yearly_activity": {
+        "description": "serves array data of comits in last week",
+        "response schema": {
+            "type": "array",
+            "items": {
+                "title": "Commit Activity",
+                "description": "Commit Activity",
+                "type": "object",
+                "properties": {
+                    "days": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        },
+                        "examples": [0, 3, 26, 20, 39, 1, 0]
+                    },
+                    "total": {
+                        "type": "integer",
+                        "examples": [89]
+                    },
+                    "week": {
+                        "type": "integer",
+                        "examples": [1336280400]
+                    }
+                },
+                "required": ["days", "total", "week"]
+            }
+        }
+    },
     "GET /api": {
         "description": "serves up a json representation of all the available endpoints of the api"
     },
