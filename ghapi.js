@@ -2,9 +2,10 @@ const axios = require("axios");
 
 const ENV = process.env.NODE_ENV || "development";
 
-require("dotenv").config({
-    path: `${__dirname}/../.env.${ENV}`,
-});
+require("dotenv").config()
+// require("dotenv").config({
+//     path: `${__dirname}/../.env.${ENV}`,
+// });
 
 if (!process.env.GH_TOKEN) {
     throw new Error("GH_TOKEN not set");

@@ -1,4 +1,4 @@
-const { getAuthUserCall, getPublicUserCall, getAllReposForUserCall, getWeeklyCommitsCall, getYearlyActivityCall, getLanguagesUsedByRepoCall } = require("../models/ghapi");
+const { getAuthUserCall, getPublicUserCall, getAllReposForUserCall, getWeeklyCommitsCall, getYearlyActivityCall, getLanguagesUsedByRepoCall } = require("../ghapi");
 
 exports.getAuthUser = (req, res, next) => {
     const { user } = req.params;
