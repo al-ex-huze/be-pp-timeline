@@ -1,7 +1,7 @@
 const axios = require("axios");
 const ENV = process.env.NODE_ENV || "development";
 
-require("dotenv").config({});
+require("dotenv").config();
 
 if (!process.env.GH_TOKEN) {
     throw new Error("GH_TOKEN not set");
@@ -15,7 +15,6 @@ const ghApi = axios.create({
 });
 
 exports.getAuthUserCall = (user) => {
-    console.log(user)
     return ghApi
         .get(`/${user}`, {
             headers: {
@@ -26,17 +25,14 @@ exports.getAuthUserCall = (user) => {
             },
         })
         .then((response) => {
-            console.log(reponse)
-            console.dir(response, { depth: null });
-            return response;
+            console.dir(response.data, { depth: null });
         })
         .catch((error) => {
-            return error;
+            console.log(error);
         });
 };
 
 exports.getPublicUserCall = (user) => {
-    console.log(user)
     return ghApi
         .get(`/users/${user}`, {
             headers: {
@@ -46,20 +42,17 @@ exports.getPublicUserCall = (user) => {
                 "X-GitHub-Api-Version": "2022-11-28",
             },
         })
-        .then((response) => {
-            console.log(reponse)
-            console.dir(response, { depth: null });
-            return response;
+        .then(({ data }) => {
+            return JSON.stringify(data)
         })
         .catch((error) => {
-            return error;
+            console.log(error);
         });
 };
 
-exports.getPublicReposCall = (user) => {
-    console.log(user)
+exports.getAllReposForUserCall = (user) => {
     return ghApi
-        .get(`/${user}/repos`, {
+        .get(`/users/${user}/repos`, {
             headers: {
                 Accept: "application/vnd.github+json",
                 Authorization: `Bearer ${process.env.GH_TOKEN}`,
@@ -67,13 +60,11 @@ exports.getPublicReposCall = (user) => {
                 "X-GitHub-Api-Version": "2022-11-28",
             },
         })
-        .then((response) => {
-            console.log(reponse)
-            console.dir(response, { depth: null });
-            return response;
+        .then(({ data }) => {
+            return JSON.stringify(data)
         })
         .catch((error) => {
-            return error;
+            console.log(error);
         });
 };
 
@@ -87,12 +78,11 @@ exports.getWeeklyCommitsCall = (repo) => {
                 "X-GitHub-Api-Version": "2022-11-28",
             },
         })
-        .then((response) => {
-            // console.dir(response.data, { depth: null });
-            return response.data;
+        .then(({ data }) => {
+            return JSON.stringify(data)
         })
         .catch((error) => {
-            return error;
+            console.log(error);
         });
 };
 
@@ -106,12 +96,11 @@ exports.getYearlyActivityCall = (repo) => {
                 "X-GitHub-Api-Version": "2022-11-28",
             },
         })
-        .then((response) => {
-            // console.dir(response.data, { depth: null });
-            return response.data;
+        .then(({ data }) => {
+            return JSON.stringify(data)
         })
         .catch((error) => {
-            return error;
+            console.log(error);
         });
 };
 
@@ -125,11 +114,10 @@ exports.getLanguagesUsedByRepoCall = (repo) => {
                 "X-GitHub-Api-Version": "2022-11-28",
             },
         })
-        .then((response) => {
-            // console.dir(response.data, { depth: null });
-            return response.data;
+        .then(({ data }) => {
+            return JSON.stringify(data)
         })
         .catch((error) => {
-            return error;
+            console.log(error);
         });
 };

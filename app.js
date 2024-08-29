@@ -9,7 +9,7 @@ app.use(cors());
 const {
     getAuthUser,
     getPublicUser,
-    getPublicRepos,
+    getAllReposForUser,
     getWeeklyCommits,
     getYearlyActivity,
     getLanguagesUsedByRepo,
@@ -20,6 +20,7 @@ const {
     handleServerErrors,
 } = require("./errors/app.errors.js");
 const { getEndpoints } = require("./controllers/api.controller.js");
+const { getAllRepos } = require("./controllers/repos.controller.js");
 const {
     getTimelines,
     createTimeline,
@@ -34,9 +35,9 @@ const {
     patchEventDates,
 } = require("./controllers/events.controller.js");
 
-app.get("/ghapi/auth_user/:user", getAuthUser);
+// app.get("/ghapi/auth_user/:user", getAuthUser);
 app.get("/ghapi/public_user/:user", getPublicUser);
-app.get("/ghapi/public_repos/:user/", getPublicRepos);
+app.get("/ghapi/all_repos/:user/", getAllReposForUser);
 app.get("/ghapi/weekly_commits/:repo", getWeeklyCommits);
 app.get("/ghapi/yearly_activity/:repo", getYearlyActivity);
 app.get("/ghapi/languages_used/:repo", getLanguagesUsedByRepo);
@@ -52,6 +53,8 @@ app.post("/api/events", createEvent);
 app.get("/api/events/:event_id", getEventByID);
 app.delete("/api/events/:event_id", removeEvent);
 app.patch("/api/events/:event_id", patchEventDates);
+
+app.get("/api/repos", getAllRepos);
 
 app.use(handleCustomErrors);
 app.use(handlePsqlErrors);
