@@ -161,10 +161,10 @@ describe("repoParser", () => {
         ];
         const expected = [
             {
-                id: 111,
+                repo_id: 111,
                 name: "testName1",
                 full_name: "al-ex-huze1/testFull_name1",
-                private: true,
+                isPrivate: true,
                 owner_login: "al-ex-huze1",
                 description: "test description",
                 fork: true,
@@ -177,10 +177,10 @@ describe("repoParser", () => {
                 default_branch: "main",
             },
             {
-                id: 222,
+                repo_id: 222,
                 name: "testName2",
                 full_name: "al-ex-huze2/testFull_name2",
-                private: true,
+                isPrivate: true,
                 owner_login: "al-ex-huze2",
                 description: "test description2",
                 fork: true,
@@ -235,10 +235,10 @@ describe("repoParser", () => {
         ];
         const expected = [
             {
-                id: 111,
+                repo_id: 111,
                 name: "testName1",
                 full_name: "al-ex-huze1/testFull_name1",
-                private: true,
+                isPrivate: true,
                 owner_login: "al-ex-huze1",
                 description: "test description",
                 fork: true,
@@ -251,10 +251,10 @@ describe("repoParser", () => {
                 default_branch: "main",
             },
             {
-                id: 222,
+                repo_id: 222,
                 name: "testName2",
                 full_name: "al-ex-huze2/testFull_name2",
-                private: true,
+                isPrivate: true,
                 owner_login: "al-ex-huze2",
                 description: "test description2",
                 fork: true,
