@@ -122,7 +122,6 @@ describe("GET /api/repos", () => {
             .then(({ body }) => {
                 const { repos } = body;
                 repos.forEach((repo) => {
-                    console.log(repo)
                     expect(typeof repo.repo_id).toBe("number");
                     expect(typeof repo.name).toBe("string");
                     expect(typeof repo.full_name).toBe("string");                    
