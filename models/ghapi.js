@@ -1,6 +1,10 @@
 const axios = require("axios");
 
-require("dotenv").config();
+const ENV = process.env.NODE_ENV || "development";
+
+require("dotenv").config({
+    path: `${__dirname}/../.env.${ENV}`,
+});
 
 if (!process.env.GH_TOKEN) {
     throw new Error("GH_TOKEN not set");
@@ -42,7 +46,7 @@ exports.getPublicUserCall = (user) => {
             },
         })
         .then(({ data }) => {
-            return JSON.stringify(data)
+            return JSON.stringify(data);
         })
         .catch((error) => {
             console.log(error);
@@ -60,7 +64,7 @@ exports.getAllReposForUserCall = (user) => {
             },
         })
         .then(({ data }) => {
-            return JSON.stringify(data)
+            return JSON.stringify(data);
         })
         .catch((error) => {
             console.log(error);
@@ -78,7 +82,7 @@ exports.getWeeklyCommitsCall = (repo) => {
             },
         })
         .then(({ data }) => {
-            return JSON.stringify(data)
+            return JSON.stringify(data);
         })
         .catch((error) => {
             console.log(error);
@@ -96,7 +100,7 @@ exports.getYearlyActivityCall = (repo) => {
             },
         })
         .then(({ data }) => {
-            return JSON.stringify(data)
+            return JSON.stringify(data);
         })
         .catch((error) => {
             console.log(error);
@@ -114,7 +118,7 @@ exports.getLanguagesUsedByRepoCall = (repo) => {
             },
         })
         .then(({ data }) => {
-            return JSON.stringify(data)
+            return JSON.stringify(data);
         })
         .catch((error) => {
             console.log(error);
