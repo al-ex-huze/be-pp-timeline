@@ -1,10 +1,9 @@
-const { getAuthUserCall, getPublicUserCall, getAllReposForUserCall, getWeeklyCommitsCall, getYearlyActivityCall, getLanguagesUsedByRepoCall } = require("../ghapi");
+const { getAuthUserCall, getPublicUserCall, getAllReposForUserCall, getWeeklyCommitsCall, getYearlyActivityCall, getLanguagesUsedByRepoCall } = require("../models/ghapi");
 
 exports.getAuthUser = (req, res, next) => {
     const { user } = req.params;
     getAuthUserCall(user)
         .then((user_details) => {
-            // console.log("weeklyCommits in controller" + weeklyCommits);
             res.status(200).send({ user_details });
         })
         .catch(next);

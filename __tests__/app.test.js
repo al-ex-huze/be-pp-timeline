@@ -126,15 +126,12 @@ describe("GET /api/repos", () => {
                     expect(typeof repo.repo_id).toBe("number");
                     expect(typeof repo.name).toBe("string");
                     expect(typeof repo.full_name).toBe("string");                    
-                    // expect(typeof repo.isPrivate).toBe("boolean");
                     expect(typeof repo.owner_login).toBe("string");
-                    // expect(typeof repo.description).toBe("string");
                     expect(typeof repo.fork).toBe("boolean");
                     expect(typeof repo.created_at).toBe("string");
                     expect(typeof repo.updated_at).toBe("string");
                     expect(typeof repo.pushed_at).toBe("string");
                     expect(typeof repo.size).toBe("number");
-                    // expect(typeof repo.language).toBe("object" || "string");
                     expect(typeof repo.visibility).toBe("string");
                     expect(typeof repo.default_branch).toBe("string");
                 });
