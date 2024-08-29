@@ -5,11 +5,7 @@ const ENV = process.env.NODE_ENV || "development";
 require("dotenv").config()
 require("dotenv").config({
     path: `${__dirname}/../.env.${ENV}`,
-});
-
-if (!process.env.GH_TOKEN) {
-    throw new Error("GH_TOKEN not set");
-}
+})
 
 const user = "al-ex-huze";
 const repo = "be-pp-timeline";
