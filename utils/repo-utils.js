@@ -6,7 +6,7 @@ const repoParser = (oldRepos) => {
             repo_id: element.id,
             name: element.name,
             full_name: element.full_name,
-            isPrivate: element.isPrivate,
+            isPrivate: element.private,
             owner_login: splitOwner(element.full_name),
             description: element.description,
             fork: element.fork,

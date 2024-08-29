@@ -114,6 +114,34 @@ describe("GET /api", () => {
     });
 });
 
+describe("GET /api/repos", () => {
+    test("200 returns all repos", () => {
+        return request(app)
+            .get("/api/repos")
+            .expect(200)
+            .then(({ body }) => {
+                const { repos } = body;
+                repos.forEach((repo) => {
+                    console.log(repo)
+                    expect(typeof repo.repo_id).toBe("number");
+                    expect(typeof repo.name).toBe("string");
+                    expect(typeof repo.full_name).toBe("string");                    
+                    // expect(typeof repo.isPrivate).toBe("boolean");
+                    expect(typeof repo.owner_login).toBe("string");
+                    // expect(typeof repo.description).toBe("string");
+                    expect(typeof repo.fork).toBe("boolean");
+                    expect(typeof repo.created_at).toBe("string");
+                    expect(typeof repo.updated_at).toBe("string");
+                    expect(typeof repo.pushed_at).toBe("string");
+                    expect(typeof repo.size).toBe("number");
+                    // expect(typeof repo.language).toBe("object" || "string");
+                    expect(typeof repo.visibility).toBe("string");
+                    expect(typeof repo.default_branch).toBe("string");
+                });
+            });
+    });
+});
+
 describe("GET /api/timelines", () => {
     test("200 returns all timelines", () => {
         return request(app)
