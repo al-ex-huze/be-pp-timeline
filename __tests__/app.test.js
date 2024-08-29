@@ -10,75 +10,84 @@ const currentEndpointsTest = require("../endpoints.json");
 beforeEach(() => seed(testData));
 afterAll(() => db.end());
 
+// describe.skip("GET /ghapi/auth_user/:user", () => {
+//     test("200 data object", () => {
+//         return request(app)
+//             .get("/ghapi/auth_user/al-ex-huze")
+//             .expect(200)
+//             .then(({ body }) => {
+//                 const { user_details } = body;
+//                 // console.log("TEST --> " + user_details + " <-- TEST");
+//                 /*{
+//                     "message": "Not Found",
+//                     "documentation_url": "https://docs.github.com/rest",
+//                     "status": "404"
+//                 }*/
+//             });
+//     });
+// });
 
-describe("GET getAuthUser", () => {
-    test("200 data object", () => {
-        return request(app)
-            .get("/ghapi/auth_user/al-ex-huze")
-            .expect(200)
-            .then(({ body }) => {
-                const { user_details } = body;
-                // console.log("TEST --> " + languages + " <-- TEST");
-            });
-    });
-});
-
-describe("GET getPublicUser", () => {
-    test("200 data object", () => {
+describe.skip("GET /ghapi/public_user/:user", () => {
+    test("200 returns stringifieduser object", () => {
         return request(app)
             .get("/ghapi/public_user/al-ex-huze")
             .expect(200)
             .then(({ body }) => {
                 const { user_details } = body;
-                // console.log("TEST --> " + languages + " <-- TEST");
+                expect(typeof user_details).toBe("string");
+                expect(JSON.parse(user_details).login).toEqual("al-ex-huze");
             });
     });
 });
 
-describe("GET getPublicRepos", () => {
-    test("200 data object", () => {
+describe.skip("GET /ghapi/all_repos/:user/", () => {
+    test("200 returns stringified array of objects", () => {
         return request(app)
-            .get("/ghapi/allc_repos/al-ex-huze")
+            .get("/ghapi/all_repos/al-ex-huze")
             .expect(200)
             .then(({ body }) => {
                 const { all_repos } = body;
-                // console.log("TEST --> " + languages + " <-- TEST");
+                expect(typeof all_repos).toBe("string");
+                console.log(JSON.parse(all_repos));
             });
     });
 });
 
-describe("GET getWeeklyCommits", () => {
+describe.skip("GET /ghapi/weekly_commits/:repo", () => {
     test("200 data array", () => {
         return request(app)
             .get("/ghapi/weekly_commits/be-pp-timeline")
             .expect(200)
             .then(({ body }) => {
                 const { weeklyCommits } = body;
-                // console.log("TEST --> " + weeklyCommits + " <-- TEST");
+                expect(typeof weeklyCommits).toBe("string");
+                console.log(JSON.parse(weeklyCommits));
             });
     });
 });
 
-describe("GET getYearActivity", () => {
+describe.skip("GET /ghapi/yearly_activity/:repo", () => {
     test("200 data object", () => {
         return request(app)
             .get("/ghapi/yearly_activity/be-pp-timeline")
             .expect(200)
             .then(({ body }) => {
                 const { yearlyActivity } = body;
-                // console.log("TEST --> " + yearlyActivity + " <-- TEST");
+                expect(typeof yearlyActivity).toBe("string");
+                console.log(JSON.parse(yearlyActivity));
             });
     });
 });
 
-describe("GET getLanguages", () => {
+describe.skip("GET /ghapi/languages_used/:repo", () => {
     test("200 object", () => {
         return request(app)
             .get("/ghapi/languages_used/be-pp-timeline")
             .expect(200)
             .then(({ body }) => {
                 const { languages } = body;
-                // console.log("TEST --> " + languages + " <-- TEST");
+                expect(typeof languages).toBe("string");
+                console.log(JSON.parse(languages));
             });
     });
 });

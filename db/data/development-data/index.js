@@ -2,3 +2,4 @@ exports.eventData = require('./events.js');
 exports.commentData = require('./comments.js');
 exports.timelineData = require('./timelines.js');
 exports.userData = require('./users.js');
+exports.repoData = require('./repos.js');

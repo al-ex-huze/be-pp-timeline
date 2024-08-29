@@ -3,10 +3,10 @@ const repoParser = (oldRepos) => {
     const clonedRepos = [...oldRepos];
     const newRepos = clonedRepos.map((element) => {
         return {
-            id: element.id,
+            repo_id: element.id,
             name: element.name,
             full_name: element.full_name,
-            private: element.private,
+            isPrivate: element.isPrivate,
             owner_login: splitOwner(element.full_name),
             description: element.description,
             fork: element.fork,

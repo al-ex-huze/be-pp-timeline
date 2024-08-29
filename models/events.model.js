@@ -125,7 +125,6 @@ exports.insertEvent = (newEvent) => {
                         msg: `Timeline does not exist: ${timeline}`,
                     });
                 }
-
                 return db.query(queryStr, queryValues);
             })
             .then(({ rows }) => {

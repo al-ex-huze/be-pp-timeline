@@ -9,7 +9,7 @@ app.use(cors());
 const {
     getAuthUser,
     getPublicUser,
-    getAllRepos,
+    getAllReposForUser,
     getWeeklyCommits,
     getYearlyActivity,
     getLanguagesUsedByRepo,
@@ -34,9 +34,9 @@ const {
     patchEventDates,
 } = require("./controllers/events.controller.js");
 
-app.get("/ghapi/auth_user/:user", getAuthUser);
+// app.get("/ghapi/auth_user/:user", getAuthUser);
 app.get("/ghapi/public_user/:user", getPublicUser);
-app.get("/ghapi/all_repos/:user/", getAllRepos);
+app.get("/ghapi/all_repos/:user/", getAllReposForUser);
 app.get("/ghapi/weekly_commits/:repo", getWeeklyCommits);
 app.get("/ghapi/yearly_activity/:repo", getYearlyActivity);
 app.get("/ghapi/languages_used/:repo", getLanguagesUsedByRepo);
