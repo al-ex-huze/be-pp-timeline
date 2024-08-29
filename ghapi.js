@@ -1,7 +1,7 @@
 const axios = require("axios");
 const ENV = process.env.NODE_ENV || "development";
 
-require("dotenv").config({});
+require("dotenv").config();
 
 if (!process.env.GH_TOKEN) {
     throw new Error("GH_TOKEN not set");
@@ -56,7 +56,7 @@ exports.getPublicUserCall = (user) => {
         });
 };
 
-exports.getPublicReposCall = (user) => {
+exports.getAllReposCall = (user) => {
     console.log(user)
     return ghApi
         .get(`/${user}/repos`, {

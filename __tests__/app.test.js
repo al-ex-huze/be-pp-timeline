@@ -38,10 +38,10 @@ describe("GET getPublicUser", () => {
 describe("GET getPublicRepos", () => {
     test("200 data object", () => {
         return request(app)
-            .get("/ghapi/public_repos/al-ex-huze")
+            .get("/ghapi/allc_repos/al-ex-huze")
             .expect(200)
             .then(({ body }) => {
-                const { public_repos } = body;
+                const { all_repos } = body;
                 // console.log("TEST --> " + languages + " <-- TEST");
             });
     });

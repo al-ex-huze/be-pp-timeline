@@ -9,7 +9,7 @@ app.use(cors());
 const {
     getAuthUser,
     getPublicUser,
-    getPublicRepos,
+    getAllRepos,
     getWeeklyCommits,
     getYearlyActivity,
     getLanguagesUsedByRepo,
@@ -36,7 +36,7 @@ const {
 
 app.get("/ghapi/auth_user/:user", getAuthUser);
 app.get("/ghapi/public_user/:user", getPublicUser);
-app.get("/ghapi/public_repos/:user/", getPublicRepos);
+app.get("/ghapi/all_repos/:user/", getAllRepos);
 app.get("/ghapi/weekly_commits/:repo", getWeeklyCommits);
 app.get("/ghapi/yearly_activity/:repo", getYearlyActivity);
 app.get("/ghapi/languages_used/:repo", getLanguagesUsedByRepo);
