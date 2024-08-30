@@ -1,6 +1,15 @@
 {
-    "GET /ghapi/weekly_commits": {
-        "description": "servrs array data of comits in last week"
+    "GET /ghapi/auth_user/:user": {
+        "description": "authenticated user object, github-side authentication error"
+    },
+    "GET /ghapi/public_user/:user": {
+        "description": "public user object"
+    },
+    "GET /ghapi/all_repos/:user/": {
+        "description": "array of all repos for user"
+    },
+    "GET /ghapi/weekly_commits/:repo": {
+        "description": "array of weekly commit data"
     },
     "GET /ghapi/yearly_activity": {
         "description": "serves array data of comits in last week",
@@ -30,6 +39,12 @@
                 "required": ["days", "total", "week"]
             }
         }
+    },
+    "GET /ghapi/languages_used/:repo": {
+        "description": "serves object u languages used"
+    },
+    "GET /api/repos": {
+        "description": "serves array of all repos in data"
     },
     "GET /api": {
         "description": "serves up a json representation of all the available endpoints of the api"

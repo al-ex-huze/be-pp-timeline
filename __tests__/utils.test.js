@@ -6,15 +6,50 @@ const {
 } = require("../db/seeds/utils");
 
 const { repoParser, splitOwner } = require("../utils/repo-utils");
+const { languageParser } = require("../utils/languages-utils");
+
+describe("languageParser", () => {
+    test("returns array of objects", () => {
+        const input = [{ "fun-data-katas": { JavaScript: 9210 } }];
+        const expected = [
+            {
+                full_name_languages: "al-ex-huze/fun-data-katas",
+                languages_and_size: "{\"JavaScript\":9210}",
+            },
+        ];
+        const actual = languageParser(input);
+        expect(actual).toEqual(expected);
+    });
+    test("returns array of objects", () => {
+        const input = [
+            {
+                "fe-pp-timeline": {
+                    TypeScript: 44326,
+                    CSS: 3671,
+                    JavaScript: 734,
+                    HTML: 376,
+                },
+            },
+        ];
+        const expected = [
+            {
+                full_name_languages: "al-ex-huze/fe-pp-timeline",
+                languages_and_size: "{\"TypeScript\":44326,\"CSS\":3671,\"JavaScript\":734,\"HTML\":376}",
+            },
+        ];
+        const actual = languageParser(input);
+        expect(actual).toEqual(expected);
+    });
+});
 
 describe("splitOwner", () => {
     test("returns owner from full name", () => {
-        const input = "141Soft/intro-week-git-workshop"
+        const input = "141Soft/intro-week-git-workshop";
         const expected = "141Soft";
         const actual = splitOwner(input);
         expect(actual).toEqual(expected);
     });
-})
+});
 
 describe("repoParser", () => {
     test("returns empty array", () => {
