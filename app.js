@@ -21,6 +21,7 @@ const {
 } = require("./errors/app.errors.js");
 const { getEndpoints } = require("./controllers/api.controller.js");
 const { getAllRepos } = require("./controllers/repos.controller.js");
+const { getLanguages } = require("./controllers/languages.controller.js");
 const {
     getTimelines,
     createTimeline,
@@ -55,6 +56,7 @@ app.delete("/api/events/:event_id", removeEvent);
 app.patch("/api/events/:event_id", patchEventDates);
 
 app.get("/api/repos", getAllRepos);
+app.get("/api/languages", getLanguages)
 
 app.use(handleCustomErrors);
 app.use(handlePsqlErrors);

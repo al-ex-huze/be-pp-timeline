@@ -1,4 +1,4 @@
-const { selectAllRepos } = require("../models/repos.models");
+const { selectAllRepos } = require("../models/repos.model");
 
 exports.getAllRepos = (req, res, next) => {
     selectAllRepos()
