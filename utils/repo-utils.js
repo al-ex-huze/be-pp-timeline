@@ -19,7 +19,6 @@ const repoParser = (oldRepos) => {
             default_branch: element.default_branch,
         };
     });
-    console.log(newRepos);
     return newRepos;
 };
 

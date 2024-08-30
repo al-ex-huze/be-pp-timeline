@@ -6,7 +6,14 @@ const {
     formatComments,
 } = require("./utils");
 
-const seed = ({ timelineData, userData, eventData, commentData, repoData }) => {
+const seed = ({
+    timelineData,
+    userData,
+    eventData,
+    commentData,
+    repoData,
+    languagesData,
+}) => {
     return db
         .query(`DROP TABLE IF EXISTS comments;`)
         .then(() => {
@@ -19,8 +26,12 @@ const seed = ({ timelineData, userData, eventData, commentData, repoData }) => {
             return db.query(`DROP TABLE IF EXISTS timelines;`);
         })
         .then(() => {
+            return db.query(`DROP TABLE IF EXISTS languages;`);
+        })
+        .then(() => {
             return db.query(`DROP TABLE IF EXISTS repos;`);
         })
+
         .then(() => {
             const timelinesTablePromise = db.query(`
       CREATE TABLE timelines (
@@ -68,9 +79,9 @@ const seed = ({ timelineData, userData, eventData, commentData, repoData }) => {
         .then(() => {
             return db.query(`
       CREATE TABLE repos (
-        repo_id INT PRIMARY KEY,
+        repo_id INT NOT NULL,
         name VARCHAR NOT NULL,
-        full_name VARCHAR NOT NULL,
+        full_name VARCHAR PRIMARY KEY,
         isPrivate BOOLEAN,
         owner_login VARCHAR NOT NULL,
         description VARCHAR,
@@ -82,6 +93,13 @@ const seed = ({ timelineData, userData, eventData, commentData, repoData }) => {
         language VARCHAR,
         visibility VARCHAR,
         default_branch VARCHAR
+      );`);
+        })
+        .then(() => {
+            return db.query(`
+      CREATE TABLE languages (
+        full_name_languages VARCHAR NOT NULL,
+        languages_and_size VARCHAR
       );`);
         })
         .then(() => {
@@ -196,6 +214,16 @@ const seed = ({ timelineData, userData, eventData, commentData, repoData }) => {
                 )
             );
             return db.query(insertReposQueryStr);
+        })
+        .then(() => {
+            const insertLanguagesQueryStr = format(
+                "INSERT INTO languages (full_name_languages, languages_and_size) VALUES %L;",
+                languagesData.map(({ full_name_languages, languages_and_size }) => [
+                    full_name_languages,
+                    languages_and_size,
+                ])
+            );
+            return db.query(insertLanguagesQueryStr);
         });
 };
 

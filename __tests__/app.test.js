@@ -10,6 +10,20 @@ const currentEndpointsTest = require("../endpoints.json");
 beforeEach(() => seed(testData));
 afterAll(() => db.end());
 
+describe("GET /api/languages", () => {
+    test("200 returns an array of languages object", () => {
+        return request(app)
+            .get("/api/languages")
+            .expect(200)
+            .then(({ body }) => {
+                const { languages } = body;
+                languages.forEach((language) => {
+                    expect(typeof language.full_name_languages).toBe("string");
+                    expect(typeof language.languages_and_size).toBe("string");
+                });
+            });
+    })
+})
 // describe.skip("GET /ghapi/auth_user/:user", () => {
 //     test("200 data object", () => {
 //         return request(app)
