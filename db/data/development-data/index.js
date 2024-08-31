@@ -4,3 +4,4 @@ exports.timelineData = require('./timelines.js');
 exports.userData = require('./users.js');
 exports.repoData = require('./repos.js');
 exports.languagesData = require('./languages.js');
+exports.feelingsData = require('./feelings.js');

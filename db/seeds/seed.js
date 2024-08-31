@@ -13,6 +13,7 @@ const seed = ({
     commentData,
     repoData,
     languagesData,
+    feelingsData,
 }) => {
     return db
         .query(`DROP TABLE IF EXISTS comments;`)
@@ -242,9 +243,9 @@ const seed = ({
             return db.query(insertLanguagesQueryStr);
         })
         .then(() => {
-            const insertLanguagesQueryStr = format(
-                "INSERT INTO feeling (week_number, week_start_date, week_end_date, knowledge, experience,passion, enthusiasm, confidence, wisdom, despair)  VALUES %L;",
-                languagesData.map(
+            const insertFeelingsQueryStr = format(
+                "INSERT INTO feelings (week_number, week_start_date, week_end_date, knowledge, experience,passion, enthusiasm, confidence, wisdom, despair) VALUES %L;",
+                feelingsData.map(
                     ({
                         week_number,
                         week_start_date,
@@ -270,7 +271,7 @@ const seed = ({
                     ]
                 )
             );
-            return db.query(insertLanguagesQueryStr);
+            return db.query(insertFeelingsQueryStr);
         });
 };
 

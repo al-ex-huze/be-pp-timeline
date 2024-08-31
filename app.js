@@ -23,6 +23,7 @@ const {
 const { getEndpoints } = require("./controllers/api.controller.js");
 const { getAllRepos } = require("./controllers/repos.controller.js");
 const { getLanguages } = require("./controllers/languages.controller.js");
+const { getFeelings } = require("./controllers/feelings.controller.js")
 const {
     getTimelines,
     createTimeline,
@@ -58,7 +59,10 @@ app.delete("/api/events/:event_id", removeEvent);
 app.patch("/api/events/:event_id", patchEventDates);
 
 app.get("/api/repos", getAllRepos);
+
 app.get("/api/languages", getLanguages);
+
+app.get("/api/feelings", getFeelings)
 
 app.use(handleCustomErrors);
 app.use(handlePsqlErrors);
