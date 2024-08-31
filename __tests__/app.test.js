@@ -10,141 +10,6 @@ const currentEndpointsTest = require("../endpoints.json");
 beforeEach(() => seed(testData));
 afterAll(() => db.end());
 
-describe("GET /api/languages", () => {
-    test("200 returns an array of languages object", () => {
-        return request(app)
-            .get("/api/languages")
-            .expect(200)
-            .then(({ body }) => {
-                const { languages } = body;
-                languages.forEach((language) => {
-                    expect(typeof language.full_name_languages).toBe("string");
-                    expect(typeof language.languages_and_size).toBe("string");
-                });
-            });
-    })
-})
-
-describe("GET /api/feelings", () => {
-    test("200 returns an array of feelings object", () => {
-        return request(app)
-            .get("/api/feelings")
-            .expect(200)
-            .then(({ body }) => {
-                const { feelings } = body;
-                feelings.forEach((feeling) => {
-                    console.log(feeling)
-                    expect(typeof feeling.week_number).toBe("string");
-                    expect(typeof feeling.week_start_date).toBe("string");
-                    expect(typeof feeling.week_end_date).toBe("string");
-                    expect(typeof feeling.knowledge).toBe("number");
-                    expect(typeof feeling.experience).toBe("number");
-                    expect(typeof feeling.passion).toBe("number");
-                    expect(typeof feeling.enthusiasm).toBe("number");
-                    expect(typeof feeling.confidence).toBe("number");
-                    expect(typeof feeling.wisdom).toBe("number");
-                    expect(typeof feeling.despair).toBe("number");
-                });
-            });
-    })
-})
-
-// describe.skip("GET /ghapi/auth_user/:user", () => {
-//     test("200 data object", () => {
-//         return request(app)
-//             .get("/ghapi/auth_user/al-ex-huze")
-//             .expect(200)
-//             .then(({ body }) => {
-//                 const { user_details } = body;
-//                 // console.log("TEST --> " + user_details + " <-- TEST");
-//                 /*{
-//                     "message": "Not Found",
-//                     "documentation_url": "https://docs.github.com/rest",
-//                     "status": "404"
-//                 }*/
-//             });
-//     });
-// });
-
-
-describe.skip("GET /ghapi/events/:user", () => {
-    test("200 returns stringifieduser object", () => {
-        return request(app)
-            .get("/ghapi/events/al-ex-huze")
-            .expect(200)
-            .then(({ body }) => {
-                const { events } = body;
-                expect(typeof events).toBe("string");
-                console.log(JSON.parse(events.length));
-            });
-    });
-});
-
-describe.skip("GET /ghapi/public_user/:user", () => {
-    test("200 returns stringifieduser object", () => {
-        return request(app)
-            .get("/ghapi/public_user/al-ex-huze")
-            .expect(200)
-            .then(({ body }) => {
-                const { user_details } = body;
-                expect(typeof user_details).toBe("string");
-                expect(JSON.parse(user_details).login).toEqual("al-ex-huze");
-            });
-    });
-});
-
-describe.skip("GET /ghapi/all_repos/:user/", () => {
-    test("200 returns stringified array of objects", () => {
-        return request(app)
-            .get("/ghapi/all_repos/al-ex-huze")
-            .expect(200)
-            .then(({ body }) => {
-                const { all_repos } = body;
-                expect(typeof all_repos).toBe("string");
-                console.log(JSON.parse(all_repos));
-            });
-    });
-});
-
-describe.skip("GET /ghapi/weekly_commits/:repo", () => {
-    test("200 data array", () => {
-        return request(app)
-            .get("/ghapi/weekly_commits/be-pp-timeline")
-            .expect(200)
-            .then(({ body }) => {
-                const { weeklyCommits } = body;
-                expect(typeof weeklyCommits).toBe("string");
-                console.log(JSON.parse(weeklyCommits));
-            });
-    });
-});
-
-describe.skip("GET /ghapi/yearly_activity/:repo", () => {
-    test("200 data object", () => {
-        return request(app)
-            .get("/ghapi/yearly_activity/be-pp-timeline")
-            .expect(200)
-            .then(({ body }) => {
-                const { yearlyActivity } = body;
-                expect(typeof yearlyActivity).toBe("string");
-                console.log(JSON.parse(yearlyActivity));
-            });
-    });
-});
-
-describe.skip("GET /ghapi/languages_used/:repo", () => {
-    test("200 object", () => {
-        return request(app)
-            .get("/ghapi/languages_used/be-pp-timeline")
-            .expect(200)
-            .then(({ body }) => {
-                const { languages } = body;
-                expect(typeof languages).toBe("string");
-                console.log(JSON.parse(languages));
-            });
-    });
-});
-
 describe("GET /api", () => {
     test("200 responds with endpoints object", () => {
         return request(app)
@@ -163,30 +28,6 @@ describe("GET /api", () => {
             .expect(404)
             .then(({ body }) => {
                 expect(body.msg).toBe("route not found");
-            });
-    });
-});
-
-describe("GET /api/repos", () => {
-    test("200 returns all repos", () => {
-        return request(app)
-            .get("/api/repos")
-            .expect(200)
-            .then(({ body }) => {
-                const { repos } = body;
-                repos.forEach((repo) => {
-                    expect(typeof repo.repo_id).toBe("number");
-                    expect(typeof repo.name).toBe("string");
-                    expect(typeof repo.full_name).toBe("string");                    
-                    expect(typeof repo.owner_login).toBe("string");
-                    expect(typeof repo.fork).toBe("boolean");
-                    expect(typeof repo.created_at).toBe("string");
-                    expect(typeof repo.updated_at).toBe("string");
-                    expect(typeof repo.pushed_at).toBe("string");
-                    expect(typeof repo.size).toBe("number");
-                    expect(typeof repo.visibility).toBe("string");
-                    expect(typeof repo.default_branch).toBe("string");
-                });
             });
     });
 });
@@ -759,6 +600,277 @@ describe("PATCH /api/events/:event_id", () => {
             .expect(400)
             .then(({ body }) => {
                 expect(body.msg).toBe("PSQL ERROR: 23502 - Missing input.");
+            });
+    });
+});
+
+describe("GET /api/repos", () => {
+    test("200 returns all repos", () => {
+        return request(app)
+            .get("/api/repos")
+            .expect(200)
+            .then(({ body }) => {
+                const { repos } = body;
+                repos.forEach((repo) => {
+                    expect(typeof repo.repo_id).toBe("number");
+                    expect(typeof repo.name).toBe("string");
+                    expect(typeof repo.full_name).toBe("string");
+                    expect(typeof repo.owner_login).toBe("string");
+                    expect(typeof repo.fork).toBe("boolean");
+                    expect(typeof repo.created_at).toBe("string");
+                    expect(typeof repo.updated_at).toBe("string");
+                    expect(typeof repo.pushed_at).toBe("string");
+                    expect(typeof repo.size).toBe("number");
+                    expect(typeof repo.visibility).toBe("string");
+                    expect(typeof repo.default_branch).toBe("string");
+                });
+            });
+    });
+});
+
+describe("GET /api/languages", () => {
+    test("200 returns an array of languages object", () => {
+        return request(app)
+            .get("/api/languages")
+            .expect(200)
+            .then(({ body }) => {
+                const { languages } = body;
+                languages.forEach((language) => {
+                    expect(typeof language.full_name_languages).toBe("string");
+                    expect(typeof language.languages_and_size).toBe("string");
+                });
+            });
+    });
+});
+
+describe("GET /api/feelings", () => {
+    test("200 returns an array of feelings object", () => {
+        return request(app)
+            .get("/api/feelings")
+            .expect(200)
+            .then(({ body }) => {
+                const { feelings } = body;
+                feelings.forEach((feeling) => {
+                    expect(typeof feeling.week_number).toBe("string");
+                    expect(typeof feeling.week_start_date).toBe("string");
+                    expect(typeof feeling.week_end_date).toBe("string");
+                    expect(typeof feeling.knowledge).toBe("number");
+                    expect(typeof feeling.experience).toBe("number");
+                    expect(typeof feeling.passion).toBe("number");
+                    expect(typeof feeling.enthusiasm).toBe("number");
+                    expect(typeof feeling.confidence).toBe("number");
+                    expect(typeof feeling.wisdom).toBe("number");
+                    expect(typeof feeling.despair).toBe("number");
+                });
+            });
+    });
+});
+
+describe("PATCH /api/feelings/:week", () => {
+    test("200 returns updated event", () => {
+        const patchWeek = "1-2024";
+        const update = {
+            knowledge_update: 10,
+            experience_update: 15,
+            passion_update: 20,
+            enthusiasm_update: 25,
+            confidence_update: 30,
+            wisdom_update: 35,
+            despair_update: 40,
+        };
+        return request(app)
+            .patch(`/api/feelings/${patchWeek}`)
+            .send(update)
+            .expect(200)
+            .then(({ body }) => {
+                const { feeling } = body;
+                console.log(feeling);
+                expect(typeof feeling.week_number).toBe("string");
+                expect(typeof feeling.week_start_date).toBe("string");
+                expect(typeof feeling.week_end_date).toBe("string");
+                expect(typeof feeling.knowledge).toBe("number");
+                expect(typeof feeling.experience).toBe("number");
+                expect(typeof feeling.passion).toBe("number");
+                expect(typeof feeling.enthusiasm).toBe("number");
+                expect(typeof feeling.confidence).toBe("number");
+                expect(typeof feeling.wisdom).toBe("number");
+                expect(typeof feeling.despair).toBe("number");
+            });
+    });
+    test("200 returns updated event", () => {
+        const patchWeek = "1-2024";
+        const update = {
+            knowledge_update: 10,
+            experience_update: 15,
+            passion_update: 20,
+            enthusiasm_update: 25,
+            confidence_update: 30,
+            wisdom_update: 35,
+            despair_update: 40,
+        };
+        return request(app)
+            .patch(`/api/feelings/${patchWeek}`)
+            .send(update)
+            .expect(200)
+            .then(({ body }) => {
+                const { feeling } = body;
+                expect(feeling.week_number).toEqual("1-2024");
+                expect(feeling.week_start_date).toEqual("2024-01-01");
+                expect(feeling.week_end_date).toEqual("2024-01-07");
+                expect(feeling.knowledge).toEqual(10);
+                expect(feeling.experience).toEqual(15);
+                expect(feeling.passion).toEqual(20);
+                expect(feeling.enthusiasm).toEqual(25);
+                expect(feeling.confidence).toEqual(30);
+                expect(feeling.wisdom).toEqual(35);
+                expect(feeling.despair).toEqual(40);
+            });
+    });
+    test("400 missing required fields when request key is null", () => {
+        const patchWeek = "1-2024";
+        const update = null;
+        return request(app)
+            .patch(`/api/feelings/${patchWeek}`)
+            .send(update)
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("Update data input is not an integer");
+            });
+    });
+
+    test("400 incorrect fields of wrong property type", () => {
+        const patchWeek = "1-2024";
+        const update = {
+            knowledge_update: "2024-01-07",
+            experience_update: 15,
+            passion_update: 20,
+            enthusiasm_update: 25,
+            confidence_update: 30,
+            wisdom_update: 35,
+            despair_update: 40,
+        };
+        return request(app)
+            .patch(`/api/feelings/${patchWeek}`)
+            .send(update)
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("Update data input is not an integer");
+            });
+    });
+    test("400 incorrect type of request", () => {
+        const patchWeek = "1-2024";
+        const update = [
+            {
+                knowledge_update: 10,
+                experience_update: 15,
+                passion_update: 20,
+                enthusiasm_update: 25,
+                confidence_update: 30,
+                wisdom_update: 35,
+                despair_update: 40,
+            },
+        ];
+        return request(app)
+            .patch(`/api/feelings/${patchWeek}`)
+            .send(update)
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("Update data input is not an integer");
+            });
+    });
+});
+
+// describe.skip("GET /ghapi/auth_user/:user", () => {
+//     test("200 data object", () => {
+//         return request(app)
+//             .get("/ghapi/auth_user/al-ex-huze")
+//             .expect(200)
+//             .then(({ body }) => {
+//                 const { user_details } = body;
+//                 // console.log("TEST --> " + user_details + " <-- TEST");
+//                 /*{
+//                     "message": "Not Found",
+//                     "documentation_url": "https://docs.github.com/rest",
+//                     "status": "404"
+//                 }*/
+//             });
+//     });
+// });
+
+describe.skip("GET /ghapi/events/:user", () => {
+    test("200 returns stringifieduser object", () => {
+        return request(app)
+            .get("/ghapi/events/al-ex-huze")
+            .expect(200)
+            .then(({ body }) => {
+                const { events } = body;
+                expect(typeof events).toBe("string");
+                console.log(JSON.parse(events.length));
+            });
+    });
+});
+
+describe.skip("GET /ghapi/public_user/:user", () => {
+    test("200 returns stringifieduser object", () => {
+        return request(app)
+            .get("/ghapi/public_user/al-ex-huze")
+            .expect(200)
+            .then(({ body }) => {
+                const { user_details } = body;
+                expect(typeof user_details).toBe("string");
+                expect(JSON.parse(user_details).login).toEqual("al-ex-huze");
+            });
+    });
+});
+
+describe.skip("GET /ghapi/all_repos/:user/", () => {
+    test("200 returns stringified array of objects", () => {
+        return request(app)
+            .get("/ghapi/all_repos/al-ex-huze")
+            .expect(200)
+            .then(({ body }) => {
+                const { all_repos } = body;
+                expect(typeof all_repos).toBe("string");
+                console.log(JSON.parse(all_repos));
+            });
+    });
+});
+
+describe.skip("GET /ghapi/weekly_commits/:repo", () => {
+    test("200 data array", () => {
+        return request(app)
+            .get("/ghapi/weekly_commits/be-pp-timeline")
+            .expect(200)
+            .then(({ body }) => {
+                const { weeklyCommits } = body;
+                expect(typeof weeklyCommits).toBe("string");
+                console.log(JSON.parse(weeklyCommits));
+            });
+    });
+});
+
+describe.skip("GET /ghapi/yearly_activity/:repo", () => {
+    test("200 data object", () => {
+        return request(app)
+            .get("/ghapi/yearly_activity/be-pp-timeline")
+            .expect(200)
+            .then(({ body }) => {
+                const { yearlyActivity } = body;
+                expect(typeof yearlyActivity).toBe("string");
+                console.log(JSON.parse(yearlyActivity));
+            });
+    });
+});
+
+describe.skip("GET /ghapi/languages_used/:repo", () => {
+    test("200 object", () => {
+        return request(app)
+            .get("/ghapi/languages_used/be-pp-timeline")
+            .expect(200)
+            .then(({ body }) => {
+                const { languages } = body;
+                expect(typeof languages).toBe("string");
+                console.log(JSON.parse(languages));
             });
     });
 });
