@@ -1,6 +1,6 @@
 module.exports = [
     {
-        week_number: 1,
+        week_number: "1-2024",
         week_start_date: "2024-01-01",
         week_end_date: "2024-01-07",
         knowledge: 1,
@@ -12,7 +12,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 2,
+        week_number: "2-2024",
         week_start_date: "2024-01-08",
         week_end_date: "2024-01-14",
         knowledge: 1,
@@ -24,7 +24,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 3,
+        week_number: "3-2024",
         week_start_date: "2024-01-15",
         week_end_date: "2024-01-21",
         knowledge: 1,

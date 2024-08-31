@@ -23,7 +23,7 @@ const {
 const { getEndpoints } = require("./controllers/api.controller.js");
 const { getAllRepos } = require("./controllers/repos.controller.js");
 const { getLanguages } = require("./controllers/languages.controller.js");
-const { getFeelings } = require("./controllers/feelings.controller.js")
+const { getFeelings, patchFeelingsForWeek } = require("./controllers/feelings.controller.js")
 const {
     getTimelines,
     createTimeline,
@@ -63,6 +63,7 @@ app.get("/api/repos", getAllRepos);
 app.get("/api/languages", getLanguages);
 
 app.get("/api/feelings", getFeelings)
+app.patch("/api/feelings/:week_number", patchFeelingsForWeek)
 
 app.use(handleCustomErrors);
 app.use(handlePsqlErrors);

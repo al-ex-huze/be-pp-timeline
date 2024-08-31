@@ -1,6 +1,6 @@
 module.exports = [
     {
-        week_number: 1,
+        week_number: "1-2024",
         week_start_date: "2024-01-01",
         week_end_date: "2024-01-07",
         knowledge: 1,
@@ -12,7 +12,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 2,
+        week_number: "2-2024",
         week_start_date: "2024-01-08",
         week_end_date: "2024-01-14",
         knowledge: 1,
@@ -24,7 +24,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 3,
+        week_number: "3-2024",
         week_start_date: "2024-01-15",
         week_end_date: "2024-01-21",
         knowledge: 1,
@@ -36,7 +36,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 4,
+        week_number: "4-2024",
         week_start_date: "2024-01-22",
         week_end_date: "2024-01-28",
         knowledge: 1,
@@ -48,7 +48,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 5,
+        week_number: "5-2024",
         week_start_date: "2024-01-29",
         week_end_date: "2024-02-04",
         knowledge: 1,
@@ -60,7 +60,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 6,
+        week_number: "6-2024",
         week_start_date: "2024-02-05",
         week_end_date: "2024-02-11",
         knowledge: 1,
@@ -72,7 +72,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 7,
+        week_number: "7-2024",
         week_start_date: "2024-02-12",
         week_end_date: "2024-02-18",
         knowledge: 1,
@@ -84,7 +84,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 8,
+        week_number: "8-2024",
         week_start_date: "2024-02-19",
         week_end_date: "2024-02-25",
         knowledge: 1,
@@ -96,7 +96,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 9,
+        week_number: "9-2024",
         week_start_date: "2024-02-26",
         week_end_date: "2024-03-03",
         knowledge: 1,
@@ -108,7 +108,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 10,
+        week_number: "10-2024",
         week_start_date: "2024-03-04",
         week_end_date: "2024-03-10",
         knowledge: 1,
@@ -120,7 +120,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 11,
+        week_number: "11-2024",
         week_start_date: "2024-03-11",
         week_end_date: "2024-03-17",
         knowledge: 1,
@@ -132,7 +132,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 12,
+        week_number: "12-2024",
         week_start_date: "2024-03-18",
         week_end_date: "2024-03-24",
         knowledge: 1,
@@ -144,7 +144,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 13,
+        week_number: "13-2024",
         week_start_date: "2024-03-25",
         week_end_date: "2024-03-31",
         knowledge: 1,
@@ -156,7 +156,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 14,
+        week_number: "14-2024",
         week_start_date: "2024-04-01",
         week_end_date: "2024-04-07",
         knowledge: 1,
@@ -168,7 +168,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 15,
+        week_number: "15-2024",
         week_start_date: "2024-04-08",
         week_end_date: "2024-04-14",
         knowledge: 1,
@@ -180,7 +180,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 16,
+        week_number: "16-2024",
         week_start_date: "2024-04-15",
         week_end_date: "2024-04-21",
         knowledge: 1,
@@ -192,7 +192,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 17,
+        week_number: "17-2024",
         week_start_date: "2024-04-22",
         week_end_date: "2024-04-28",
         knowledge: 1,
@@ -204,7 +204,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 18,
+        week_number: "18-2024",
         week_start_date: "2024-04-29",
         week_end_date: "2024-05-05",
         knowledge: 1,
@@ -216,7 +216,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 19,
+        week_number: "19-2024",
         week_start_date: "2024-05-06",
         week_end_date: "2024-05-12",
         knowledge: 1,
@@ -228,7 +228,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 20,
+        week_number: "20-2024",
         week_start_date: "2024-05-13",
         week_end_date: "2024-05-19",
         knowledge: 1,
@@ -240,7 +240,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 21,
+        week_number: "21-2024",
         week_start_date: "2024-05-20",
         week_end_date: "2024-05-26",
         knowledge: 1,
@@ -252,7 +252,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 22,
+        week_number: "22-2024",
         week_start_date: "2024-05-27",
         week_end_date: "2024-06-02",
         knowledge: 1,
@@ -264,7 +264,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 23,
+        week_number: "23-2024",
         week_start_date: "2024-06-03",
         week_end_date: "2024-06-09",
         knowledge: 1,
@@ -276,7 +276,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 24,
+        week_number: "24-2024",
         week_start_date: "2024-06-10",
         week_end_date: "2024-06-16",
         knowledge: 1,
@@ -288,7 +288,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 25,
+        week_number: "25-2024",
         week_start_date: "2024-06-17",
         week_end_date: "2024-06-23",
         knowledge: 1,
@@ -300,7 +300,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 26,
+        week_number: "26-2024",
         week_start_date: "2024-06-24",
         week_end_date: "2024-06-30",
         knowledge: 1,
@@ -312,7 +312,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 27,
+        week_number: "27-2024",
         week_start_date: "2024-07-01",
         week_end_date: "2024-07-07",
         knowledge: 1,
@@ -324,7 +324,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 28,
+        week_number: "28-2024",
         week_start_date: "2024-07-08",
         week_end_date: "2024-08-14",
         knowledge: 1,
@@ -336,7 +336,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 29,
+        week_number: "29-2024",
         week_start_date: "2024-07-15",
         week_end_date: "2024-07-21",
         knowledge: 1,
@@ -348,7 +348,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 30,
+        week_number: "30-2024",
         week_start_date: "2024-07-22",
         week_end_date: "2024-07-28",
         knowledge: 1,
@@ -360,7 +360,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 31,
+        week_number: "31-2024",
         week_start_date: "2024-07-29",
         week_end_date: "2024-08-04",
         knowledge: 1,
@@ -372,7 +372,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 32,
+        week_number: "32-2024",
         week_start_date: "2024-08-05",
         week_end_date: "2024-08-11",
         knowledge: 1,
@@ -384,7 +384,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 33,
+        week_number: "33-2024",
         week_start_date: "2024-08-12",
         week_end_date: "2024-08-18",
         knowledge: 1,
@@ -396,7 +396,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 34,
+        week_number: "34-2024",
         week_start_date: "2024-08-19",
         week_end_date: "2024-08-25",
         knowledge: 1,
@@ -408,7 +408,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 35,
+        week_number: "35-2024",
         week_start_date: "2024-08-26",
         week_end_date: "2024-09-01",
         knowledge: 1,
@@ -420,7 +420,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 36,
+        week_number: "36-2024",
         week_start_date: "2024-09-02",
         week_end_date: "2024-09-08",
         knowledge: 1,
@@ -432,7 +432,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 37,
+        week_number: "37-2024",
         week_start_date: "2024-09-09",
         week_end_date: "2024-09-15",
         knowledge: 1,
@@ -444,7 +444,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 38,
+        week_number: "38-2024",
         week_start_date: "2024-09-16",
         week_end_date: "2024-09-28",
         knowledge: 1,
@@ -456,7 +456,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 39,
+        week_number: "39-2024",
         week_start_date: "2024-09-23",
         week_end_date: "2024-09-29",
         knowledge: 1,
@@ -468,7 +468,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 40,
+        week_number: "40-2024",
         week_start_date: "2024-09-30",
         week_end_date: "2024-10-06",
         knowledge: 1,
@@ -480,7 +480,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 41,
+        week_number: "41-2024",
         week_start_date: "2024-10-07",
         week_end_date: "2024-10-13",
         knowledge: 1,
@@ -492,7 +492,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 42,
+        week_number: "42-2024",
         week_start_date: "2024-10-14",
         week_end_date: "2024-10-20",
         knowledge: 1,
@@ -504,7 +504,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 43,
+        week_number: "43-2024",
         week_start_date: "2024-10-21",
         week_end_date: "2024-10-27",
         knowledge: 1,
@@ -516,7 +516,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 44,
+        week_number: "44-2024",
         week_start_date: "2024-10-28",
         week_end_date: "2024-11-03",
         knowledge: 1,
@@ -528,7 +528,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 45,
+        week_number: "45-2024",
         week_start_date: "2024-11-04",
         week_end_date: "2024-11-10",
         knowledge: 1,
@@ -540,7 +540,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 46,
+        week_number: "46-2024",
         week_start_date: "2024-11-11",
         week_end_date: "2024-11-17",
         knowledge: 1,
@@ -552,7 +552,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 47,
+        week_number: "47-2024",
         week_start_date: "2024-11-18",
         week_end_date: "2024-11-24",
         knowledge: 1,
@@ -564,7 +564,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 48,
+        week_number: "48-2024",
         week_start_date: "2024-11-25",
         week_end_date: "2024-12-01",
         knowledge: 1,
@@ -576,7 +576,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 49,
+        week_number: "49-2024",
         week_start_date: "2024-12-02",
         week_end_date: "2024-12-08",
         knowledge: 1,
@@ -588,7 +588,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 50,
+        week_number: "50-2024",
         week_start_date: "2024-12-09",
         week_end_date: "2024-12-15",
         knowledge: 1,
@@ -600,7 +600,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 51,
+        week_number: "51-2024",
         week_start_date: "2024-12-16",
         week_end_date: "2024-12-22",
         knowledge: 1,
@@ -612,7 +612,7 @@ module.exports = [
         despair: 1,
     },
     {
-        week_number: 52,
+        week_number: "52-2024",
         week_start_date: "2024-12-23",
         week_end_date: "2024-12-29",
         knowledge: 1,

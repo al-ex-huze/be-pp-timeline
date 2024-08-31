@@ -108,7 +108,7 @@ const seed = ({
         .then(() => {
             return db.query(`
         CREATE TABLE feelings (
-        week_number INT NOT NULL,
+        week_number VARCHAR PRIMARY KEY,
         week_start_date VARCHAR NOT NULL,
         week_end_date VARCHAR NOT NULL,
         knowledge INT,
