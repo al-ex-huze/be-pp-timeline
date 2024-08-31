@@ -41,6 +41,20 @@ describe("GET /api/languages", () => {
 //     });
 // });
 
+
+describe("GET /ghapi/events/:user", () => {
+    test("200 returns stringifieduser object", () => {
+        return request(app)
+            .get("/ghapi/events/al-ex-huze")
+            .expect(200)
+            .then(({ body }) => {
+                const { events } = body;
+                expect(typeof events).toBe("string");
+                console.log(JSON.parse(events.length));
+            });
+    });
+});
+
 describe.skip("GET /ghapi/public_user/:user", () => {
     test("200 returns stringifieduser object", () => {
         return request(app)
