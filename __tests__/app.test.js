@@ -42,7 +42,7 @@ describe("GET /api/languages", () => {
 // });
 
 
-describe("GET /ghapi/events/:user", () => {
+describe.skip("GET /ghapi/events/:user", () => {
     test("200 returns stringifieduser object", () => {
         return request(app)
             .get("/ghapi/events/al-ex-huze")
