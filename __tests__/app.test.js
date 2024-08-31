@@ -24,6 +24,31 @@ describe("GET /api/languages", () => {
             });
     })
 })
+
+describe("GET /api/feelings", () => {
+    test("200 returns an array of feelings object", () => {
+        return request(app)
+            .get("/api/feelings")
+            .expect(200)
+            .then(({ body }) => {
+                const { feelings } = body;
+                feelings.forEach((feeling) => {
+                    console.log(feeling)
+                    expect(typeof feeling.week_number).toBe("number");
+                    expect(typeof feeling.week_start_date).toBe("string");
+                    expect(typeof feeling.week_end_date).toBe("string");
+                    expect(typeof feeling.knowledge).toBe("number");
+                    expect(typeof feeling.experience).toBe("number");
+                    expect(typeof feeling.passion).toBe("number");
+                    expect(typeof feeling.enthusiasm).toBe("number");
+                    expect(typeof feeling.confidence).toBe("number");
+                    expect(typeof feeling.wisdom).toBe("number");
+                    expect(typeof feeling.despair).toBe("number");
+                });
+            });
+    })
+})
+
 // describe.skip("GET /ghapi/auth_user/:user", () => {
 //     test("200 data object", () => {
 //         return request(app)
@@ -42,7 +67,7 @@ describe("GET /api/languages", () => {
 // });
 
 
-describe("GET /ghapi/events/:user", () => {
+describe.skip("GET /ghapi/events/:user", () => {
     test("200 returns stringifieduser object", () => {
         return request(app)
             .get("/ghapi/events/al-ex-huze")

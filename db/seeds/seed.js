@@ -13,9 +13,19 @@ const seed = ({
     commentData,
     repoData,
     languagesData,
+    feelingsData,
 }) => {
     return db
         .query(`DROP TABLE IF EXISTS comments;`)
+        .then(() => {
+            return db.query(`DROP TABLE IF EXISTS feelings;`);
+        })
+        .then(() => {
+            return db.query(`DROP TABLE IF EXISTS repos;`);
+        })
+        .then(() => {
+            return db.query(`DROP TABLE IF EXISTS languages;`);
+        })
         .then(() => {
             return db.query(`DROP TABLE IF EXISTS events;`);
         })
@@ -25,13 +35,6 @@ const seed = ({
         .then(() => {
             return db.query(`DROP TABLE IF EXISTS timelines;`);
         })
-        .then(() => {
-            return db.query(`DROP TABLE IF EXISTS languages;`);
-        })
-        .then(() => {
-            return db.query(`DROP TABLE IF EXISTS repos;`);
-        })
-
         .then(() => {
             const timelinesTablePromise = db.query(`
       CREATE TABLE timelines (
@@ -93,14 +96,29 @@ const seed = ({
         language VARCHAR,
         visibility VARCHAR,
         default_branch VARCHAR
-      );`);
+        );`);
         })
         .then(() => {
             return db.query(`
-      CREATE TABLE languages (
+        CREATE TABLE languages (
         full_name_languages VARCHAR NOT NULL,
         languages_and_size VARCHAR
-      );`);
+        );`);
+        })
+        .then(() => {
+            return db.query(`
+        CREATE TABLE feelings (
+        week_number INT NOT NULL,
+        week_start_date VARCHAR NOT NULL,
+        week_end_date VARCHAR NOT NULL,
+        knowledge INT,
+        experience INT,
+        passion INT,
+        enthusiasm INT,
+        confidence INT,
+        wisdom INT,
+        despair INT
+        );`);
         })
         .then(() => {
             const insertTimelinesQueryStr = format(
@@ -121,7 +139,6 @@ const seed = ({
                 ])
             );
             const usersPromise = db.query(insertUsersQueryStr);
-
             return Promise.all([timelinesPromise, usersPromise]);
         })
         .then(() => {
@@ -152,7 +169,6 @@ const seed = ({
                     ]
                 )
             );
-
             return db.query(insertEventsQueryStr);
         })
         .then(({ rows: eventRows }) => {
@@ -161,7 +177,6 @@ const seed = ({
                 commentData,
                 eventIdLookup
             );
-
             const insertCommentsQueryStr = format(
                 "INSERT INTO comments (body, author, event_id, votes, created_at) VALUES %L;",
                 formattedCommentData.map(
@@ -218,12 +233,45 @@ const seed = ({
         .then(() => {
             const insertLanguagesQueryStr = format(
                 "INSERT INTO languages (full_name_languages, languages_and_size) VALUES %L;",
-                languagesData.map(({ full_name_languages, languages_and_size }) => [
-                    full_name_languages,
-                    languages_and_size,
-                ])
+                languagesData.map(
+                    ({ full_name_languages, languages_and_size }) => [
+                        full_name_languages,
+                        languages_and_size,
+                    ]
+                )
             );
             return db.query(insertLanguagesQueryStr);
+        })
+        .then(() => {
+            const insertFeelingsQueryStr = format(
+                "INSERT INTO feelings (week_number, week_start_date, week_end_date, knowledge, experience,passion, enthusiasm, confidence, wisdom, despair) VALUES %L;",
+                feelingsData.map(
+                    ({
+                        week_number,
+                        week_start_date,
+                        week_end_date,
+                        knowledge,
+                        experience,
+                        passion,
+                        enthusiasm,
+                        confidence,
+                        wisdom,
+                        despair,
+                    }) => [
+                        week_number,
+                        week_start_date,
+                        week_end_date,
+                        knowledge,
+                        experience,
+                        passion,
+                        enthusiasm,
+                        confidence,
+                        wisdom,
+                        despair,
+                    ]
+                )
+            );
+            return db.query(insertFeelingsQueryStr);
         });
 };
 
