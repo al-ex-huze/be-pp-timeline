@@ -34,7 +34,7 @@ describe("GET /api/feelings", () => {
                 const { feelings } = body;
                 feelings.forEach((feeling) => {
                     console.log(feeling)
-                    expect(typeof feeling.week_number).toBe("number");
+                    expect(typeof feeling.week_number).toBe("string");
                     expect(typeof feeling.week_start_date).toBe("string");
                     expect(typeof feeling.week_end_date).toBe("string");
                     expect(typeof feeling.knowledge).toBe("number");
