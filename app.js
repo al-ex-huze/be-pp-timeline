@@ -8,6 +8,7 @@ app.use(cors());
 
 const {
     getAuthUser,
+    getEventsForUser,
     getPublicUser,
     getAllReposForUser,
     getWeeklyCommits,
@@ -37,6 +38,7 @@ const {
 } = require("./controllers/events.controller.js");
 
 // app.get("/ghapi/auth_user/:user", getAuthUser);
+app.get("/ghapi/events/:user", getEventsForUser);
 app.get("/ghapi/public_user/:user", getPublicUser);
 app.get("/ghapi/all_repos/:user/", getAllReposForUser);
 app.get("/ghapi/weekly_commits/:repo", getWeeklyCommits);
@@ -56,7 +58,7 @@ app.delete("/api/events/:event_id", removeEvent);
 app.patch("/api/events/:event_id", patchEventDates);
 
 app.get("/api/repos", getAllRepos);
-app.get("/api/languages", getLanguages)
+app.get("/api/languages", getLanguages);
 
 app.use(handleCustomErrors);
 app.use(handlePsqlErrors);

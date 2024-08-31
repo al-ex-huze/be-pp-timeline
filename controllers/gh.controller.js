@@ -1,10 +1,19 @@
-const { getAuthUserCall, getPublicUserCall, getAllReposForUserCall, getWeeklyCommitsCall, getYearlyActivityCall, getLanguagesUsedByRepoCall } = require("../models/ghapi");
+const { getAuthUserCall, getEventsForUserCall, getPublicUserCall, getAllReposForUserCall, getWeeklyCommitsCall, getYearlyActivityCall, getLanguagesUsedByRepoCall } = require("../models/ghapi");
 
 exports.getAuthUser = (req, res, next) => {
     const { user } = req.params;
     getAuthUserCall(user)
         .then((user_details) => {
             res.status(200).send({ user_details });
+        })
+        .catch(next);
+};
+
+exports.getEventsForUser = (req, res, next) => {
+    const { user } = req.params;
+    getEventsForUserCall(user)
+        .then((events) => {
+            res.status(200).send({ events });
         })
         .catch(next);
 };

@@ -2,6 +2,9 @@
     "GET /api/languages": {
         "description": "authenticated user object, github-side authentication error"
     },
+    "GET /ghapi/contributions/:user": {
+        "description": "authenticated user object, github-side authentication error"
+    },
     "GET /ghapi/auth_user/:user": {
         "description": "authenticated user object, github-side authentication error"
     },
