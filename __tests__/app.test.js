@@ -365,7 +365,7 @@ describe("POST /api/events", () => {
         const expected = {
             author: "al-ex-huze",
             title: "Test Title - New event",
-            event_id: 7,
+            event_id: 13,
             body: "Test body - one, two, three",
             topics: "topic a. topic b.",
             timeline: "Northcoders Bootcamp",
@@ -556,6 +556,7 @@ describe("PATCH /api/events/:event_id", () => {
             new_skills: "skill one. skill two.",
             new_topics: "topic a. topic b.",
             new_timeline: "Northcoders Bootcamp",
+            new_event_img_url: "https://new-url.co.uk"
         };
         return request(app)
             .patch(`/api/events/${patchID}`)
@@ -589,6 +590,7 @@ describe("PATCH /api/events/:event_id", () => {
             new_skills: "skill one. skill two.",
             new_topics: "topic a. topic b.",
             new_timeline: "Northcoders Bootcamp",
+            new_event_img_url: "https://new-url.co.uk"
         };
         return request(app)
             .patch(`/api/events/${patchID}`)
@@ -603,6 +605,7 @@ describe("PATCH /api/events/:event_id", () => {
                 expect(event.skills).toEqual("skill one. skill two.");
                 expect(event.topics).toEqual("topic a. topic b.");
                 expect(event.timeline).toEqual("Northcoders Bootcamp");
+                expect(event.event_img_url).toEqual("https://new-url.co.uk");
             });
     });
     test("200 returns updated event null not needed", () => {

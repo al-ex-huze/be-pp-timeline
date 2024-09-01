@@ -154,7 +154,7 @@ exports.deleteEvent = (event_id) => {
 };
 
 exports.updateEventDates = (update, event_id) => {
-    const { new_start_date, new_end_date, new_title, new_body, new_skills, new_topics, new_timeline } = update;
+    const { new_start_date, new_end_date, new_title, new_body, new_skills, new_topics, new_timeline, new_event_img_url } = update;
 
     if (
         typeof new_start_date === "number" ||
@@ -167,9 +167,9 @@ exports.updateEventDates = (update, event_id) => {
     }
 
     const queryStr =
-        "UPDATE events SET start_date = $1, end_date = $2, title = $3, body = $4, skills = $5, topics = $6, timeline = $7 WHERE event_id = $8 RETURNING *;";
+        "UPDATE events SET start_date = $1, end_date = $2, title = $3, body = $4, skills = $5, topics = $6, timeline = $7, event_img_url = $8 WHERE event_id = $9 RETURNING *;";
 
-    const queryValues = [new_start_date, new_end_date, new_title, new_body, new_skills, new_topics, new_timeline, event_id];
+    const queryValues = [new_start_date, new_end_date, new_title, new_body, new_skills, new_topics, new_timeline, new_event_img_url, event_id];
 
     return db.query(queryStr, queryValues).then(({ rows }) => {
         const event = rows[0];
