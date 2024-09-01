@@ -42,7 +42,7 @@ describe("GET /api/timelines", () => {
                 timelines.forEach((timeline) => {
                     expect(typeof timeline.timeline_name).toBe("string");
                     expect(typeof timeline.description).toBe("string");
-                    // expect(typeof timeline.begin_date).toBe("string");
+                    expect(typeof timeline.begin_date).toBe("string");
                     // expect(typeof timeline.finish_date).toBe("string");
                 });
             });
@@ -58,10 +58,10 @@ describe("GET /api/timelines/:timeline_name", () => {
                 const { timeline } = body;
                 expect(typeof timeline.timeline_name).toBe("string");
                 expect(typeof timeline.description).toBe("string");
-                // expect(typeof timeline.begin_date).toBe("string");
-                // expect(typeof timeline.finish_date).toBe("string");
-                // expect(timeline.begin_date).toBe("2024-04-15");
-                // expect(timeline.finish_date).toBe("2024-07-12");
+                expect(typeof timeline.begin_date).toBe("string");
+                expect(typeof timeline.finish_date).toBe("string");
+                expect(timeline.begin_date).toBe("2024-04-15");
+                expect(timeline.finish_date).toBe("2024-07-12");
             });
     });
     test("404 responds when valid id but is non-existent", () => {
@@ -79,6 +79,8 @@ describe("POST /api/timelines", () => {
         const newTimeline = {
             timeline_name: "Timeline Name",
             description: "Timeline description",
+            begin_date: "2024-02-02",
+            finish_date: "2024-03-03",
         };
         return request(app)
             .post("/api/timelines")
@@ -90,6 +92,10 @@ describe("POST /api/timelines", () => {
                 expect(typeof timeline.description).toBe("string");
                 expect(timeline.timeline_name).toEqual("Timeline Name");
                 expect(timeline.description).toEqual("Timeline description");
+                expect(typeof timeline.begin_date).toBe("string");
+                expect(typeof timeline.finish_date).toBe("string");
+                expect(timeline.begin_date).toEqual("2024-02-02");
+                expect(timeline.finish_date).toEqual("2024-03-03");
             });
     });
     test("201 successful post, additional properties ignored", () => {
@@ -97,6 +103,8 @@ describe("POST /api/timelines", () => {
             newProperty: "ignore",
             timeline_name: "Timeline Name",
             description: "Timeline description",
+            begin_date: "2024-02-02",
+            finish_date: "2024-03-03",
         };
         return request(app)
             .post("/api/timelines")
@@ -108,12 +116,18 @@ describe("POST /api/timelines", () => {
                 expect(typeof timeline.description).toBe("string");
                 expect(timeline.timeline_name).toEqual("Timeline Name");
                 expect(timeline.description).toEqual("Timeline description");
+                expect(typeof timeline.begin_date).toBe("string");
+                expect(typeof timeline.finish_date).toBe("string");
+                expect(timeline.begin_date).toEqual("2024-02-02");
+                expect(timeline.finish_date).toEqual("2024-03-03");
             });
     });
     test("400 missing required fields", () => {
         const newTimeline = {
             timeline_name: null,
             description: "test body",
+            begin_date: "2024-02-02",
+            finish_date: "2024-03-03",
         };
         return request(app)
             .post("/api/timelines")
@@ -157,6 +171,9 @@ describe("GET /api/events", () => {
                     expect(typeof event.title).toBe("string");
                     expect(typeof event.event_id).toBe("number");
                     expect(typeof event.timeline).toBe("string");
+                    expect(typeof event.body).toBe("string");
+                    expect(typeof event.start_date).toBe("string");
+                    expect(typeof event.end_date).toBe("string");
                     expect(typeof event.created_at).toBe("string");
                     expect(typeof event.votes).toBe("number");
                     expect(typeof event.event_img_url).toBe("string");
@@ -302,6 +319,8 @@ describe("POST /api/events", () => {
             author: "al-ex-huze",
             title: "Test Title - New event",
             body: "Test body - one, two, three",
+            skills: "skill one. skill two.",
+            topics: "topic a. topic b.",
             timeline: "Northcoders Bootcamp",
             start_date: "2024-07-15",
             end_date: "2024-07-19",
@@ -318,6 +337,8 @@ describe("POST /api/events", () => {
                 expect(typeof event.title).toBe("string");
                 expect(typeof event.event_id).toBe("number");
                 expect(typeof event.body).toBe("string");
+                expect(typeof event.skills).toBe("string");
+                expect(typeof event.topics).toBe("string");
                 expect(typeof event.timeline).toBe("string");
                 expect(typeof event.created_at).toBe("string");
                 expect(typeof event.start_date).toBe("string");
@@ -332,6 +353,8 @@ describe("POST /api/events", () => {
             author: "al-ex-huze",
             title: "Test Title - New event",
             body: "Test body - one, two, three",
+
+            topics: "topic a. topic b.",
             timeline: "Northcoders Bootcamp",
             start_date: "2024-07-15",
             end_date: "2024-07-19",
@@ -342,8 +365,9 @@ describe("POST /api/events", () => {
         const expected = {
             author: "al-ex-huze",
             title: "Test Title - New event",
-            event_id: 7,
+            event_id: 13,
             body: "Test body - one, two, three",
+            topics: "topic a. topic b.",
             timeline: "Northcoders Bootcamp",
             created_at: expect.any(String),
             start_date: "2024-07-15",
@@ -366,6 +390,8 @@ describe("POST /api/events", () => {
             author: "al-ex-huze",
             title: "Test Title - New event",
             body: "Test body - one, two, three",
+            skills: "skill one. skill two.",
+            topics: "topic a. topic b.",
             timeline: "Northcoders Bootcamp",
             start_date: "2024-07-15",
             end_date: "2024-07-19",
@@ -386,6 +412,8 @@ describe("POST /api/events", () => {
             author: "al-ex-huze",
             title: "Test Title - New event",
             body: "Test body - one, two, three",
+            skills: "skill one. skill two.",
+            topics: "topic a. topic b.",
             timeline: "Northcoders Bootcamp",
             start_date: "2024-07-15",
             end_date: "2024-07-19",
@@ -407,6 +435,8 @@ describe("POST /api/events", () => {
             author: "al-ex-huze",
             title: "Test Title - New event",
             body: "Test body - one, two, three",
+            skills: "skill one. skill two.",
+            topics: "topic a. topic b.",
             timeline: "Southcoders Bootcamp",
             start_date: "2024-07-15",
             end_date: "2024-07-19",
@@ -428,6 +458,8 @@ describe("POST /api/events", () => {
             author: "al",
             title: "Test Title - New event",
             body: "Test body - one, two, three",
+            skills: "skill one. skill two.",
+            topics: "topic a. topic b.",
             timeline: "Northcoders Bootcamp",
             start_date: "2024-07-15",
             end_date: "2024-07-19",
@@ -447,6 +479,8 @@ describe("POST /api/events", () => {
             author: "al-ex-huze",
             title: null,
             body: "Test body - one, two, three",
+            skills: "skill one. skill two.",
+            topics: "topic a. topic b.",
             timeline: "Northcoders Bootcamp",
             start_date: "2024-07-15",
             end_date: "2024-07-19",
@@ -466,6 +500,8 @@ describe("POST /api/events", () => {
             author: "al-ex-huze",
             title: "Test Title - New event",
             body: null,
+            skills: "skill one. skill two.",
+            topics: "topic a. topic b.",
             timeline: "Northcoders Bootcamp",
             start_date: "2024-07-15",
             end_date: "2024-07-19",
@@ -515,6 +551,12 @@ describe("PATCH /api/events/:event_id", () => {
         const update = {
             new_start_date: "2024-07-20",
             new_end_date: "2024-07-25",
+            new_title: "Test Title - New event",
+            new_body: "Test body - one, two, three",
+            new_skills: "skill one. skill two.",
+            new_topics: "topic a. topic b.",
+            new_timeline: "Northcoders Bootcamp",
+            new_event_img_url: "https://new-url.co.uk",
         };
         return request(app)
             .patch(`/api/events/${patchID}`)
@@ -528,6 +570,8 @@ describe("PATCH /api/events/:event_id", () => {
                 expect(typeof event.title).toBe("string");
                 expect(typeof event.event_id).toBe("number");
                 expect(typeof event.body).toBe("string");
+                expect(typeof event.skills).toBe("string");
+                expect(typeof event.topics).toBe("string");
                 expect(typeof event.timeline).toBe("string");
                 expect(typeof event.created_at).toBe("string");
                 expect(typeof event.start_date).toBe("string");
@@ -541,6 +585,12 @@ describe("PATCH /api/events/:event_id", () => {
         const update = {
             new_start_date: "2024-07-28",
             new_end_date: "2024-07-29",
+            new_title: "Test Title - New event",
+            new_body: "Test body - one, two, three",
+            new_skills: "skill one. skill two.",
+            new_topics: "topic a. topic b.",
+            new_timeline: "Northcoders Bootcamp",
+            new_event_img_url: "https://new-url.co.uk",
         };
         return request(app)
             .patch(`/api/events/${patchID}`)
@@ -550,6 +600,36 @@ describe("PATCH /api/events/:event_id", () => {
                 const { event } = body;
                 expect(event.start_date).toEqual("2024-07-28");
                 expect(event.end_date).toEqual("2024-07-29");
+                expect(event.title).toEqual("Test Title - New event");
+                expect(event.body).toEqual("Test body - one, two, three");
+                expect(event.skills).toEqual("skill one. skill two.");
+                expect(event.topics).toEqual("topic a. topic b.");
+                expect(event.timeline).toEqual("Northcoders Bootcamp");
+                expect(event.event_img_url).toEqual("https://new-url.co.uk");
+            });
+    });
+    test("200 returns updated event null not needed", () => {
+        const patchID = 6;
+        const update = {
+            new_start_date: "2024-07-28",
+            new_end_date: "2024-07-29",
+            new_title: "Test Title - New event",
+            new_body: "Test body - one, two, three",
+            new_skills: null,
+            new_topics: null,
+            new_timeline: "Northcoders Bootcamp",
+        };
+        return request(app)
+            .patch(`/api/events/${patchID}`)
+            .send(update)
+            .expect(200)
+            .then(({ body }) => {
+                const { event } = body;
+                expect(event.start_date).toEqual("2024-07-28");
+                expect(event.end_date).toEqual("2024-07-29");
+                expect(event.title).toEqual("Test Title - New event");
+                expect(event.body).toEqual("Test body - one, two, three");
+                expect(event.timeline).toEqual("Northcoders Bootcamp");
             });
     });
     test("400 missing required fields when request key is null", () => {
@@ -557,6 +637,11 @@ describe("PATCH /api/events/:event_id", () => {
         const update = {
             new_start_date: "2024-07-20",
             new_end_date: null,
+            new_title: "Test Title - New event",
+            new_body: "Test body - one, two, three",
+            new_skills: "skill one. skill two.",
+            new_topics: "topic a. topic b.",
+            new_timeline: "Northcoders Bootcamp",
         };
         return request(app)
             .patch(`/api/events/${patchID}`)
@@ -582,6 +667,11 @@ describe("PATCH /api/events/:event_id", () => {
         const update = {
             new_start_date: "2024-07-20",
             new_end_date: 9999,
+            new_title: "Test Title - New event",
+            new_body: "Test body - one, two, three",
+            new_skills: "skill one. skill two.",
+            new_topics: "topic a. topic b.",
+            new_timeline: "Northcoders Bootcamp",
         };
         return request(app)
             .patch(`/api/events/${patchID}`)
@@ -661,6 +751,8 @@ describe("GET /api/feelings", () => {
                     expect(typeof feeling.confidence).toBe("number");
                     expect(typeof feeling.wisdom).toBe("number");
                     expect(typeof feeling.despair).toBe("number");
+                    expect(typeof feeling.input).toBe("number");
+                    expect(typeof feeling.output).toBe("number");
                 });
             });
     });
@@ -677,6 +769,8 @@ describe("PATCH /api/feelings/:week", () => {
             confidence_update: 30,
             wisdom_update: 35,
             despair_update: 40,
+            input_update: 45,
+            output_update: 50,
         };
         return request(app)
             .patch(`/api/feelings/${patchWeek}`)
@@ -684,7 +778,6 @@ describe("PATCH /api/feelings/:week", () => {
             .expect(200)
             .then(({ body }) => {
                 const { feeling } = body;
-                console.log(feeling);
                 expect(typeof feeling.week_number).toBe("string");
                 expect(typeof feeling.week_start_date).toBe("string");
                 expect(typeof feeling.week_end_date).toBe("string");
@@ -695,6 +788,8 @@ describe("PATCH /api/feelings/:week", () => {
                 expect(typeof feeling.confidence).toBe("number");
                 expect(typeof feeling.wisdom).toBe("number");
                 expect(typeof feeling.despair).toBe("number");
+                expect(typeof feeling.input).toBe("number");
+                expect(typeof feeling.output).toBe("number");
             });
     });
     test("200 returns updated event", () => {
@@ -707,6 +802,8 @@ describe("PATCH /api/feelings/:week", () => {
             confidence_update: 30,
             wisdom_update: 35,
             despair_update: 40,
+            input_update: 45,
+            output_update: 50,
         };
         return request(app)
             .patch(`/api/feelings/${patchWeek}`)
@@ -724,6 +821,8 @@ describe("PATCH /api/feelings/:week", () => {
                 expect(feeling.confidence).toEqual(30);
                 expect(feeling.wisdom).toEqual(35);
                 expect(feeling.despair).toEqual(40);
+                expect(feeling.input).toEqual(45);
+                expect(feeling.output).toEqual(50);
             });
     });
     test("400 missing required fields when request key is null", () => {
@@ -748,6 +847,8 @@ describe("PATCH /api/feelings/:week", () => {
             confidence_update: 30,
             wisdom_update: 35,
             despair_update: 40,
+            input_update: 45,
+            output_update: 50,
         };
         return request(app)
             .patch(`/api/feelings/${patchWeek}`)
@@ -768,6 +869,8 @@ describe("PATCH /api/feelings/:week", () => {
                 confidence_update: 30,
                 wisdom_update: 35,
                 despair_update: 40,
+                input_update: 45,
+                output_update: 50,
             },
         ];
         return request(app)
