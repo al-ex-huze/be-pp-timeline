@@ -119,7 +119,9 @@ const seed = ({
         enthusiasm INT,
         confidence INT,
         wisdom INT,
-        despair INT
+        despair INT,
+        input INT,
+        output INT
         );`);
         })
         .then(() => {
@@ -254,7 +256,7 @@ const seed = ({
         })
         .then(() => {
             const insertFeelingsQueryStr = format(
-                "INSERT INTO feelings (week_number, week_start_date, week_end_date, knowledge, experience,passion, enthusiasm, confidence, wisdom, despair) VALUES %L;",
+                "INSERT INTO feelings (week_number, week_start_date, week_end_date, knowledge, experience,passion, enthusiasm, confidence, wisdom, despair, input, output) VALUES %L;",
                 feelingsData.map(
                     ({
                         week_number,
@@ -267,6 +269,8 @@ const seed = ({
                         confidence,
                         wisdom,
                         despair,
+                        input,
+                        output,
                     }) => [
                         week_number,
                         week_start_date,
@@ -278,6 +282,8 @@ const seed = ({
                         confidence,
                         wisdom,
                         despair,
+                        input,
+                        output,
                     ]
                 )
             );

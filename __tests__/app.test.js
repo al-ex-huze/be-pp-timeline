@@ -556,7 +556,7 @@ describe("PATCH /api/events/:event_id", () => {
             new_skills: "skill one. skill two.",
             new_topics: "topic a. topic b.",
             new_timeline: "Northcoders Bootcamp",
-            new_event_img_url: "https://new-url.co.uk"
+            new_event_img_url: "https://new-url.co.uk",
         };
         return request(app)
             .patch(`/api/events/${patchID}`)
@@ -590,7 +590,7 @@ describe("PATCH /api/events/:event_id", () => {
             new_skills: "skill one. skill two.",
             new_topics: "topic a. topic b.",
             new_timeline: "Northcoders Bootcamp",
-            new_event_img_url: "https://new-url.co.uk"
+            new_event_img_url: "https://new-url.co.uk",
         };
         return request(app)
             .patch(`/api/events/${patchID}`)
@@ -751,6 +751,8 @@ describe("GET /api/feelings", () => {
                     expect(typeof feeling.confidence).toBe("number");
                     expect(typeof feeling.wisdom).toBe("number");
                     expect(typeof feeling.despair).toBe("number");
+                    expect(typeof feeling.input).toBe("number");
+                    expect(typeof feeling.output).toBe("number");
                 });
             });
     });
@@ -767,6 +769,8 @@ describe("PATCH /api/feelings/:week", () => {
             confidence_update: 30,
             wisdom_update: 35,
             despair_update: 40,
+            input_update: 45,
+            output_update: 50,
         };
         return request(app)
             .patch(`/api/feelings/${patchWeek}`)
@@ -784,6 +788,8 @@ describe("PATCH /api/feelings/:week", () => {
                 expect(typeof feeling.confidence).toBe("number");
                 expect(typeof feeling.wisdom).toBe("number");
                 expect(typeof feeling.despair).toBe("number");
+                expect(typeof feeling.input).toBe("number");
+                expect(typeof feeling.output).toBe("number");
             });
     });
     test("200 returns updated event", () => {
@@ -796,6 +802,8 @@ describe("PATCH /api/feelings/:week", () => {
             confidence_update: 30,
             wisdom_update: 35,
             despair_update: 40,
+            input_update: 45,
+            output_update: 50,
         };
         return request(app)
             .patch(`/api/feelings/${patchWeek}`)
@@ -813,6 +821,8 @@ describe("PATCH /api/feelings/:week", () => {
                 expect(feeling.confidence).toEqual(30);
                 expect(feeling.wisdom).toEqual(35);
                 expect(feeling.despair).toEqual(40);
+                expect(feeling.input).toEqual(45);
+                expect(feeling.output).toEqual(50);
             });
     });
     test("400 missing required fields when request key is null", () => {
@@ -837,6 +847,8 @@ describe("PATCH /api/feelings/:week", () => {
             confidence_update: 30,
             wisdom_update: 35,
             despair_update: 40,
+            input_update: 45,
+            output_update: 50,
         };
         return request(app)
             .patch(`/api/feelings/${patchWeek}`)
@@ -857,6 +869,8 @@ describe("PATCH /api/feelings/:week", () => {
                 confidence_update: 30,
                 wisdom_update: 35,
                 despair_update: 40,
+                input_update: 45,
+                output_update: 50,
             },
         ];
         return request(app)
