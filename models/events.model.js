@@ -27,7 +27,7 @@ exports.selectEvents = (validTimelines, timeline, sort_by, order) => {
     const queryValues = [];
 
     let queryStr =
-        "SELECT author, title, event_id, timeline, created_at, start_date, end_date, votes, event_img_url FROM events";
+        "SELECT author, title, event_id, timeline, body, skills, topics, created_at, start_date, end_date, votes, event_img_url FROM events";
 
     if (timeline) {
         queryStr += " WHERE timeline = $1";
@@ -53,7 +53,7 @@ exports.selectEvents = (validTimelines, timeline, sort_by, order) => {
 
 exports.selectEventByID = (event_id) => {
     const queryStr =
-        "SELECT author, timeline, title, event_id, body, created_at, start_date, end_date, votes, event_img_url FROM events WHERE event_id = $1;";
+        "SELECT author, timeline, title, event_id, body, skills, topics, created_at, start_date, end_date, votes, event_img_url FROM events WHERE event_id = $1;";
 
     const queryValue = [event_id];
 
@@ -75,6 +75,8 @@ exports.insertEvent = (newEvent) => {
         title,
         timeline,
         body,
+        skills,
+        topics,
         start_date,
         end_date,
         event_img_url,
@@ -91,21 +93,23 @@ exports.insertEvent = (newEvent) => {
     const queryValues = [];
 
     if (event_img_url === null || event_img_url === undefined) {
-        queryValues.push(author, title, body, timeline, start_date, end_date);
+        queryValues.push(author, title, body, skills, topics, timeline, start_date, end_date);
         queryStr =
-            "INSERT INTO events (author, title, body, timeline, start_date, end_date) VALUES ($1, $2, $3, $4, $5, $6) RETURNING event_id;";
+            "INSERT INTO events (author, title, body, skills, topics, timeline, start_date, end_date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING event_id;";
     } else {
         queryValues.push(
             author,
             title,
             body,
+            skills,
+            topics,
             timeline,
             start_date,
             end_date,
             event_img_url
         );
         queryStr =
-            "INSERT INTO events (author, title, body, timeline, start_date, end_date, event_img_url) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING event_id;";
+            "INSERT INTO events (author, title, body, skills, topics, timeline, start_date, end_date, event_img_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING event_id;";
     }
 
     return db.query(checkAuthorQueryStr, [author]).then((isAuthorValid) => {
@@ -150,7 +154,8 @@ exports.deleteEvent = (event_id) => {
 };
 
 exports.updateEventDates = (update, event_id) => {
-    const { new_start_date, new_end_date } = update;
+    const { new_start_date, new_end_date, new_title, new_body, new_skills, new_topics, new_timeline } = update;
+
     if (
         typeof new_start_date === "number" ||
         typeof new_end_date === "number"
@@ -162,9 +167,9 @@ exports.updateEventDates = (update, event_id) => {
     }
 
     const queryStr =
-        "UPDATE events SET start_date = $1, end_date = $2 WHERE event_id = $3 RETURNING *;";
+        "UPDATE events SET start_date = $1, end_date = $2, title = $3, body = $4, skills = $5, topics = $6, timeline = $7 WHERE event_id = $8 RETURNING *;";
 
-    const queryValues = [new_start_date, new_end_date, event_id];
+    const queryValues = [new_start_date, new_end_date, new_title, new_body, new_skills, new_topics, new_timeline, event_id];
 
     return db.query(queryStr, queryValues).then(({ rows }) => {
         const event = rows[0];

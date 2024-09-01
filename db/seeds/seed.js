@@ -61,6 +61,8 @@ const seed = ({
         timeline VARCHAR NOT NULL REFERENCES timelines(timeline_name),
         author VARCHAR NOT NULL REFERENCES users(username),
         body VARCHAR NOT NULL,
+        skills VARCHAR,
+        topics VARCHAR,
         created_at TIMESTAMP DEFAULT NOW(),
         start_date VARCHAR NOT NULL,
         end_date VARCHAR NOT NULL,
@@ -122,11 +124,15 @@ const seed = ({
         })
         .then(() => {
             const insertTimelinesQueryStr = format(
-                "INSERT INTO timelines (timeline_name, description) VALUES %L;",
-                timelineData.map(({ timeline_name, description }) => [
-                    timeline_name,
-                    description,
-                ])
+                "INSERT INTO timelines (timeline_name, description, begin_date, finish_date) VALUES %L;",
+                timelineData.map(
+                    ({
+                        timeline_name,
+                        description,
+                        begin_date,
+                        finish_date,
+                    }) => [timeline_name, description, begin_date, finish_date]
+                )
             );
             const timelinesPromise = db.query(insertTimelinesQueryStr);
 
@@ -144,13 +150,15 @@ const seed = ({
         .then(() => {
             const formattedEventData = eventData.map(convertTimestampToDate);
             const insertEventsQueryStr = format(
-                "INSERT INTO events (title, timeline, author, body, created_at, start_date, end_date, votes, event_img_url) VALUES %L RETURNING *;",
+                "INSERT INTO events (title, timeline, author, body, skills, topics, created_at, start_date, end_date, votes, event_img_url) VALUES %L RETURNING *;",
                 formattedEventData.map(
                     ({
                         title,
                         timeline,
                         author,
                         body,
+                        skills,
+                        topics,
                         created_at,
                         start_date,
                         end_date,
@@ -161,6 +169,8 @@ const seed = ({
                         timeline,
                         author,
                         body,
+                        skills,
+                        topics,
                         created_at,
                         start_date,
                         end_date,

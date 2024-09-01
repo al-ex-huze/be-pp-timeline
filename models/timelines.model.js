@@ -1,7 +1,7 @@
 const db = require("../db/connection.js");
 
 exports.selectTimelines = () => {
-    const queryStr = "SELECT timeline_name, description FROM timelines;";
+    const queryStr = "SELECT timeline_name, description, begin_date, finish_date FROM timelines;";
     return db.query(queryStr).then(({ rows }) => {
         return rows;
     });
@@ -9,7 +9,7 @@ exports.selectTimelines = () => {
 
 exports.selectTimelineByName = (timeline_name) => {
     const queryStr =
-        "SELECT timeline_name, description FROM timelines WHERE timeline_name = $1;";
+        "SELECT timeline_name, description, begin_date, finish_date FROM timelines WHERE timeline_name = $1;";
     const queryValue = [timeline_name];
     return db.query(queryStr, queryValue).then(({ rows }) => {
         const timeline = rows[0];
@@ -24,10 +24,10 @@ exports.selectTimelineByName = (timeline_name) => {
 };
 
 exports.insertTimeline = (newTimeline) => {
-    const { timeline_name, description } = newTimeline;
+    const { timeline_name, description, begin_date, finish_date } = newTimeline;
     const queryStr =
-        "INSERT INTO timelines (timeline_name, description) VALUES ($1, $2) RETURNING *;";
-    const queryValues = [timeline_name, description];
+        "INSERT INTO timelines (timeline_name, description, begin_date, finish_date) VALUES ($1, $2, $3, $4) RETURNING *;";
+    const queryValues = [timeline_name, description, begin_date, finish_date];
     return db.query(queryStr, queryValues).then(({ rows }) => {
         const timeline = rows[0];
         return timeline;
