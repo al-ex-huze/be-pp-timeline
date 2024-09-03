@@ -2,8 +2,8 @@ module.exports = [
     {
         timeline_name: "Pre Bootcamp",
         description: "What I learnt before Northcoders",
-        begin_date: "2024-04-15",
-        finish_date: "2024-07-12",
+        begin_date: "2024-02-19",
+        finish_date: "2024-04-14",
     },
     {
         timeline_name: "Northcoders Bootcamp",

@@ -78,7 +78,7 @@ module.exports = [
         topics: null,
         created_at: 1594329060000,
         start_date: "2024-07-15",
-        end_date: "2024-07-21",
+        end_date: null,
         votes: 0,
         event_img_url:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
@@ -130,6 +130,8 @@ module.exports = [
         timeline: "Post Bootcamp",
         title: "G Day + 28",
         body: "Time spent on Python katas and job applications",
+        skills: null,
+        topics: null,
         created_at: "2024-09-01T00:08:04.025Z",
         start_date: "2024-08-05T00:06:04.000Z",
         end_date: "2024-08-11T00:06:04.000Z",
@@ -164,5 +166,48 @@ module.exports = [
         votes: 0,
         event_img_url:
             "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+    },
+
+    {
+        author: "al-ex-huze",
+        timeline: "Projects",
+        title: "NC News BE",
+        body: "Four day project creating a backend service to programatically provide data to front end architecture. PSQL database works with Express.js server to provide endpoints for CRUD operations. Database is hosted on Supabase and app is deployed on Render.",
+        skills: null,
+        topics: "Javascript / Node.js / Express.js / PSQL / node -postgres / Supabase / Render",
+        created_at: "2024-09-01T00:08:04.025Z",
+        start_date: "2024-05-28",
+        end_date: "2024-06-02",
+        votes: 0,
+        event_img_url:
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-1.png",
+    },
+    {
+        author: "al-ex-huze",
+        timeline: "Projects",
+        title: "NC News FE",
+        body: "Week long project to create a social news content aggregation and  discussion site. A front end app utilising the CRUD operations and endpoints provided by back end project. Built with React and hosted on Netlify.",
+        skills: null,
+        topics: "JavaScript / HTML / CSS / React / Netlify",
+        created_at: "2024-09-01T00:11:27.467Z",
+        start_date: "2024-06-17",
+        end_date: "2024-06-23",
+        votes: 0,
+        event_img_url:
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-3.png",
+    },
+    {
+        author: "al-ex-huze",
+        timeline: "Projects",
+        title: "Flora Finder",
+        body: "Three week group project making a mobile, plant-collecting game (think Pokemon GO for plants). The app was created with Expo Go utilising an Express server hosted on an AWS EC2 instance and RDS managed MySQL database as well as a 3rd party API. The app allowed users to photograph a plant, which is identified and then detailed species information and a score is displayed. These, as well as the location found, are stored to the users account which then can be reviewed as a list or map. Users can then compare their scores with others on the league table.",
+        skills: null,
+        topics: "JavaScript / React Native / Expo Go / MySQL / AWS RDS / AWS EC2",
+        created_at: "2024-09-01T00:13:25.463Z",
+        start_date: "2024-06-25",
+        end_date: "2024-07-10",
+        votes: 0,
+        event_img_url:
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/ff-8.jpg",
     },
 ];
