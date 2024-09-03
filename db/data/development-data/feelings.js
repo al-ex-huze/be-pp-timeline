@@ -1,6 +1,6 @@
 module.exports = [
     {
-        week_number: "1-2024",
+        week_number: "01-2024",
         week_start_date: "2024-01-01",
         week_end_date: "2024-01-07",
         knowledge: 5,
@@ -14,7 +14,7 @@ module.exports = [
         output: 0,
     },
     {
-        week_number: "2-2024",
+        week_number: "02-2024",
         week_start_date: "2024-01-08",
         week_end_date: "2024-01-14",
         knowledge: 5,
@@ -28,7 +28,7 @@ module.exports = [
         output: 0,
     },
     {
-        week_number: "3-2024",
+        week_number: "03-2024",
         week_start_date: "2024-01-15",
         week_end_date: "2024-01-21",
         knowledge: 5,
@@ -42,7 +42,7 @@ module.exports = [
         output: 0,
     },
     {
-        week_number: "4-2024",
+        week_number: "04-2024",
         week_start_date: "2024-01-22",
         week_end_date: "2024-01-28",
         knowledge: 5,
@@ -56,7 +56,7 @@ module.exports = [
         output: 0,
     },
     {
-        week_number: "5-2024",
+        week_number: "05-2024",
         week_start_date: "2024-01-29",
         week_end_date: "2024-02-04",
         knowledge: 5,
@@ -70,7 +70,7 @@ module.exports = [
         output: 0,
     },
     {
-        week_number: "6-2024",
+        week_number: "06-2024",
         week_start_date: "2024-02-05",
         week_end_date: "2024-02-11",
         knowledge: 5,
@@ -84,7 +84,7 @@ module.exports = [
         output: 0,
     },
     {
-        week_number: "7-2024",
+        week_number: "07-2024",
         week_start_date: "2024-02-12",
         week_end_date: "2024-02-18",
         knowledge: 5,
@@ -98,7 +98,7 @@ module.exports = [
         output: 0,
     },
     {
-        week_number: "8-2024",
+        week_number: "08-2024",
         week_start_date: "2024-02-19",
         week_end_date: "2024-02-25",
         knowledge: 9,
@@ -112,7 +112,7 @@ module.exports = [
         output: 0,
     },
     {
-        week_number: "9-2024",
+        week_number: "09-2024",
         week_start_date: "2024-02-26",
         week_end_date: "2024-03-03",
         knowledge: 11,

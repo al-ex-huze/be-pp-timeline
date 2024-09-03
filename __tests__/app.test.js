@@ -231,6 +231,18 @@ describe("GET /api/events", () => {
                 });
             });
     });
+    test("200 returns array of events filtered by timeline query", () => {
+        return request(app)
+            .get("/api/events?timeline=Post Bootcamp")
+            .expect(200)
+            .then(({ body }) => {
+                const { events } = body;
+                events.forEach((event) => {
+                    console.log(event)
+                    expect(event.timeline).toBe("Post Bootcamp");
+                });
+            });
+    });
     test("200 returns empty array for valid timeline with no events", () => {
         return request(app)
             .get("/api/events?timeline=Pre Bootcamp")
@@ -760,7 +772,7 @@ describe("GET /api/feelings", () => {
 
 describe("PATCH /api/feelings/:week", () => {
     test("200 returns updated event", () => {
-        const patchWeek = "1-2024";
+        const patchWeek = "01-2024";
         const update = {
             knowledge_update: 10,
             experience_update: 15,
@@ -793,7 +805,7 @@ describe("PATCH /api/feelings/:week", () => {
             });
     });
     test("200 returns updated event", () => {
-        const patchWeek = "1-2024";
+        const patchWeek = "01-2024";
         const update = {
             knowledge_update: 10,
             experience_update: 15,
@@ -811,7 +823,7 @@ describe("PATCH /api/feelings/:week", () => {
             .expect(200)
             .then(({ body }) => {
                 const { feeling } = body;
-                expect(feeling.week_number).toEqual("1-2024");
+                expect(feeling.week_number).toEqual("01-2024");
                 expect(feeling.week_start_date).toEqual("2024-01-01");
                 expect(feeling.week_end_date).toEqual("2024-01-07");
                 expect(feeling.knowledge).toEqual(10);
@@ -826,7 +838,7 @@ describe("PATCH /api/feelings/:week", () => {
             });
     });
     test("400 missing required fields when request key is null", () => {
-        const patchWeek = "1-2024";
+        const patchWeek = "01-2024";
         const update = null;
         return request(app)
             .patch(`/api/feelings/${patchWeek}`)
@@ -838,7 +850,7 @@ describe("PATCH /api/feelings/:week", () => {
     });
 
     test("400 incorrect fields of wrong property type", () => {
-        const patchWeek = "1-2024";
+        const patchWeek = "01-2024";
         const update = {
             knowledge_update: "2024-01-07",
             experience_update: 15,
@@ -859,7 +871,7 @@ describe("PATCH /api/feelings/:week", () => {
             });
     });
     test("400 incorrect type of request", () => {
-        const patchWeek = "1-2024";
+        const patchWeek = "01-2024";
         const update = [
             {
                 knowledge_update: 10,
