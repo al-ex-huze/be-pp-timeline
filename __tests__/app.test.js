@@ -643,7 +643,7 @@ describe("PATCH /api/events/:event_id", () => {
                 expect(event.timeline).toEqual("Northcoders Bootcamp");
             });
     });
-    test("400 missing required fields when request key is null", () => {
+    test("200 default time nmow when end date is null", () => {
         const patchID = 6;
         const update = {
             new_start_date: "2024-07-20",
@@ -657,9 +657,9 @@ describe("PATCH /api/events/:event_id", () => {
         return request(app)
             .patch(`/api/events/${patchID}`)
             .send(update)
-            .expect(400)
+            .expect(200)
             .then(({ body }) => {
-                expect(body.msg).toBe("PSQL ERROR: 23502 - Missing input.");
+                const { event } = body;
             });
     });
     test("400 missing required fields when request is null", () => {

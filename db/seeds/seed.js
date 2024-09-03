@@ -65,7 +65,7 @@ const seed = ({
         topics VARCHAR,
         created_at TIMESTAMP DEFAULT NOW(),
         start_date VARCHAR NOT NULL,
-        end_date VARCHAR NOT NULL,
+        end_date VARCHAR DEFAULT NOW(),
         votes INT DEFAULT 0 NOT NULL,
         event_img_url VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700'
       );`);
@@ -205,7 +205,7 @@ const seed = ({
         })
         .then(() => {
             const insertReposQueryStr = format(
-                "INSERT INTO repos (repo_id, name, full_name, isPrivate, owner_login, description, fork, created_at, updated_at, pushed_at,size, language,visibility, default_branch) VALUES %L;",
+                "INSERT INTO repos (repo_id, name, full_name, isPrivate, owner_login, description, fork, created_at, updated_at, pushed_at,size, language, visibility, default_branch) VALUES %L;",
                 repoData.map(
                     ({
                         repo_id,
@@ -256,7 +256,7 @@ const seed = ({
         })
         .then(() => {
             const insertFeelingsQueryStr = format(
-                "INSERT INTO feelings (week_number, week_start_date, week_end_date, knowledge, experience,passion, enthusiasm, confidence, wisdom, despair, input, output) VALUES %L;",
+                "INSERT INTO feelings (week_number, week_start_date, week_end_date, knowledge, experience, passion, enthusiasm, confidence, wisdom, despair, input, output) VALUES %L;",
                 feelingsData.map(
                     ({
                         week_number,
