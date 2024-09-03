@@ -10,8 +10,8 @@ module.exports = [
         confidence: 5,
         wisdom: 5,
         despair: 5,
-        input: 0,
-        output: 0,
+        input: 4,
+        output: 2,
     },
     {
         week_number: "02-2024",
@@ -24,8 +24,8 @@ module.exports = [
         confidence: 5,
         wisdom: 5,
         despair: 5,
-        input: 0,
-        output: 0,
+        input: 4,
+        output: 2,
     },
     {
         week_number: "03-2024",
@@ -38,8 +38,8 @@ module.exports = [
         confidence: 5,
         wisdom: 5,
         despair: 5,
-        input: 0,
-        output: 0,
+        input: 4,
+        output: 2,
     },
     {
         week_number: "04-2024",
@@ -52,8 +52,8 @@ module.exports = [
         confidence: 5,
         wisdom: 5,
         despair: 5,
-        input: 0,
-        output: 0,
+        input: 4,
+        output: 2,
     },
     {
         week_number: "05-2024",
@@ -66,8 +66,8 @@ module.exports = [
         confidence: 5,
         wisdom: 5,
         despair: 5,
-        input: 0,
-        output: 0,
+        input: 4,
+        output: 2,
     },
     {
         week_number: "06-2024",
@@ -80,8 +80,8 @@ module.exports = [
         confidence: 5,
         wisdom: 5,
         despair: 5,
-        input: 0,
-        output: 0,
+        input: 4,
+        output: 2,
     },
     {
         week_number: "07-2024",
@@ -94,8 +94,8 @@ module.exports = [
         confidence: 5,
         wisdom: 5,
         despair: 5,
-        input: 0,
-        output: 0,
+        input: 4,
+        output: 2,
     },
     {
         week_number: "08-2024",
@@ -109,7 +109,7 @@ module.exports = [
         wisdom: 2,
         despair: 4,
         input: 50,
-        output: 0,
+        output: 2,
     },
     {
         week_number: "09-2024",
@@ -123,7 +123,7 @@ module.exports = [
         wisdom: 7,
         despair: 3,
         input: 45,
-        output: 0,
+        output: 2,
     },
     {
         week_number: "10-2024",
@@ -137,7 +137,7 @@ module.exports = [
         wisdom: 8,
         despair: 7,
         input: 60,
-        output: 0,
+        output: 2,
     },
     {
         week_number: "11-2024",
@@ -151,7 +151,7 @@ module.exports = [
         wisdom: 8,
         despair: 7,
         input: 60,
-        output: 0,
+        output: 2,
     },
     {
         week_number: "12-2024",
