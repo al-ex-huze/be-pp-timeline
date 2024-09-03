@@ -238,7 +238,6 @@ describe("GET /api/events", () => {
             .then(({ body }) => {
                 const { events } = body;
                 events.forEach((event) => {
-                    console.log(event)
                     expect(event.timeline).toBe("Post Bootcamp");
                 });
             });
@@ -766,6 +765,15 @@ describe("GET /api/feelings", () => {
                     expect(typeof feeling.input).toBe("number");
                     expect(typeof feeling.output).toBe("number");
                 });
+            });
+    });
+    test("200 returns sorted by ascending week_start_date order as default", () => {
+        return request(app)
+            .get("/api/feelings")
+            .expect(200)
+            .then(({ body }) => {
+                const { feelings } = body;
+                expect(feelings).toBeSortedBy("week_start_date");
             });
     });
 });

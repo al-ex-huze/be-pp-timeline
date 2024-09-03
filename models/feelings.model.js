@@ -1,7 +1,7 @@
 const db = require("../db/connection.js");
 
 exports.selectFeelings = () => {
-    const queryStr = "SELECT week_number, week_start_date, week_end_date, knowledge, experience, passion, enthusiasm, confidence, wisdom, despair, input, output FROM feelings;";
+    const queryStr = "SELECT week_number, week_start_date, week_end_date, knowledge, experience, passion, enthusiasm, confidence, wisdom, despair, input, output FROM feelings ORDER BY week_start_date ASC;";
     return db.query(queryStr).then(({ rows }) => {
         return rows;
     });
@@ -32,4 +32,4 @@ exports.updateFeelingsForWeek = (update, week_number) => {
         const feeling = rows[0];
         return feeling;
     });
-};
+}; 
