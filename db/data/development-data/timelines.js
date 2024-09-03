@@ -17,4 +17,10 @@ module.exports = [
         begin_date: "2024-07-15",
         finish_date: null,
     },
+    {
+        timeline_name: "Projects",
+        description: "Projects",
+        begin_date: null,
+        finish_date: null,
+    },
 ];
