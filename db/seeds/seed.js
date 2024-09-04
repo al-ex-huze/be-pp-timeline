@@ -67,6 +67,8 @@ const seed = ({
         start_date VARCHAR NOT NULL,
         end_date VARCHAR DEFAULT NOW(),
         votes INT DEFAULT 0 NOT NULL,
+        github_url VARCHAR,
+        deployed_url VARCHAR,
         event_img_url VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700'
       );`);
         })
@@ -152,7 +154,7 @@ const seed = ({
         .then(() => {
             const formattedEventData = eventData.map(convertTimestampToDate);
             const insertEventsQueryStr = format(
-                "INSERT INTO events (title, timeline, author, body, skills, topics, created_at, start_date, end_date, votes, event_img_url) VALUES %L RETURNING *;",
+                "INSERT INTO events (title, timeline, author, body, skills, topics, created_at, start_date, end_date, votes,github_url, deployed_url, event_img_url) VALUES %L RETURNING *;",
                 formattedEventData.map(
                     ({
                         title,
@@ -165,6 +167,8 @@ const seed = ({
                         start_date,
                         end_date,
                         votes = 0,
+                        github_url,
+                        deployed_url,
                         event_img_url,
                     }) => [
                         title,
@@ -177,6 +181,8 @@ const seed = ({
                         start_date,
                         end_date,
                         votes,
+                        github_url,
+                        deployed_url,
                         event_img_url,
                     ]
                 )
