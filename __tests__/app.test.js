@@ -176,6 +176,8 @@ describe("GET /api/events", () => {
                     expect(typeof event.end_date).toBe("string");
                     expect(typeof event.created_at).toBe("string");
                     expect(typeof event.votes).toBe("number");
+                    expect(typeof event.github_url).toBe("string");
+                    expect(typeof event.deployed_url).toBe("string");
                     expect(typeof event.event_img_url).toBe("string");
                 });
             });
@@ -304,6 +306,8 @@ describe("GET /api/events/:event_id", () => {
                 expect(typeof event.end_date).toBe("string");
                 expect(typeof event.votes).toBe("number");
                 expect(typeof event.event_img_url).toBe("string");
+                expect(typeof event.github_url).toBe("string");
+                expect(typeof event.deployed_url).toBe("string");
             });
     });
     test("400 responds when valid path but invalid id", () => {
@@ -335,8 +339,9 @@ describe("POST /api/events", () => {
             timeline: "Northcoders Bootcamp",
             start_date: "2024-07-15",
             end_date: "2024-07-19",
-            event_img_url:
-                "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+            github_url: "https://test.uk",
+            deployed_url: "https://test.uk",
+            event_img_url: "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         };
         return request(app)
             .post("/api/events")
@@ -356,6 +361,8 @@ describe("POST /api/events", () => {
                 expect(typeof event.end_date).toBe("string");
                 expect(typeof event.votes).toBe("number");
                 expect(typeof event.event_img_url).toBe("string");
+                expect(typeof event.github_url).toBe("https://test.uk");
+                expect(typeof event.deployed_url).toBe("https://test.uk");
             });
     });
     test("201 successful post, additional properties ignored", () => {
@@ -369,6 +376,8 @@ describe("POST /api/events", () => {
             timeline: "Northcoders Bootcamp",
             start_date: "2024-07-15",
             end_date: "2024-07-19",
+            github_url: "https://test.uk",
+            deployed_url: "https://test.uk",
             event_img_url:
                 "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
             extra: 12345,
@@ -384,6 +393,8 @@ describe("POST /api/events", () => {
             start_date: "2024-07-15",
             end_date: "2024-07-19",
             votes: 0,
+            github_url: "https://test.uk",
+            deployed_url: "https://test.uk",
             event_img_url:
                 "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         };
@@ -406,6 +417,8 @@ describe("POST /api/events", () => {
             timeline: "Northcoders Bootcamp",
             start_date: "2024-07-15",
             end_date: "2024-07-19",
+            github_url: "https://test.uk",
+            deployed_url: "https://test.uk",
         };
         return request(app)
             .post("/api/events")
@@ -429,6 +442,8 @@ describe("POST /api/events", () => {
             start_date: "2024-07-15",
             end_date: "2024-07-19",
             event_img_url: null,
+            github_url: "https://test.uk",
+            deployed_url: "https://test.uk",
         };
         return request(app)
             .post("/api/events")
@@ -451,6 +466,8 @@ describe("POST /api/events", () => {
             timeline: "Southcoders Bootcamp",
             start_date: "2024-07-15",
             end_date: "2024-07-19",
+            github_url: "https://test.uk",
+            deployed_url: "https://test.uk",
             event_img_url:
                 "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         };
@@ -474,6 +491,8 @@ describe("POST /api/events", () => {
             timeline: "Northcoders Bootcamp",
             start_date: "2024-07-15",
             end_date: "2024-07-19",
+            github_url: "https://test.uk",
+            deployed_url: "https://test.uk",
             event_img_url:
                 "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         };
@@ -495,6 +514,8 @@ describe("POST /api/events", () => {
             timeline: "Northcoders Bootcamp",
             start_date: "2024-07-15",
             end_date: "2024-07-19",
+            github_url: "https://test.uk",
+            deployed_url: "https://test.uk",
             event_img_url:
                 "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         };
@@ -516,6 +537,8 @@ describe("POST /api/events", () => {
             timeline: "Northcoders Bootcamp",
             start_date: "2024-07-15",
             end_date: "2024-07-19",
+            github_url: "https://test.uk",
+            deployed_url: "https://test.uk",
             event_img_url:
                 "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         };
@@ -567,6 +590,8 @@ describe("PATCH /api/events/:event_id", () => {
             new_skills: "skill one. skill two.",
             new_topics: "topic a. topic b.",
             new_timeline: "Northcoders Bootcamp",
+            new_github_url: "https://test.uk",
+            new_deployed_url: "https://test.uk",
             new_event_img_url: "https://new-url.co.uk",
         };
         return request(app)
@@ -588,6 +613,8 @@ describe("PATCH /api/events/:event_id", () => {
                 expect(typeof event.start_date).toBe("string");
                 expect(typeof event.end_date).toBe("string");
                 expect(typeof event.votes).toBe("number");
+                expect(typeof event.github_url).toBe("string");
+                expect(typeof event.deployed_url).toBe("string");
                 expect(typeof event.event_img_url).toBe("string");
             });
     });
@@ -601,6 +628,8 @@ describe("PATCH /api/events/:event_id", () => {
             new_skills: "skill one. skill two.",
             new_topics: "topic a. topic b.",
             new_timeline: "Northcoders Bootcamp",
+            new_github_url: "https://test.uk",
+            new_deployed_url: "https://test.uk",
             new_event_img_url: "https://new-url.co.uk",
         };
         return request(app)
@@ -616,6 +645,8 @@ describe("PATCH /api/events/:event_id", () => {
                 expect(event.skills).toEqual("skill one. skill two.");
                 expect(event.topics).toEqual("topic a. topic b.");
                 expect(event.timeline).toEqual("Northcoders Bootcamp");
+                expect(event.github_url).toBe("https://test.uk");
+                expect(event.deployed_url).toBe("https://test.uk");
                 expect(event.event_img_url).toEqual("https://new-url.co.uk");
             });
     });
@@ -628,6 +659,8 @@ describe("PATCH /api/events/:event_id", () => {
             new_body: "Test body - one, two, three",
             new_skills: null,
             new_topics: null,
+            new_github_url: "https://test.uk",
+            new_deployed_url: "https://test.uk",
             new_timeline: "Northcoders Bootcamp",
         };
         return request(app)
@@ -652,6 +685,8 @@ describe("PATCH /api/events/:event_id", () => {
             new_body: "Test body - one, two, three",
             new_skills: "skill one. skill two.",
             new_topics: "topic a. topic b.",
+            new_github_url: "https://test.uk",
+            new_deployed_url: "https://test.uk",
             new_timeline: "Northcoders Bootcamp",
         };
         return request(app)
@@ -682,6 +717,8 @@ describe("PATCH /api/events/:event_id", () => {
             new_body: "Test body - one, two, three",
             new_skills: "skill one. skill two.",
             new_topics: "topic a. topic b.",
+            new_github_url: "https://test.uk",
+            new_deployed_url: "https://test.uk",
             new_timeline: "Northcoders Bootcamp",
         };
         return request(app)
