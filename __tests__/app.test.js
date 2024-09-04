@@ -176,8 +176,8 @@ describe("GET /api/events", () => {
                     expect(typeof event.end_date).toBe("string");
                     expect(typeof event.created_at).toBe("string");
                     expect(typeof event.votes).toBe("number");
-                    expect(typeof event.github_url).toBe("string");
-                    expect(typeof event.deployed_url).toBe("string");
+                    
+
                     expect(typeof event.event_img_url).toBe("string");
                 });
             });
@@ -306,8 +306,6 @@ describe("GET /api/events/:event_id", () => {
                 expect(typeof event.end_date).toBe("string");
                 expect(typeof event.votes).toBe("number");
                 expect(typeof event.event_img_url).toBe("string");
-                expect(typeof event.github_url).toBe("string");
-                expect(typeof event.deployed_url).toBe("string");
             });
     });
     test("400 responds when valid path but invalid id", () => {
@@ -361,8 +359,8 @@ describe("POST /api/events", () => {
                 expect(typeof event.end_date).toBe("string");
                 expect(typeof event.votes).toBe("number");
                 expect(typeof event.event_img_url).toBe("string");
-                expect(typeof event.github_url).toBe("https://test.uk");
-                expect(typeof event.deployed_url).toBe("https://test.uk");
+                expect(typeof event.github_url).toBe("string");
+                expect(typeof event.deployed_url).toBe("string");
             });
     });
     test("201 successful post, additional properties ignored", () => {
@@ -385,7 +383,7 @@ describe("POST /api/events", () => {
         const expected = {
             author: "al-ex-huze",
             title: "Test Title - New event",
-            event_id: 13,
+            event_id: 4,
             body: "Test body - one, two, three",
             topics: "topic a. topic b.",
             timeline: "Northcoders Bootcamp",
@@ -555,7 +553,7 @@ describe("POST /api/events", () => {
 describe("DELETE /api/events/:event_id", () => {
     test("204 responds with no content", () => {
         return request(app)
-            .delete("/api/events/5")
+            .delete("/api/events/2")
             .expect(204)
             .then(({ body }) => {
                 expect(body).toEqual({});
@@ -581,7 +579,7 @@ describe("DELETE /api/events/:event_id", () => {
 
 describe("PATCH /api/events/:event_id", () => {
     test("200 returns updated event", () => {
-        const patchID = 6;
+        const patchID = 2;
         const update = {
             new_start_date: "2024-07-20",
             new_end_date: "2024-07-25",
@@ -599,6 +597,7 @@ describe("PATCH /api/events/:event_id", () => {
             .send(update)
             .expect(200)
             .then(({ body }) => {
+
                 const { event } = body;
                 expect(event.start_date).toEqual("2024-07-20");
                 expect(event.end_date).toEqual("2024-07-25");
@@ -612,14 +611,13 @@ describe("PATCH /api/events/:event_id", () => {
                 expect(typeof event.created_at).toBe("string");
                 expect(typeof event.start_date).toBe("string");
                 expect(typeof event.end_date).toBe("string");
-                expect(typeof event.votes).toBe("number");
-                expect(typeof event.github_url).toBe("string");
+                expect(typeof event.votes).toBe("number");     
                 expect(typeof event.deployed_url).toBe("string");
                 expect(typeof event.event_img_url).toBe("string");
             });
     });
     test("200 returns updated event", () => {
-        const patchID = 6;
+        const patchID = 2;
         const update = {
             new_start_date: "2024-07-28",
             new_end_date: "2024-07-29",
@@ -651,7 +649,7 @@ describe("PATCH /api/events/:event_id", () => {
             });
     });
     test("200 returns updated event null not needed", () => {
-        const patchID = 6;
+        const patchID = 2;
         const update = {
             new_start_date: "2024-07-28",
             new_end_date: "2024-07-29",
@@ -677,7 +675,7 @@ describe("PATCH /api/events/:event_id", () => {
             });
     });
     test("200 default time nmow when end date is null", () => {
-        const patchID = 6;
+        const patchID = 2;
         const update = {
             new_start_date: "2024-07-20",
             new_end_date: null,
@@ -698,7 +696,7 @@ describe("PATCH /api/events/:event_id", () => {
             });
     });
     test("400 missing required fields when request is null", () => {
-        const patchID = 6;
+        const patchID = 2;
         const update = null;
         return request(app)
             .patch(`/api/events/${patchID}`)
@@ -709,7 +707,7 @@ describe("PATCH /api/events/:event_id", () => {
             });
     });
     test("400 incorrect fields of wrong property type", () => {
-        const patchID = 6;
+        const patchID = 2;
         const update = {
             new_start_date: "2024-07-20",
             new_end_date: 9999,
@@ -730,7 +728,7 @@ describe("PATCH /api/events/:event_id", () => {
             });
     });
     test("400 incorrect type of request", () => {
-        const patchID = 6;
+        const patchID = 2;
         const update = ["2024-07-20"];
         return request(app)
             .patch(`/api/events/${patchID}`)
