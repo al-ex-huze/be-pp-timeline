@@ -12,7 +12,7 @@ exports.selectEvents = (validTimelines, timeline, sort_by, order) => {
         "votes",
         "github_url",
         "deployed_url",
-        "event_img_url",
+        "event_img_url_1",
     ];
 
     if (sort_by && !validSortBy.includes(sort_by)) {
@@ -30,7 +30,7 @@ exports.selectEvents = (validTimelines, timeline, sort_by, order) => {
     const queryValues = [];
 
     let queryStr =
-        "SELECT author, title, event_id, timeline, body, skills, topics, created_at, start_date, end_date, votes, github_url,deployed_url, event_img_url FROM events";
+        "SELECT author, title, event_id, timeline, body, skills, topics, created_at, start_date, end_date, votes, github_url,deployed_url, event_img_url_1, event_img_url_2, event_img_url_3 FROM events";
 
     if (timeline) {
         queryStr += " WHERE timeline = $1";
@@ -56,7 +56,7 @@ exports.selectEvents = (validTimelines, timeline, sort_by, order) => {
 
 exports.selectEventByID = (event_id) => {
     const queryStr =
-        "SELECT author, timeline, title, event_id, body, skills, topics, created_at, start_date, end_date, votes, github_url, deployed_url, event_img_url FROM events WHERE event_id = $1;";
+        "SELECT author, timeline, title, event_id, body, skills, topics, created_at, start_date, end_date, votes, github_url, deployed_url, event_img_url_1, event_img_url_2, event_img_url_3 FROM events WHERE event_id = $1;";
 
     const queryValue = [event_id];
 
@@ -84,7 +84,7 @@ exports.insertEvent = (newEvent) => {
         end_date,
         deployed_url,
         github_url,
-        event_img_url,
+        event_img_url_1, event_img_url_2, event_img_url_3,
     } = newEvent;
 
     const checkAuthorQueryStr =
@@ -97,7 +97,7 @@ exports.insertEvent = (newEvent) => {
 
     const queryValues = [];
 
-    if (event_img_url === null || event_img_url === undefined) {
+    if (event_img_url_1 === null || event_img_url_1 === undefined) {
         queryValues.push(
             author,
             title,
@@ -124,10 +124,10 @@ exports.insertEvent = (newEvent) => {
             end_date,
             github_url,
             deployed_url,
-            event_img_url
+            event_img_url_1, event_img_url_2, event_img_url_3
         );
         queryStr =
-            "INSERT INTO events (author, title, body, skills, topics, timeline, start_date, end_date, github_url, deployed_url, event_img_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING event_id;";
+            "INSERT INTO events (author, title, body, skills, topics, timeline, start_date, end_date, github_url, deployed_url, event_img_url_1, event_img_url_2, event_img_url_3) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING event_id;";
     }
 
     return db.query(checkAuthorQueryStr, [author]).then((isAuthorValid) => {
@@ -182,7 +182,7 @@ exports.updateEventDates = (update, event_id) => {
         new_timeline,
         new_github_url,
         new_deployed_url,
-        new_event_img_url,
+        new_event_img_url_1, new_event_img_url_2, new_event_img_url_3,
     } = update;
 
     if (
@@ -196,7 +196,7 @@ exports.updateEventDates = (update, event_id) => {
     }
 
     const queryStr =
-        "UPDATE events SET start_date = $1, end_date = $2, title = $3, body = $4, skills = $5, topics = $6, timeline = $7, github_url = $8, deployed_url = $9, event_img_url = $10 WHERE event_id = $11 RETURNING *;";
+        "UPDATE events SET start_date = $1, end_date = $2, title = $3, body = $4, skills = $5, topics = $6, timeline = $7, github_url = $8, deployed_url = $9, event_img_url_1 =$10, event_img_url_2 = $11, event_img_url_3 = $12 WHERE event_id = $13 RETURNING *;";
 
     const queryValues = [
         new_start_date,
@@ -208,7 +208,9 @@ exports.updateEventDates = (update, event_id) => {
         new_timeline,
         new_github_url,
         new_deployed_url,
-        new_event_img_url,
+        new_event_img_url_1,
+        new_event_img_url_2,
+        new_event_img_url_3,
         event_id,
     ];
 

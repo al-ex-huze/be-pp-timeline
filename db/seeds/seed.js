@@ -69,7 +69,9 @@ const seed = ({
         votes INT DEFAULT 0 NOT NULL,
         github_url VARCHAR,
         deployed_url VARCHAR,
-        event_img_url VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700'
+        event_img_url_1 VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700',
+                event_img_url_2 VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700',
+                        event_img_url_3 VARCHAR DEFAULT 'https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700'
       );`);
         })
         .then(() => {
@@ -154,7 +156,7 @@ const seed = ({
         .then(() => {
             const formattedEventData = eventData.map(convertTimestampToDate);
             const insertEventsQueryStr = format(
-                "INSERT INTO events (title, timeline, author, body, skills, topics, created_at, start_date, end_date, votes,github_url, deployed_url, event_img_url) VALUES %L RETURNING *;",
+                "INSERT INTO events (title, timeline, author, body, skills, topics, created_at, start_date, end_date, votes,github_url, deployed_url, event_img_url_1, event_img_url_2, event_img_url_3) VALUES %L RETURNING *;",
                 formattedEventData.map(
                     ({
                         title,
@@ -169,7 +171,9 @@ const seed = ({
                         votes = 0,
                         github_url,
                         deployed_url,
-                        event_img_url,
+                        event_img_url_1,
+                        event_img_url_2,
+                        event_img_url_3,
                     }) => [
                         title,
                         timeline,
@@ -183,7 +187,9 @@ const seed = ({
                         votes,
                         github_url,
                         deployed_url,
-                        event_img_url,
+                        event_img_url_1,
+                        event_img_url_2,
+                        event_img_url_3,
                     ]
                 )
             );

@@ -12,7 +12,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
     },
     {
@@ -28,7 +32,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
     },
     {
@@ -44,7 +52,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
     },
     {
@@ -60,7 +72,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
     },
     {
@@ -76,7 +92,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
     },
     {
@@ -92,7 +112,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
     },
     {
@@ -108,7 +132,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
     },
     {
@@ -124,7 +152,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
     },
     {
@@ -140,7 +172,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
     },
     {
@@ -156,7 +192,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
     },
     {
@@ -172,7 +212,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
     },
     {
@@ -188,7 +232,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
     },
 
@@ -196,7 +244,7 @@ module.exports = [
         author: "al-ex-huze",
         timeline: "Projects",
         title: "NC News BE",
-        body: "Four day project creating a backend service to programatically provide data to front end architecture. PSQL database works with Express.js server to provide endpoints for CRUD operations. Database is hosted on Supabase and app is deployed on Render.",
+        body: "Four day portfolio project at Northcoders to create a backend service. PSQL database works with Express.js server to provide CRUD endpoints for front end architecture. Database is hosted on Supabase and app deployed on Render.",
         skills: null,
         topics: "Javascript / Node.js / Express.js / PSQL / node-postgres / Supabase / Render",
         created_at: "2024-09-01T00:08:04.025Z",
@@ -206,14 +254,18 @@ module.exports = [
         github_url:
             "https://github.com/al-ex-huze/NC-News---BE-Portfolio-Project",
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-1-1400.png",
+        event_img_url_2:
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-2-1400.png",
+        event_img_url_3:
             "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-1.png",
     },
     {
         author: "al-ex-huze",
         timeline: "Projects",
         title: "NC News FE",
-        body: "Week long project to create a social news content aggregation and  discussion site. A front end app utilising the CRUD operations and endpoints provided by back end project. Built with React and hosted on Netlify.",
+        body: "Week long project to create a social news content aggregation and discussion site. A front end app built with React and hosted on Netlify.",
         skills: null,
         topics: "JavaScript / HTML / CSS / React / Netlify",
         created_at: "2024-09-01T00:11:27.467Z",
@@ -223,14 +275,18 @@ module.exports = [
         github_url: "https://github.com/al-ex-huze/nc-news",
         deployed_url:
             "https://66a75358bde4a50008362156--nc-huze-news.netlify.app/",
-        event_img_url:
-            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-3.png",
+        event_img_url_1:
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-3-1400.png",
+        event_img_url_2:
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-11-1400.png",
+        event_img_url_3:
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-12-1400.png",
     },
     {
         author: "al-ex-huze",
         timeline: "Projects",
         title: "Flora Finder",
-        body: "Three week group project making a mobile, plant-collecting game (think Pokemon GO for plants). The app was created with Expo Go utilising an Express server hosted on an AWS EC2 instance and RDS managed MySQL database as well as a 3rd party API. The app allowed users to photograph a plant, which is identified and then detailed species information and a score is displayed. These, as well as the location found, are stored to the users account which then can be reviewed as a list or map. Users can then compare their scores with others on the league table.",
+        body: "Three week group project making a mobile, plant-collecting game (think Pokemon GO for flora). The app was created with Expo Go witth an Express server hosted on an AWS EC2 instance and an RDS managed MySQL database as well as utlising 3rd party APIs. The game allowed users to photograph a plant, identify it and see detailed species information and a score. Users can store this, and the location found, then review their collection as a list or a map and compare their scores with others on the league table.",
         skills: null,
         topics: "JavaScript / React Native / Expo Go / MySQL / AWS RDS / AWS EC2",
         created_at: "2024-09-01T00:13:25.463Z",
@@ -239,39 +295,49 @@ module.exports = [
         votes: 0,
         github_url: "https://github.com/123Yusha/FloraFinderFE",
         deployed_url: null,
-        event_img_url:
-            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/ff-8.jpg",
+        event_img_url_1:
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/ff-11-1080.png",
+        event_img_url_2:
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/ff-9-1080.png",
+        event_img_url_3:
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/ff-13-1080.png",
     },
     {
         author: "al-ex-huze",
         timeline: "Projects",
         title: "Timeline Blog",
-        body: "Several weeks developing a timeline event, blog and stats tracking website. Developing the front end in React TypeScript and PSQL Express.js back end server. CI/CD deployed on AWS Amplify and Fly.io respectively, the project is still a work in progress. A lot of the time can be viewed as spiking and (not) getting to grips with TypeScript.",
+        body: "Several weeks developing a timeline event, blog and stats tracking website. Developing the front end in React TypeScript and a PSQL Express.js back end server. CI/CD deployed on AWS Amplify and Fly.io respectively. The project is still a work in progress and a lot of the time can be viewed as spiking...",
         skills: null,
-        topics: "TypeScript / React / Fly.io / AWS Amplify / JavaScript / HTML / CSS",
+        topics: "TypeScript / React  / JavaScript / HTML / CSS / Fly.io / Amplify",
         created_at: "2024-08-19T00:13:25.463Z",
         start_date: "2024-08-19",
         end_date: null,
         votes: 0,
         github_url: "Coming Soon",
         deployed_url: null,
-        event_img_url:
-            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/ff-8.jpg",
+        event_img_url_1:
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/blog-1.png",
+        event_img_url_2:
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/blog-2.png",
+        event_img_url_3: null,
     },
     {
         author: "al-ex-huze",
         timeline: "Projects",
         title: "Portfolio Site",
-        body: "A long awaited portfolio page in good old Reqact JavaScript.",
+        body: "A portfolio page in good old React JavaScript.",
         skills: null,
-        topics: "TypeScript / React / AWS Amplify / HTML / CSS",
+        topics: "JavaScript / React / HTML / CSS / Amplify / Route 53 / S3 / MUI",
         created_at: "2024-08-19T00:13:25.463Z",
         start_date: "2024-09-04",
         end_date: null,
         votes: 0,
         github_url: "https://github.com/al-ex-huze/portfolio",
         deployed_url: "https://al-ex-huze.co.uk",
-        event_img_url:
-            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/ff-8.jpg",
+        event_img_url_1:
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/portfolio-1-1400.png",
+        event_img_url_2:
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/portfolio-2-825.png",
+        event_img_url_3: null,
     },
 ];
