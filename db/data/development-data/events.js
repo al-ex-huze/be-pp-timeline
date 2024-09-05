@@ -12,7 +12,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
     },
     {
@@ -28,7 +32,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
     },
     {
@@ -44,7 +52,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
     },
     {
@@ -60,7 +72,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
     },
     {
@@ -76,7 +92,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
     },
     {
@@ -92,7 +112,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
     },
     {
@@ -108,7 +132,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
     },
     {
@@ -124,7 +152,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
     },
     {
@@ -140,7 +172,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
     },
     {
@@ -156,7 +192,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
     },
     {
@@ -172,7 +212,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
     },
     {
@@ -188,7 +232,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
     },
 
@@ -206,7 +254,11 @@ module.exports = [
         github_url:
             "https://github.com/al-ex-huze/NC-News---BE-Portfolio-Project",
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-1.png",
     },
     {
@@ -223,7 +275,11 @@ module.exports = [
         github_url: "https://github.com/al-ex-huze/nc-news",
         deployed_url:
             "https://66a75358bde4a50008362156--nc-huze-news.netlify.app/",
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-3.png",
     },
     {
@@ -239,7 +295,11 @@ module.exports = [
         votes: 0,
         github_url: "https://github.com/123Yusha/FloraFinderFE",
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/ff-8.jpg",
     },
     {
@@ -255,7 +315,11 @@ module.exports = [
         votes: 0,
         github_url: "Coming Soon",
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/ff-8.jpg",
     },
     {
@@ -271,7 +335,11 @@ module.exports = [
         votes: 0,
         github_url: "https://github.com/al-ex-huze/portfolio",
         deployed_url: "https://al-ex-huze.co.uk",
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/ff-8.jpg",
     },
 ];

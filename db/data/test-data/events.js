@@ -12,7 +12,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
     },
     {
@@ -28,7 +32,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
     },
     {
@@ -44,7 +52,11 @@ module.exports = [
         votes: 0,
         github_url: null,
         deployed_url: null,
-        event_img_url:
+        event_img_url_1:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_2:
+            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
     },
 ];
