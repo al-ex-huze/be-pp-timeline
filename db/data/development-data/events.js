@@ -244,7 +244,7 @@ module.exports = [
         author: "al-ex-huze",
         timeline: "Projects",
         title: "NC News BE",
-        body: "Four day portfolio project at Northcoders to create a backend service. The PSQL database works with an Express.js server to provide CRUD endpoints for front end architecture. Initially hosted on Supabase and app deployed on Render.",
+        body: "Northcoders portfolio project to create a backend Express server and PSQL database providing CRUD endpoints for front end architecutre. Initially hosted on Supabase and app deployed on Render.",
         skills: null,
         topics: "Javascript / Node.js / Express.js / PSQL / node-postgres / Supabase / Render",
         created_at: "2024-09-01T00:08:04.025Z",
@@ -255,17 +255,17 @@ module.exports = [
             "https://github.com/al-ex-huze/NC-News---BE-Portfolio-Project",
         deployed_url: null,
         event_img_url_1:
-            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-1-1400.png",
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/hn-pln-full-1.png",
         event_img_url_2:
-            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-2-1400.png",
+        null,
         event_img_url_3:
-            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-1.png",
+        null,
     },
     {
         author: "al-ex-huze",
         timeline: "Projects",
         title: "NC News FE",
-        body: "Week long project to create a social news content aggregation and discussion site. A front end app built with React and hosted on Netlify (now Amplify).",
+        body: "Week long project to create a social news discussion site. A front end app built with React and hosted on Netlify (now Amplify).",
         skills: null,
         topics: "JavaScript / HTML / CSS / React / Netlify",
         created_at: "2024-09-01T00:11:27.467Z",
@@ -276,17 +276,17 @@ module.exports = [
         deployed_url:
             "https://main.d2hiyyiwyu0xvj.amplifyapp.com/",
         event_img_url_1:
-            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-3-1400.png",
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/hn-full-2.png",
         event_img_url_2:
-            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-11-1400.png",
+        null,
         event_img_url_3:
-            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/nc-news-12-1400.png",
+        null,
     },
     {
         author: "al-ex-huze",
         timeline: "Projects",
         title: "Flora Finder",
-        body: "Three week group project making a mobile, plant-collecting game (think Pokemon GO for flowers). The app was created with Expo Go with an Express server hosted on an AWS EC2 instance and an RDS managed MySQL database as well as utlising 3rd party APIs. The game allows users to photograph a plant, identify it and see species information and a score. Users can save where it was found and review their collection as a list or a map and compare their scores with others on the league table.",
+        body: "Three week group project making a mobile, plant-collecting game (think Pokemon GO for flowers). The game allows users to photograph and identify plants, save and review their collection on the map and compare their scores with others.",
         skills: null,
         topics: "JavaScript / React Native / Expo Go / MySQL / AWS RDS / AWS EC2",
         created_at: "2024-09-01T00:13:25.463Z",
@@ -300,32 +300,32 @@ module.exports = [
         event_img_url_2:
             "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/ff-9-1080.png",
         event_img_url_3:
-            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/ff-13-1080.png",
+        null,
     },
     {
         author: "al-ex-huze",
         timeline: "Projects",
         title: "Timeline Blog",
-        body: "Several weeks developing a timeline event, blog and stats tracking website. Developing the front end in React TypeScript and a PSQL Express.js back end server. CI/CD deployed on AWS Amplify and Fly.io respectively. The project is still a work in progress and a lot of the time can be viewed as spiking...",
+        body: "A timeline event, blog and stats tracking website. Developing the front end in React and MUI and a PSQL Express.js back end server. CI/CD deployed on AWS Amplify and Fly.io. Coming soon...",
         skills: null,
-        topics: "TypeScript / React  / JavaScript / HTML / CSS / Fly.io / Amplify",
+        topics: "React / JavaScript / HTML / Fly.io / Amplify",
         created_at: "2024-08-19T00:13:25.463Z",
         start_date: "2024-08-19",
         end_date: null,
         votes: 0,
-        github_url: "Coming Soon",
-        deployed_url: null,
+        github_url: "https://main.d1e047gptjkj8g.amplifyapp.com/",
+        deployed_url: "https://github.com/al-ex-huze/timelines",
         event_img_url_1:
-            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/blog-1.png",
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/tl-drk-1350-1.png",
         event_img_url_2:
-            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/blog-1.png",
+        null,
         event_img_url_3: null,
     },
     {
         author: "al-ex-huze",
         timeline: "Projects",
         title: "Portfolio",
-        body: "A portfolio page in good old React JavaScript.",
+        body: "I heard you like portfolio pages...",
         skills: null,
         topics: "JavaScript / React / HTML / CSS / Amplify / Route 53 / S3 / MUI",
         created_at: "2024-08-19T00:13:25.463Z",
@@ -335,9 +335,9 @@ module.exports = [
         github_url: "https://github.com/al-ex-huze/portfolio",
         deployed_url: "https://al-ex-huze.co.uk",
         event_img_url_1:
-            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/portfolio-1-1400.png",
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/prt-prf-full-1.png",
         event_img_url_2:
-            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/portfolio-2-825.png",
+            null,
         event_img_url_3: null,
     },
 ];
