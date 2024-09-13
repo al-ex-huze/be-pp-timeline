@@ -23,7 +23,7 @@ const {
 const { getEndpoints } = require("./controllers/api.controller.js");
 const { getAllRepos } = require("./controllers/repos.controller.js");
 const { getLanguages } = require("./controllers/languages.controller.js");
-const { getFeelings, patchFeelingsForWeek } = require("./controllers/feelings.controller.js")
+const { getFeels, patchFeelsForWeek } = require("./controllers/feels.controller.js")
 const {
     getTimelines,
     createTimeline,
@@ -39,12 +39,12 @@ const {
 } = require("./controllers/events.controller.js");
 
 // app.get("/ghapi/auth_user/:user", getAuthUser);
-app.get("/ghapi/events/:user", getEventsForUser);
-app.get("/ghapi/public_user/:user", getPublicUser);
-app.get("/ghapi/all_repos/:user/", getAllReposForUser);
-app.get("/ghapi/weekly_commits/:repo", getWeeklyCommits);
-app.get("/ghapi/yearly_activity/:repo", getYearlyActivity);
-app.get("/ghapi/languages_used/:repo", getLanguagesUsedByRepo);
+// app.get("/ghapi/events/:user", getEventsForUser);
+// app.get("/ghapi/public_user/:user", getPublicUser);
+// app.get("/ghapi/all_repos/:user/", getAllReposForUser);
+// app.get("/ghapi/weekly_commits/:repo", getWeeklyCommits);
+// app.get("/ghapi/yearly_activity/:repo", getYearlyActivity);
+// app.get("/ghapi/languages_used/:repo", getLanguagesUsedByRepo);
 
 app.get("/api", getEndpoints);
 app.get("/api/timelines", getTimelines);
@@ -62,8 +62,8 @@ app.get("/api/repos", getAllRepos);
 
 app.get("/api/languages", getLanguages);
 
-app.get("/api/feelings", getFeelings)
-app.patch("/api/feelings/:week_number", patchFeelingsForWeek)
+app.get("/api/feels", getFeels)
+app.patch("/api/feels/:week_number", patchFeelsForWeek)
 
 app.use(handleCustomErrors);
 app.use(handlePsqlErrors);

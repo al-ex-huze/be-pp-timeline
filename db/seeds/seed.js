@@ -13,12 +13,12 @@ const seed = ({
     commentData,
     repoData,
     languagesData,
-    feelingsData,
+    feelsData,
 }) => {
     return db
         .query(`DROP TABLE IF EXISTS comments;`)
         .then(() => {
-            return db.query(`DROP TABLE IF EXISTS feelings;`);
+            return db.query(`DROP TABLE IF EXISTS feels;`);
         })
         .then(() => {
             return db.query(`DROP TABLE IF EXISTS repos;`);
@@ -113,7 +113,7 @@ const seed = ({
         })
         .then(() => {
             return db.query(`
-        CREATE TABLE feelings (
+        CREATE TABLE feels (
         week_number VARCHAR PRIMARY KEY,
         week_start_date VARCHAR NOT NULL,
         week_end_date VARCHAR NOT NULL,
@@ -267,9 +267,9 @@ const seed = ({
             return db.query(insertLanguagesQueryStr);
         })
         .then(() => {
-            const insertFeelingsQueryStr = format(
-                "INSERT INTO feelings (week_number, week_start_date, week_end_date, knowledge, experience, passion, enthusiasm, confidence, wisdom, despair, input, output) VALUES %L;",
-                feelingsData.map(
+            const insertFeelsQueryStr = format(
+                "INSERT INTO feels (week_number, week_start_date, week_end_date, knowledge, experience, passion, enthusiasm, confidence, wisdom, despair, input, output) VALUES %L;",
+                feelsData.map(
                     ({
                         week_number,
                         week_start_date,
@@ -299,7 +299,7 @@ const seed = ({
                     ]
                 )
             );
-            return db.query(insertFeelingsQueryStr);
+            return db.query(insertFeelsQueryStr);
         });
 };
 

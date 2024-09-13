@@ -792,14 +792,14 @@ describe("GET /api/languages", () => {
     });
 });
 
-describe("GET /api/feelings", () => {
-    test("200 returns an array of feelings object", () => {
+describe("GET /api/feels", () => {
+    test("200 returns an array of feels object", () => {
         return request(app)
-            .get("/api/feelings")
+            .get("/api/feels")
             .expect(200)
             .then(({ body }) => {
-                const { feelings } = body;
-                feelings.forEach((feeling) => {
+                const { feels } = body;
+                feels.forEach((feeling) => {
                     expect(typeof feeling.week_number).toBe("string");
                     expect(typeof feeling.week_start_date).toBe("string");
                     expect(typeof feeling.week_end_date).toBe("string");
@@ -817,16 +817,16 @@ describe("GET /api/feelings", () => {
     });
     test("200 returns sorted by ascending week_start_date order as default", () => {
         return request(app)
-            .get("/api/feelings")
+            .get("/api/feels")
             .expect(200)
             .then(({ body }) => {
-                const { feelings } = body;
-                expect(feelings).toBeSortedBy("week_start_date");
+                const { feels } = body;
+                expect(feels).toBeSortedBy("week_start_date");
             });
     });
 });
 
-describe("PATCH /api/feelings/:week", () => {
+describe("PATCH /api/feels/:week", () => {
     test("200 returns updated event", () => {
         const patchWeek = "01-2024";
         const update = {
@@ -841,7 +841,7 @@ describe("PATCH /api/feelings/:week", () => {
             output_update: 50,
         };
         return request(app)
-            .patch(`/api/feelings/${patchWeek}`)
+            .patch(`/api/feels/${patchWeek}`)
             .send(update)
             .expect(200)
             .then(({ body }) => {
@@ -874,7 +874,7 @@ describe("PATCH /api/feelings/:week", () => {
             output_update: 50,
         };
         return request(app)
-            .patch(`/api/feelings/${patchWeek}`)
+            .patch(`/api/feels/${patchWeek}`)
             .send(update)
             .expect(200)
             .then(({ body }) => {
@@ -897,7 +897,7 @@ describe("PATCH /api/feelings/:week", () => {
         const patchWeek = "01-2024";
         const update = null;
         return request(app)
-            .patch(`/api/feelings/${patchWeek}`)
+            .patch(`/api/feels/${patchWeek}`)
             .send(update)
             .expect(400)
             .then(({ body }) => {
@@ -919,7 +919,7 @@ describe("PATCH /api/feelings/:week", () => {
             output_update: 50,
         };
         return request(app)
-            .patch(`/api/feelings/${patchWeek}`)
+            .patch(`/api/feels/${patchWeek}`)
             .send(update)
             .expect(400)
             .then(({ body }) => {
@@ -942,7 +942,7 @@ describe("PATCH /api/feelings/:week", () => {
             },
         ];
         return request(app)
-            .patch(`/api/feelings/${patchWeek}`)
+            .patch(`/api/feels/${patchWeek}`)
             .send(update)
             .expect(400)
             .then(({ body }) => {

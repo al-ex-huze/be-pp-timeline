@@ -1,5 +1,3 @@
-# Portfolio Page Timeline API
+# Timelines Project Back End API
 
---- 
-
-This portfolio project was adapted as part of a Digital Skills Bootcamp in Software Engineering provided by [Northcoders](https://northcoders.com/)
+In development

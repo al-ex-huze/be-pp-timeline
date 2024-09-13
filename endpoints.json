@@ -1,77 +1,38 @@
 {
-    "GET /api/languages": {
-        "description": "authenticated user object, github-side authentication error"
-    },
-    "GET /ghapi/events/:user": {
-        "description": "authenticated user object, github-side authentication error"
-    },
-    "GET /ghapi/auth_user/:user": {
-        "description": "authenticated user object, github-side authentication error"
-    },
-    "GET /ghapi/public_user/:user": {
-        "description": "public user object"
-    },
-    "GET /ghapi/all_repos/:user/": {
-        "description": "array of all repos for user"
-    },
-    "GET /ghapi/weekly_commits/:repo": {
-        "description": "array of weekly commit data"
-    },
-    "GET /ghapi/yearly_activity": {
-        "description": "serves array data of comits in last week",
-        "response schema": {
-            "type": "array",
-            "items": {
-                "title": "Commit Activity",
-                "description": "Commit Activity",
-                "type": "object",
-                "properties": {
-                    "days": {
-                        "type": "array",
-                        "items": {
-                            "type": "integer"
-                        },
-                        "examples": [0, 3, 26, 20, 39, 1, 0]
-                    },
-                    "total": {
-                        "type": "integer",
-                        "examples": [89]
-                    },
-                    "week": {
-                        "type": "integer",
-                        "examples": [1336280400]
-                    }
-                },
-                "required": ["days", "total", "week"]
-            }
-        }
-    },
-    "GET /ghapi/languages_used/:repo": {
-        "description": "serves object u languages used"
-    },
-    "GET /api/repos": {
-        "description": "serves array of all repos in data"
-    },
     "GET /api": {
         "description": "serves up a json representation of all the available endpoints of the api"
     },
     "GET /api/timelines": {
         "description": "serves an array of all timelines",
-        "queries": [],
         "exampleResponse": {
             "timelines": [
                 {
-                    "timeline_name": "Northcoders Bootcamp",
-                    "description": "What I learnt at Northcoders"
+                    "timeline_name": "Pre Bootcamp",
+                    "description": "What I learnt before Northcoders",
+                    "begin_date": "2024-04-15",
+                    "finish_date": "2024-07-12"
                 }
             ]
+        }
+    },
+    "GET /api/timelines/:timeline_name": {
+        "description": "serves an array of all timelines",
+        "exampleResponse": {
+            "timeline": {
+                "timeline_name": "Pre Bootcamp",
+                "description": "What I learnt before Northcoders",
+                "begin_date": "2024-04-15",
+                "finish_date": "2024-07-12"
+            }
         }
     },
     "POST /api/timelines": {
         "description": "Creates new timeline",
         "newTimeline": {
-            "timeline_name": "NEW TL TEST 2",
-            "descriptiion": "Test description 1"
+            "timeline_name": "Timeline Name",
+            "description": "Timeline description",
+            "begin_date": "2024-02-02",
+            "finish_date": "2024-03-03"
         }
     },
     "DELETE /api/timelines/:timeline_name": {
@@ -79,62 +40,185 @@
     },
     "GET /api/events": {
         "description": "serves an array of all events",
-        "queries": ["author", "timeline", "sort_by", "order"],
+        "queries": [
+            "author",
+            "title",
+            "event_id",
+            "timeline",
+            "created_at",
+            "start_date",
+            "end_date",
+            "votes",
+            "github_url",
+            "deployed_url"
+        ],
         "exampleResponse": {
             "events": [
                 {
-                    "title": "Intro Week",
-                    "timeline_name": "Northcoders Bootcamp",
                     "author": "al-ex-huze",
+                    "title": "Intro Week",
+                    "event_id": 1,
+                    "timeline": "Northcoders Bootcamp",
                     "body": "We learnt to type and to code and to program",
-                    "created_at": "2024-08-19T15:30:45.600Z",
-                    "start_date": "2024-07-15",
-                    "end_date": "2024-07-19",
+                    "skills": null,
+                    "topics": null,
+                    "created_at": "2020-07-09T20:11:00.000Z",
+                    "start_date": "2024-04-15",
+                    "end_date": "2024-04-21",
                     "votes": 0,
-                    "comment_count": 0
+                    "github_url": null,
+                    "deployed_url": null,
+                    "event_img_url_1": "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+                    "event_img_url_2": "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+                    "event_img_url_3": "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg"
                 }
             ]
         }
     },
     "POST /api/events": {
-        "description": "",
-        "newevent": {
+        "description": "Creates new event",
+        "newEvent": {
             "author": "al-ex-huze",
             "title": "Test Title - New event",
             "body": "Test body - one, two, three",
+            "skills": "skill one. skill two.",
+            "topics": "topic a. topic b.",
             "timeline": "Northcoders Bootcamp",
             "start_date": "2024-07-15",
             "end_date": "2024-07-19",
-            "event_img_url": "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg"
+            "github_url": "https://test.uk",
+            "deployed_url": "https://test.uk",
+            "event_img_url_1": "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+            "event_img_url_2": "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+            "event_img_url_3": "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg"
         }
     },
     "GET /api/events/:event_id": {
-        "description": "",
+        "description": "gets event with event_id",
         "exampleResponse": {
-            "events": [
-                {
-                    "title": "Intro Week",
-                    "timeline_name": "Northcoders Bootcamp",
-                    "author": "al-ex-huze",
-                    "body": "We learnt to type and to code and to program",
-                    "created_at": "2024-08-19T15:30:45.600Z",
-                    "start_date": "2024-07-15",
-                    "end_date": "2024-07-19",
-                    "votes": 0,
-                    "comment_count": 0
-                }
-            ]
+            "event": {
+                "author": "al-ex-huze",
+                "title": "Test Title - New event",
+                "body": "Test body - one, two, three",
+                "skills": "skill one. skill two.",
+                "topics": "topic a. topic b.",
+                "timeline": "Northcoders Bootcamp",
+                "start_date": "2024-07-15",
+                "end_date": "2024-07-19",
+                "github_url": "https://test.uk",
+                "deployed_url": "https://test.uk",
+                "event_img_url_1": "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+                "event_img_url_2": "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+                "event_img_url_3": "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg"
+            }
         }
     },
     "DELETE /api/events/:event_id": {
-        "description": ""
+        "description": "deletes event with event_id"
     },
     "PATCH /api/events/:event_id": {
         "description": "serves up a json representation of all the available endpoints of the api",
         "update, event_id": "new_start_date, new_end_date",
         "update": {
-            "new_start_date": "2024-07-28",
-            "new_end_date": "2024-07-29"
+            "new_start_date": "2024-07-20",
+            "new_end_date": "2024-07-25",
+            "new_title": "Test Title - New event",
+            "new_body": "Test body - one, two, three",
+            "new_skills": "skill one. skill two.",
+            "new_topics": "topic a. topic b.",
+            "new_timeline": "Northcoders Bootcamp",
+            "new_github_url": "https://test.uk",
+            "new_deployed_url": "https://test.uk",
+            "new_event_img_url_1": "https://new-url.co.uk",
+            "new_event_img_url_2": "https://new-url.co.uk",
+            "new_event_img_url_3": "https://new-url.co.uk"
+        }
+    },
+    "GET /api/repos": {
+        "description": "gets array of saved github repos",
+        "exampleResponse": {
+            "repos": [
+                {
+                    "repo_id": 768809856,
+                    "name": "al-ex-huze",
+                    "full_name": "al-ex-huze/al-ex-huze",
+                    "isprivate": false,
+                    "owner_login": "al-ex-huze",
+                    "description": null,
+                    "fork": false,
+                    "created_at": "2024-03-07T19:19:31Z",
+                    "updated_at": "2024-06-08T14:46:15Z",
+                    "pushed_at": "2024-06-08T14:46:12Z",
+                    "size": 1,
+                    "language": null,
+                    "visibility": "public",
+                    "default_branch": "main"
+                }
+            ]
+        }
+    },
+    "GET /api/languages": {
+        "description": "gets array of saved github repos and languages used",
+        "exampleResponse": {
+            "languages": [
+                {
+                    "full_name_languages": "al-ex-huze/be-katas-week-2",
+                    "languages_and_size": "{\"JavaScript\":8884}"
+                }
+            ]
+        }
+    },
+    "GET /api/feels": {
+        "description": "gets array of saved feels stats",
+        "exampleResponse": {
+            "feels": [
+                {
+                    "week_number": "03-2024",
+                    "week_start_date": "2024-01-15",
+                    "week_end_date": "2024-01-21",
+                    "knowledge": 2,
+                    "experience": 4,
+                    "passion": 2,
+                    "enthusiasm": 2,
+                    "confidence": 3,
+                    "wisdom": 2,
+                    "despair": 2,
+                    "input": 1,
+                    "output": 1
+                }
+            ]
+        }
+    },
+    "PATCH /api/feels/:week": {
+        "description": "updates feels stats for given unique week",
+        "update": {
+            "knowledge_update": 10,
+            "experience_update": 15,
+            "passion_update": 20,
+            "enthusiasm_update": 25,
+            "confidence_update": 30,
+            "wisdom_update": 35,
+            "despair_update": 40,
+            "input_update": 45,
+            "output_update": 50
+        },
+        "exampleResponse": {
+            "feels": [
+                {
+                    "week_number": "03-2024",
+                    "week_start_date": "2024-01-15",
+                    "week_end_date": "2024-01-21",
+                    "knowledge": 10,
+                    "experience": 15,
+                    "passion": 20,
+                    "enthusiasm": 25,
+                    "confidence": 30,
+                    "wisdom": 35,
+                    "despair": 40,
+                    "input": 45,
+                    "output": 50
+                }
+            ]
         }
     }
 }

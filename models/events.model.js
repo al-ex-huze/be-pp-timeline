@@ -12,7 +12,6 @@ exports.selectEvents = (validTimelines, timeline, sort_by, order) => {
         "votes",
         "github_url",
         "deployed_url",
-        "event_img_url_1",
     ];
 
     if (sort_by && !validSortBy.includes(sort_by)) {
