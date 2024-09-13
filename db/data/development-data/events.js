@@ -256,10 +256,8 @@ module.exports = [
         deployed_url: null,
         event_img_url_1:
             "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/hn-pln-full-1.png",
-        event_img_url_2:
-        null,
-        event_img_url_3:
-        null,
+        event_img_url_2: null,
+        event_img_url_3: null,
     },
     {
         author: "al-ex-huze",
@@ -273,14 +271,11 @@ module.exports = [
         end_date: "2024-06-23",
         votes: 0,
         github_url: "https://github.com/al-ex-huze/nc-news",
-        deployed_url:
-            "https://main.d2hiyyiwyu0xvj.amplifyapp.com/",
+        deployed_url: "https://main.d2hiyyiwyu0xvj.amplifyapp.com/",
         event_img_url_1:
             "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/hn-full-2.png",
-        event_img_url_2:
-        null,
-        event_img_url_3:
-        null,
+        event_img_url_2: null,
+        event_img_url_3: null,
     },
     {
         author: "al-ex-huze",
@@ -299,8 +294,7 @@ module.exports = [
             "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/ff-11-1080.png",
         event_img_url_2:
             "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/ff-9-1080.png",
-        event_img_url_3:
-        null,
+        event_img_url_3: null,
     },
     {
         author: "al-ex-huze",
@@ -313,12 +307,11 @@ module.exports = [
         start_date: "2024-08-19",
         end_date: null,
         votes: 0,
-        github_url: "https://main.d1e047gptjkj8g.amplifyapp.com/",
-        deployed_url: "https://github.com/al-ex-huze/timelines",
+        github_url: "https://github.com/al-ex-huze/timelines",
+        deployed_url: "https://main.d1e047gptjkj8g.amplifyapp.com/",
         event_img_url_1:
             "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/tl-drk-1350-1.png",
-        event_img_url_2:
-        null,
+        event_img_url_2: null,
         event_img_url_3: null,
     },
     {
@@ -336,8 +329,7 @@ module.exports = [
         deployed_url: "https://al-ex-huze.co.uk",
         event_img_url_1:
             "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/prt-prf-full-1.png",
-        event_img_url_2:
-            null,
+        event_img_url_2: null,
         event_img_url_3: null,
     },
 ];
