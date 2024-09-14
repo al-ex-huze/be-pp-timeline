@@ -16,8 +16,7 @@ module.exports = [
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         event_img_url_2:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
-        event_img_url_3:
-            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3: null,
     },
     {
         title: "Fundamentals",
@@ -36,8 +35,7 @@ module.exports = [
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         event_img_url_2:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
-        event_img_url_3:
-            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3: null,
     },
     {
         title: "Back End",
@@ -56,8 +54,7 @@ module.exports = [
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         event_img_url_2:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
-        event_img_url_3:
-            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3: null,
     },
     {
         title: "Front End",
@@ -76,8 +73,7 @@ module.exports = [
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         event_img_url_2:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
-        event_img_url_3:
-            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3: null,
     },
     {
         title: "Project Phase",
@@ -96,8 +92,7 @@ module.exports = [
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         event_img_url_2:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
-        event_img_url_3:
-            "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+        event_img_url_3: null,
     },
     {
         author: "al-ex-huze",
@@ -116,8 +111,7 @@ module.exports = [
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         event_img_url_2:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
-        event_img_url_3:
-            "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+        event_img_url_3: null,
     },
     {
         author: "al-ex-huze",
@@ -136,8 +130,7 @@ module.exports = [
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         event_img_url_2:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
-        event_img_url_3:
-            "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+        event_img_url_3: null,
     },
     {
         author: "al-ex-huze",
@@ -156,8 +149,7 @@ module.exports = [
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         event_img_url_2:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
-        event_img_url_3:
-            "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+        event_img_url_3: null,
     },
     {
         author: "al-ex-huze",
@@ -176,8 +168,7 @@ module.exports = [
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         event_img_url_2:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
-        event_img_url_3:
-            "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+        event_img_url_3: null,
     },
     {
         author: "al-ex-huze",
@@ -196,8 +187,7 @@ module.exports = [
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         event_img_url_2:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
-        event_img_url_3:
-            "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+        event_img_url_3: null,
     },
     {
         author: "al-ex-huze",
@@ -216,8 +206,7 @@ module.exports = [
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         event_img_url_2:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
-        event_img_url_3:
-            "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+        event_img_url_3: null,
     },
     {
         author: "al-ex-huze",
@@ -236,8 +225,7 @@ module.exports = [
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         event_img_url_2:
             "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
-        event_img_url_3:
-            "https://images.pexels.com/photos/97050/pexels-photo-97050.jpeg?w=700&h=700",
+        event_img_url_3: null,
     },
 
     {
@@ -294,7 +282,8 @@ module.exports = [
             "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/ff-11-1080.png",
         event_img_url_2:
             "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/ff-9-1080.png",
-        event_img_url_3: null,
+        event_img_url_3:
+            "https://alimageexbuckhuetzepub.s3.eu-north-1.amazonaws.com/Hogweed_1_fhdv24.webm",
     },
     {
         author: "al-ex-huze",
