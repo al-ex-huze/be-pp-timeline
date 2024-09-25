@@ -44,6 +44,7 @@ describe("GET /api/timelines", () => {
                     expect(typeof timeline.description).toBe("string");
                     expect(typeof timeline.begin_date).toBe("string");
                     // expect(typeof timeline.finish_date).toBe("string");
+                    expect(typeof timeline.timeline_key).toBe("number");
                 });
             });
     });
@@ -56,6 +57,7 @@ describe("GET /api/timelines/:timeline_name", () => {
             .expect(200)
             .then(({ body }) => {
                 const { timeline } = body;
+                expect(typeof timeline.timeline_key).toBe("number");
                 expect(typeof timeline.timeline_name).toBe("string");
                 expect(typeof timeline.description).toBe("string");
                 expect(typeof timeline.begin_date).toBe("string");
@@ -88,6 +90,7 @@ describe("POST /api/timelines", () => {
             .expect(201)
             .then(({ body }) => {
                 const { timeline } = body;
+                expect(typeof timeline.timeline_key).toBe("number");
                 expect(typeof timeline.timeline_name).toBe("string");
                 expect(typeof timeline.description).toBe("string");
                 expect(timeline.timeline_name).toEqual("Timeline Name");
@@ -112,6 +115,7 @@ describe("POST /api/timelines", () => {
             .expect(201)
             .then(({ body }) => {
                 const { timeline } = body;
+                expect(typeof timeline.timeline_key).toBe("number");
                 expect(typeof timeline.timeline_name).toBe("string");
                 expect(typeof timeline.description).toBe("string");
                 expect(timeline.timeline_name).toEqual("Timeline Name");
@@ -154,7 +158,7 @@ describe("PATCH /api/timelines/:timeline_name", () => {
             .expect(200)
             .then(({ body }) => {
                 const { timeline } = body;
-                console.log(timeline)
+                expect(typeof timeline.timeline_key).toBe("number");
                 expect(typeof timeline.timeline_name).toBe("string");
                 expect(typeof timeline.description).toBe("string");
                 expect(timeline.timeline_name).toEqual("Updated Timeline Name");

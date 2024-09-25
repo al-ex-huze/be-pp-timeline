@@ -26,7 +26,7 @@ exports.insertTimeline = (newTimeline) => {
 };
 
 exports.selectTimelines = () => {
-    const queryStr = "SELECT timeline_name, description, begin_date, finish_date FROM timelines;";
+    const queryStr = "SELECT timeline_key, timeline_name, description, begin_date, finish_date FROM timelines;";
     return db.query(queryStr).then(({ rows }) => {
         return rows;
     });
@@ -34,7 +34,7 @@ exports.selectTimelines = () => {
 
 exports.selectTimelineByName = (timeline_name) => {
     const queryStr =
-        "SELECT timeline_name, description, begin_date, finish_date FROM timelines WHERE timeline_name = $1;";
+        "SELECT timeline_key, timeline_name, description, begin_date, finish_date FROM timelines WHERE timeline_name = $1;";
     const queryValue = [timeline_name];
     return db.query(queryStr, queryValue).then(({ rows }) => {
         const timeline = rows[0];
