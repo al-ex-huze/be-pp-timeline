@@ -23,12 +23,16 @@ const {
 const { getEndpoints } = require("./controllers/api.controller.js");
 const { getAllRepos } = require("./controllers/repos.controller.js");
 const { getLanguages } = require("./controllers/languages.controller.js");
-const { getFeels, patchFeelsForWeek } = require("./controllers/feels.controller.js")
 const {
-    getTimelines,
+    getFeels,
+    patchFeelsForWeek,
+} = require("./controllers/feels.controller.js");
+const {
     createTimeline,
-    removeTimeline,
+    getTimelines,
     getTimelineByName,
+    patchTimelineByName,
+    removeTimeline,
 } = require("./controllers/timelines.controller.js");
 const {
     getEvents,
@@ -47,10 +51,12 @@ const {
 // app.get("/ghapi/languages_used/:repo", getLanguagesUsedByRepo);
 
 app.get("/api", getEndpoints);
+
+app.delete("/api/timelines/:timeline_name", removeTimeline);
 app.get("/api/timelines", getTimelines);
 app.get("/api/timelines/:timeline_name", getTimelineByName);
+app.patch("/api/timelines/:timeline_name", patchTimelineByName);
 app.post("/api/timelines", createTimeline);
-app.delete("/api/timelines/:timeline_name", removeTimeline);
 
 app.get("/api/events", getEvents);
 app.post("/api/events", createEvent);
@@ -62,8 +68,8 @@ app.get("/api/repos", getAllRepos);
 
 app.get("/api/languages", getLanguages);
 
-app.get("/api/feels", getFeels)
-app.patch("/api/feels/:week_number", patchFeelsForWeek)
+app.get("/api/feels", getFeels);
+app.patch("/api/feels/:week_number", patchFeelsForWeek);
 
 app.use(handleCustomErrors);
 app.use(handlePsqlErrors);

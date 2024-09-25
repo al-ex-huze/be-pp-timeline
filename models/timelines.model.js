@@ -1,25 +1,16 @@
 const db = require("../db/connection.js");
 
-exports.selectTimelines = () => {
-    const queryStr = "SELECT timeline_name, description, begin_date, finish_date FROM timelines;";
-    return db.query(queryStr).then(({ rows }) => {
-        return rows;
-    });
-};
-
-exports.selectTimelineByName = (timeline_name) => {
+exports.deleteTimeline = (timeline_name) => {
     const queryStr =
-        "SELECT timeline_name, description, begin_date, finish_date FROM timelines WHERE timeline_name = $1;";
+        "DELETE FROM timelines WHERE timeline_name = $1 RETURNING *;";
     const queryValue = [timeline_name];
-    return db.query(queryStr, queryValue).then(({ rows }) => {
-        const timeline = rows[0];
-        if (timeline === undefined) {
+    return db.query(queryStr, queryValue).then(({ rowCount }) => {
+        if (rowCount === 0) {
             return Promise.reject({
                 status: 404,
-                msg: `Timeline does not exist: ${timeline_name}`,
+                msg: `timeline ${timeline_name} does not exist`,
             });
         }
-        return timeline;
     });
 };
 
@@ -34,16 +25,38 @@ exports.insertTimeline = (newTimeline) => {
     });
 };
 
-exports.deleteTimeline = (timeline_name) => {
-    const queryStr =
-        "DELETE FROM timelines WHERE timeline_name = $1 RETURNING *;";
-    const queryValue = [timeline_name];
-    return db.query(queryStr, queryValue).then(({ rowCount }) => {
-        if (rowCount === 0) {
-            return Promise.reject({
-                status: 404,
-                msg: `timeline ${timeline_name} does not exist`,
-            });
-        }
+exports.selectTimelines = () => {
+    const queryStr = "SELECT timeline_key, timeline_name, description, begin_date, finish_date FROM timelines;";
+    return db.query(queryStr).then(({ rows }) => {
+        return rows;
     });
 };
+
+exports.selectTimelineByName = (timeline_name) => {
+    const queryStr =
+        "SELECT timeline_key, timeline_name, description, begin_date, finish_date FROM timelines WHERE timeline_name = $1;";
+    const queryValue = [timeline_name];
+    return db.query(queryStr, queryValue).then(({ rows }) => {
+        const timeline = rows[0];
+        if (timeline === undefined) {
+            return Promise.reject({
+                status: 404,
+                msg: `Timeline does not exist: ${timeline_name}`,
+            });
+        }
+        return timeline;
+    });
+};
+
+exports.updateTimelineByName = (update, timeline_name) => {
+    const { new_timeline_name, new_description, new_begin_date, new_finish_date } = update;
+
+    const queryStr =
+        "UPDATE timelines SET timeline_name = $1, description = $2, begin_date = $3, finish_date = $4 WHERE timeline_name = $5 RETURNING *;";
+
+    const queryValues = [new_timeline_name, new_description, new_begin_date, new_finish_date, timeline_name];
+    return db.query(queryStr, queryValues).then(({ rows }) => {
+        const timeline = rows[0];
+        return timeline;
+    });
+}

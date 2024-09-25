@@ -38,8 +38,9 @@ const seed = ({
         .then(() => {
             const timelinesTablePromise = db.query(`
       CREATE TABLE timelines (
-        timeline_name VARCHAR PRIMARY KEY,
-        description VARCHAR,
+        timeline_key SERIAL PRIMARY KEY,
+        timeline_name VARCHAR NOT NULL UNIQUE,
+        description VARCHAR NOT NULL,
         begin_date VARCHAR,
         finish_date VARCHAR
       );`);
@@ -58,7 +59,7 @@ const seed = ({
       CREATE TABLE events (
         event_id SERIAL PRIMARY KEY,
         title VARCHAR NOT NULL,
-        timeline VARCHAR NOT NULL REFERENCES timelines(timeline_name),
+        timeline VARCHAR NOT NULL REFERENCES timelines(timeline_name) ON DELETE CASCADE,
         author VARCHAR NOT NULL REFERENCES users(username),
         body VARCHAR NOT NULL,
         skills VARCHAR,
