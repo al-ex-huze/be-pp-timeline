@@ -39,7 +39,7 @@ const seed = ({
             const timelinesTablePromise = db.query(`
       CREATE TABLE timelines (
         timeline_name VARCHAR PRIMARY KEY,
-        description VARCHAR,
+        description VARCHAR NOT NULL,
         begin_date VARCHAR,
         finish_date VARCHAR
       );`);

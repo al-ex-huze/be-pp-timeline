@@ -139,6 +139,65 @@ describe("POST /api/timelines", () => {
     });
 });
 
+describe("PATCH /api/timelines/:timeline_name", () => {
+    test("200 returns updated timeline", () => {
+        const patchName = "Pre Bootcamp";
+        const update = {
+            new_timeline_name: "Updated Timeline Name",
+            new_description: "Updated Timeline description",
+            new_begin_date: "2024-04-04",
+            new_finish_date: "2024-05-05",
+        };
+        return request(app)
+            .patch(`/api/timelines/${patchName}`)
+            .send(update)
+            .expect(200)
+            .then(({ body }) => {
+                const { timeline } = body;
+                console.log(timeline)
+                expect(typeof timeline.timeline_name).toBe("string");
+                expect(typeof timeline.description).toBe("string");
+                expect(timeline.timeline_name).toEqual("Updated Timeline Name");
+                expect(timeline.description).toEqual(
+                    "Updated Timeline description"
+                );
+                expect(typeof timeline.begin_date).toBe("string");
+                expect(typeof timeline.finish_date).toBe("string");
+                expect(timeline.begin_date).toEqual("2024-04-04");
+                expect(timeline.finish_date).toEqual("2024-05-05");
+            });
+    });
+    test("400 missing required fields when request is null", () => {
+        const patchName = "Pre Bootcamp";
+        const update = null;
+        return request(app)
+            .patch(`/api/timelines/${patchName}`)
+            .send(update)
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("PSQL ERROR: 23502 - Missing input.");
+            });
+    });
+    test("400 incorrect type of request", () => {
+        const patchName = "Pre Bootcamp";
+        const update = [
+            {
+                new_timeline_name: "Updated Timeline Name",
+                new_description: "Updated Timeline description",
+                new_begin_date: "2024-04-04",
+                new_finish_date: "2024-05-05",
+            },
+        ];
+        return request(app)
+            .patch(`/api/timelines/${patchName}`)
+            .send(update)
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("PSQL ERROR: 23502 - Missing input.");
+            });
+    });
+});
+
 describe("DELETE /api/timelines/:timeline_name", () => {
     test("204 responds with no content", () => {
         return request(app)
@@ -339,9 +398,12 @@ describe("POST /api/events", () => {
             end_date: "2024-07-19",
             github_url: "https://test.uk",
             deployed_url: "https://test.uk",
-            event_img_url_1: "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
-            event_img_url_2: "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
-            event_img_url_3: "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+            event_img_url_1:
+                "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+            event_img_url_2:
+                "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
+            event_img_url_3:
+                "https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg",
         };
         return request(app)
             .post("/api/events")
@@ -603,7 +665,6 @@ describe("PATCH /api/events/:event_id", () => {
             .send(update)
             .expect(200)
             .then(({ body }) => {
-
                 const { event } = body;
                 expect(event.start_date).toEqual("2024-07-20");
                 expect(event.end_date).toEqual("2024-07-25");
@@ -617,7 +678,7 @@ describe("PATCH /api/events/:event_id", () => {
                 expect(typeof event.created_at).toBe("string");
                 expect(typeof event.start_date).toBe("string");
                 expect(typeof event.end_date).toBe("string");
-                expect(typeof event.votes).toBe("number");     
+                expect(typeof event.votes).toBe("number");
                 expect(typeof event.deployed_url).toBe("string");
                 expect(typeof event.event_img_url_1).toBe("string");
                 expect(typeof event.event_img_url_2).toBe("string");
@@ -656,9 +717,12 @@ describe("PATCH /api/events/:event_id", () => {
                 expect(event.github_url).toBe("https://test.uk");
                 expect(event.deployed_url).toBe("https://test.uk");
                 expect(event.event_img_url_1).toEqual("https://new-url.co.uk");
-                expect(event.event_img_url_2).toEqual("https://new-url-2.co.uk");
-                expect(event.event_img_url_3).toEqual("https://new-url-3.co.uk");
-
+                expect(event.event_img_url_2).toEqual(
+                    "https://new-url-2.co.uk"
+                );
+                expect(event.event_img_url_3).toEqual(
+                    "https://new-url-3.co.uk"
+                );
             });
     });
     test("200 returns updated event null not needed", () => {
@@ -687,7 +751,7 @@ describe("PATCH /api/events/:event_id", () => {
                 expect(event.timeline).toEqual("Northcoders Bootcamp");
             });
     });
-    test("200 default time nmow when end date is null", () => {
+    test("200 default time now when end date is null", () => {
         const patchID = 2;
         const update = {
             new_start_date: "2024-07-20",
