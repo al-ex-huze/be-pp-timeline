@@ -147,10 +147,10 @@ describe("PATCH /api/timelines/:timeline_name", () => {
     test("200 returns updated timeline", () => {
         const patchName = "Pre Bootcamp";
         const update = {
-            new_timeline_name: "Updated Timeline Name",
-            new_description: "Updated Timeline description",
-            new_begin_date: "2024-04-04",
-            new_finish_date: "2024-05-05",
+            timeline_name_update: "Updated Timeline Name",
+            description_update: "Updated Timeline description",
+            begin_date_update: "2024-04-04",
+            finish_date_update: "2024-05-05",
         };
         return request(app)
             .patch(`/api/timelines/${patchName}`)
@@ -158,6 +158,35 @@ describe("PATCH /api/timelines/:timeline_name", () => {
             .expect(200)
             .then(({ body }) => {
                 const { timeline } = body;
+                console.log(timeline)
+                expect(typeof timeline.timeline_key).toBe("number");
+                expect(typeof timeline.timeline_name).toBe("string");
+                expect(typeof timeline.description).toBe("string");
+                expect(timeline.timeline_name).toEqual("Updated Timeline Name");
+                expect(timeline.description).toEqual(
+                    "Updated Timeline description"
+                );
+                expect(typeof timeline.begin_date).toBe("string");
+                expect(typeof timeline.finish_date).toBe("string");
+                expect(timeline.begin_date).toEqual("2024-04-04");
+                expect(timeline.finish_date).toEqual("2024-05-05");
+            });
+    });
+    test("200 returns updated timeline", () => {
+        const patchName = "Northcoders Bootcamp";
+        const update = {
+            timeline_name_update: "Updated Timeline Name",
+            description_update: "Updated Timeline description",
+            begin_date_update: "2024-04-04",
+            finish_date_update: "2024-05-05",
+        };
+        return request(app)
+            .patch(`/api/timelines/${patchName}`)
+            .send(update)
+            .expect(200)
+            .then(({ body }) => {
+                const { timeline } = body;
+                console.log(timeline)
                 expect(typeof timeline.timeline_key).toBe("number");
                 expect(typeof timeline.timeline_name).toBe("string");
                 expect(typeof timeline.description).toBe("string");
@@ -186,10 +215,10 @@ describe("PATCH /api/timelines/:timeline_name", () => {
         const patchName = "Pre Bootcamp";
         const update = [
             {
-                new_timeline_name: "Updated Timeline Name",
-                new_description: "Updated Timeline description",
-                new_begin_date: "2024-04-04",
-                new_finish_date: "2024-05-05",
+                timeline_name_update: "Updated Timeline Name",
+                description_update: "Updated Timeline description",
+                begin_date_update: "2024-04-04",
+                finish_date_update: "2024-05-05",
             },
         ];
         return request(app)

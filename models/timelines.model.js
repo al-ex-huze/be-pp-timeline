@@ -49,12 +49,12 @@ exports.selectTimelineByName = (timeline_name) => {
 };
 
 exports.updateTimelineByName = (update, timeline_name) => {
-    const { new_timeline_name, new_description, new_begin_date, new_finish_date } = update;
+    const { timeline_name_update, description_update, begin_date_update, finish_date_update } = update;
 
     const queryStr =
         "UPDATE timelines SET timeline_name = $1, description = $2, begin_date = $3, finish_date = $4 WHERE timeline_name = $5 RETURNING *;";
 
-    const queryValues = [new_timeline_name, new_description, new_begin_date, new_finish_date, timeline_name];
+    const queryValues = [timeline_name_update, description_update, begin_date_update, finish_date_update, timeline_name];
     return db.query(queryStr, queryValues).then(({ rows }) => {
         const timeline = rows[0];
         return timeline;
