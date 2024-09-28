@@ -39,7 +39,7 @@
         "description": "delete timeline by name"
     },
     "GET /api/events": {
-        "description": "serves an array of all events",
+        "description": "serves an array of all events, P and limit queries will return total number of events value to allow for returning of selected number articles for pagination ",
         "queries": [
             "author",
             "title",
@@ -50,7 +50,16 @@
             "end_date",
             "votes",
             "github_url",
-            "deployed_url"
+            "deployed_url",
+            {
+                "order": "order sort_by by asc or desc"
+            },
+            {
+                "limit": "returns number of EVENT accoring to value given, default 5"
+            },
+            {
+                "p": "will offset the articles selected with limit and p, deafult 1"
+            }
         ],
         "exampleResponse": {
             "events": [

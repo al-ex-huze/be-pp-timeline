@@ -158,7 +158,6 @@ describe("PATCH /api/timelines/:timeline_name", () => {
             .expect(200)
             .then(({ body }) => {
                 const { timeline } = body;
-                console.log(timeline)
                 expect(typeof timeline.timeline_key).toBe("number");
                 expect(typeof timeline.timeline_name).toBe("string");
                 expect(typeof timeline.description).toBe("string");
@@ -186,7 +185,6 @@ describe("PATCH /api/timelines/:timeline_name", () => {
             .expect(200)
             .then(({ body }) => {
                 const { timeline } = body;
-                console.log(timeline)
                 expect(typeof timeline.timeline_key).toBe("number");
                 expect(typeof timeline.timeline_name).toBe("string");
                 expect(typeof timeline.description).toBe("string");
@@ -251,13 +249,14 @@ describe("DELETE /api/timelines/:timeline_name", () => {
 });
 
 describe("GET /api/events", () => {
-    test("200 returns all events", () => {
+    test("200 returns events with default limit length", () => {
         return request(app)
-            .get("/api/events")
+            .get(`/api/events?limit=${limit}&p=${p}`)
             .expect(200)
             .expect("Content-Type", "application/json; charset=utf-8")
             .then(({ body }) => {
                 const { events } = body;
+                expect(events.length).toBe(5);
                 events.forEach((event) => {
                     expect(typeof event.author).toBe("string");
                     expect(typeof event.title).toBe("string");
@@ -272,6 +271,18 @@ describe("GET /api/events", () => {
                     expect(typeof event.event_img_url_2).toBe("string");
                     expect(typeof event.event_img_url_3).toBe("string");
                 });
+            });
+    });
+    test("200 returns events  of the limit length, offset by page number", () => {
+        const limit = 2;
+        const p = 2;
+        return request(app)
+            .get(`/api/events?limit=${limit}&p=${p}`)
+            .expect(200)
+            .expect("Content-Type", "application/json; charset=utf-8")
+            .then(({ body }) => {
+                const { events } = body;
+                expect(events.length).toBe(10);
             });
     });
     test("200 returns sorted by ascending start date order as default", () => {
@@ -314,9 +325,11 @@ describe("GET /api/events", () => {
                 });
             });
     });
-    test("200 returns array of events filtered by timeline query", () => {
+    test("200 returns array of with pagination offset and filtered by timeline query", () => {
+        const limit = 2;
+        const p = 2;
         return request(app)
-            .get("/api/events?timeline=Northcoders Bootcamp")
+            .get(`/api/events?limit=${limit}&p=${p}&timeline=Northcoders Bootcamp`)
             .expect(200)
             .then(({ body }) => {
                 const { events } = body;
@@ -376,6 +389,46 @@ describe("GET /api/events", () => {
             .expect(400)
             .then(({ body }) => {
                 expect(body.msg).toBe("Invalid query: order");
+            });
+    });
+    test("400 returns invalid page type", () => {
+        const limit = 10;
+        const p = "string";
+        return request(app)
+            .get(`/api/events?limit=${limit}&p=${p}`)
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("22P02 - invalid input");
+            });
+    });
+    test("400 returns invalid page number", () => {
+        const limit = 10;
+        const p = -1;
+        return request(app)
+            .get(`/api/events?limit=${limit}&p=${p}`)
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("2201X - negative page number");
+            });
+    });
+    test("400 returns invalid limit type", () => {
+        const limit = "string";
+        const p = 1;
+        return request(app)
+            .get(`/api/events?limit=${limit}&p=${p}`)
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("22P02 - invalid input");
+            });
+    });
+    test("400 returns invalid limit number", () => {
+        const limit = -10;
+        const p = 1;
+        return request(app)
+            .get(`/api/events?limit=${limit}&p=${p}`)
+            .expect(400)
+            .then(({ body }) => {
+                expect(body.msg).toBe("2201W - negative limit number");
             });
     });
 });
