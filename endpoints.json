@@ -88,6 +88,7 @@
                     "created_at": "2020-07-09T20:11:00.000Z",
                     "start_date": "2024-04-15",
                     "end_date": "2024-04-21",
+                    "total_count": 100,
                     "votes": 0,
                     "github_url": null,
                     "deployed_url": null,

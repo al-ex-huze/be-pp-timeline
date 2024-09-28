@@ -31,7 +31,7 @@ exports.selectEvents = (validTimelines, timeline, sort_by, order, limit, p) => {
     const queryValues = [];
 
     let queryStr =
-        "SELECT author, title, event_id, timeline, body, skills, topics, created_at, start_date, end_date, votes, github_url,deployed_url, event_img_url_1, event_img_url_2, event_img_url_3 FROM events";
+        "SELECT author, title, event_id, timeline, body, skills, topics, created_at, start_date, end_date, votes, github_url,deployed_url, event_img_url_1, event_img_url_2, event_img_url_3, COUNT(*) OVER() :: INT AS total_count FROM events";
 
     if (timeline) {
         queryStr += " WHERE timeline = $1";
