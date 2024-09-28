@@ -1,6 +1,6 @@
 const db = require("../db/connection.js");
 
-exports.selectEvents = (validTimelines, timeline, sort_by, order) => {
+exports.selectEvents = (validTimelines, timeline, sort_by, order, limit, p) => {
     const validSortBy = [
         "author",
         "title",
@@ -13,6 +13,8 @@ exports.selectEvents = (validTimelines, timeline, sort_by, order) => {
         "github_url",
         "deployed_url",
     ];
+
+    const offset = limit * (p - 1);
 
     if (sort_by && !validSortBy.includes(sort_by)) {
         return Promise.reject({ status: 400, msg: "Invalid query: sort_by" });
@@ -39,14 +41,22 @@ exports.selectEvents = (validTimelines, timeline, sort_by, order) => {
     queryStr += " GROUP BY events.event_id";
 
     if (sort_by && order) {
-        queryStr += ` ORDER BY ${sort_by} ${order};`;
+        queryStr += ` ORDER BY ${sort_by} ${order}`;
     } else if (sort_by) {
-        queryStr += ` ORDER BY ${sort_by};`;
+        queryStr += ` ORDER BY ${sort_by}`;
     } else if (order) {
-        queryStr += ` ORDER BY start_date ${order};`;
+        queryStr += ` ORDER BY start_date ${order}`;
     } else {
-        queryStr += " ORDER BY start_date ASC;";
+        queryStr += " ORDER BY start_date ASC";
     }
+
+    if (timeline) {
+        queryStr += " LIMIT $2 OFFSET $3;";
+    } else {
+        queryStr += " LIMIT $1 OFFSET $2;";
+    }
+    
+    queryValues.push(limit, offset);
 
     return db.query(queryStr, queryValues).then(({ rows }) => {
         return rows;
@@ -83,7 +93,9 @@ exports.insertEvent = (newEvent) => {
         end_date,
         deployed_url,
         github_url,
-        event_img_url_1, event_img_url_2, event_img_url_3,
+        event_img_url_1,
+        event_img_url_2,
+        event_img_url_3,
     } = newEvent;
 
     const checkAuthorQueryStr =
@@ -123,7 +135,9 @@ exports.insertEvent = (newEvent) => {
             end_date,
             github_url,
             deployed_url,
-            event_img_url_1, event_img_url_2, event_img_url_3
+            event_img_url_1,
+            event_img_url_2,
+            event_img_url_3
         );
         queryStr =
             "INSERT INTO events (author, title, body, skills, topics, timeline, start_date, end_date, github_url, deployed_url, event_img_url_1, event_img_url_2, event_img_url_3) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING event_id;";
@@ -181,7 +195,9 @@ exports.updateEventDates = (update, event_id) => {
         new_timeline,
         new_github_url,
         new_deployed_url,
-        new_event_img_url_1, new_event_img_url_2, new_event_img_url_3,
+        new_event_img_url_1,
+        new_event_img_url_2,
+        new_event_img_url_3,
     } = update;
 
     if (
