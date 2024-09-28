@@ -10,12 +10,14 @@ const {
 
 exports.getEvents = (req, res, next) => {
     const { timeline, sort_by, order } = req.query;
+    req.query.limit ? limit = req.query.limit : limit = 5;
+    req.query.p ? p = req.query.p : p = 1;
     selectTimelines().then((timelines) => {
         const validTimelines = [];
         timelines.forEach((timeline) => {
             validTimelines.push(timeline.timeline_name);
         });
-        return selectEvents(validTimelines, timeline, sort_by, order)
+        return selectEvents(validTimelines, timeline, sort_by, order, limit, p)
             .then((events) => {
                 res.status(200).send({ events });
             })

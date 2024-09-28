@@ -250,8 +250,9 @@ describe("DELETE /api/timelines/:timeline_name", () => {
 
 describe("GET /api/events", () => {
     test("200 returns events with default limit length", () => {
+
         return request(app)
-            .get(`/api/events?limit=${limit}&p=${p}`)
+            .get(`/api/events`)
             .expect(200)
             .expect("Content-Type", "application/json; charset=utf-8")
             .then(({ body }) => {
@@ -282,7 +283,7 @@ describe("GET /api/events", () => {
             .expect("Content-Type", "application/json; charset=utf-8")
             .then(({ body }) => {
                 const { events } = body;
-                expect(events.length).toBe(10);
+                expect(events.length).toBe(2);
             });
     });
     test("200 returns sorted by ascending start date order as default", () => {
@@ -398,7 +399,7 @@ describe("GET /api/events", () => {
             .get(`/api/events?limit=${limit}&p=${p}`)
             .expect(400)
             .then(({ body }) => {
-                expect(body.msg).toBe("22P02 - invalid input");
+                expect(body.msg).toBe("PSQL ERROR: 22P02 - Invalid input.");
             });
     });
     test("400 returns invalid page number", () => {
@@ -408,7 +409,7 @@ describe("GET /api/events", () => {
             .get(`/api/events?limit=${limit}&p=${p}`)
             .expect(400)
             .then(({ body }) => {
-                expect(body.msg).toBe("2201X - negative page number");
+                expect(body.msg).toBe("PSQL ERROR: 2201X - Negative Page Number.");
             });
     });
     test("400 returns invalid limit type", () => {
@@ -418,7 +419,7 @@ describe("GET /api/events", () => {
             .get(`/api/events?limit=${limit}&p=${p}`)
             .expect(400)
             .then(({ body }) => {
-                expect(body.msg).toBe("22P02 - invalid input");
+                expect(body.msg).toBe("PSQL ERROR: 22P02 - Invalid input.");
             });
     });
     test("400 returns invalid limit number", () => {
@@ -428,7 +429,7 @@ describe("GET /api/events", () => {
             .get(`/api/events?limit=${limit}&p=${p}`)
             .expect(400)
             .then(({ body }) => {
-                expect(body.msg).toBe("2201W - negative limit number");
+                expect(body.msg).toBe("PSQL ERROR: 2201W - Negative Limit Number.");
             });
     });
 });
@@ -535,7 +536,7 @@ describe("POST /api/events", () => {
         const expected = {
             author: "al-ex-huze",
             title: "Test Title - New event",
-            event_id: 4,
+            event_id: 13,
             body: "Test body - one, two, three",
             topics: "topic a. topic b.",
             timeline: "Northcoders Bootcamp",
