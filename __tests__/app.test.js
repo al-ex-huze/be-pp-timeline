@@ -516,6 +516,18 @@ describe("POST /api/events", () => {
                 expect(typeof event.deployed_url).toBe("string");
             });
     });
+    test("200 returns total count", () => {
+        return request(app)
+            .get("/api/events")
+            .expect(200)
+            .then(({ body }) => {
+                const { events } = body;
+                events.forEach((event) => {
+                    expect(typeof event.total_count).toBe("number");
+                    expect(event.total_count).toEqual(12);
+                });
+            });
+    });
     test("201 successful post, additional properties ignored", () => {
         const newEvent = {
             surplus: "test ignore",

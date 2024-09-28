@@ -26,6 +26,15 @@
             }
         }
     },
+    "PATCH /api/timelines/:timeline_name": {
+        "description": "Updatestimeline",
+        "update": {
+            "timeline_name_update": "Updated Timeline Name",
+            "description_update": " Updated Timeline description",
+            "begin_date_update": "2025-02-02",
+            "finish_date_update": "2025-03-03"
+        }
+    },
     "POST /api/timelines": {
         "description": "Creates new timeline",
         "newTimeline": {
@@ -41,16 +50,21 @@
     "GET /api/events": {
         "description": "serves an array of all events, P and limit queries will return total number of events value to allow for returning of selected number articles for pagination ",
         "queries": [
-            "author",
-            "title",
-            "event_id",
-            "timeline",
-            "created_at",
-            "start_date",
-            "end_date",
-            "votes",
-            "github_url",
-            "deployed_url",
+            {
+                "sort_by": [
+                    "author",
+                    "title",
+                    "event_id",
+                    "timeline",
+                    "created_at",
+                    "start_date",
+                    "end_date",
+                    "votes",
+                    "github_url",
+                    "deployed_url"
+                ]
+            },
+            { "timeline": "filter by timeline" },
             {
                 "order": "order sort_by by asc or desc"
             },
@@ -74,6 +88,7 @@
                     "created_at": "2020-07-09T20:11:00.000Z",
                     "start_date": "2024-04-15",
                     "end_date": "2024-04-21",
+                    "total_count": 100,
                     "votes": 0,
                     "github_url": null,
                     "deployed_url": null,
