@@ -13,6 +13,8 @@ exports.handlePsqlErrors = (err, req, res, next) => {
         res.status(400).send({ msg: "PSQL ERROR: 2201X - Negative Page Number." });
     } else if (err.code === "2201W") {
         res.status(400).send({ msg: "PSQL ERROR: 2201W - Negative Limit Number." });
+    } else if (err.code === "23505") {
+        res.status(409).send({ msg: "PSQL ERROR: 23505 - Violates unique constraint." });
     } else if (err.code) {
         console.log(err, "PSQL ERROR");
     } else next(err);
