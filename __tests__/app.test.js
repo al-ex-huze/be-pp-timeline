@@ -141,6 +141,21 @@ describe("POST /api/timelines", () => {
                 expect(body.msg).toBe("PSQL ERROR: 23502 - Missing input.");
             });
     });
+    test("409 rejects unique timeline_name constraint", () => {
+        const newTimeline = {
+            timeline_name: "Northcoders Bootcamp",
+            description: "test body",
+            begin_date: "2024-02-02",
+            finish_date: "2024-03-03",
+        };
+        return request(app)
+            .post("/api/timelines")
+            .send(newTimeline)
+            .expect(409)
+            .then(({ body }) => {
+                expect(body.msg).toBe("PSQL ERROR: 23505 - Violates unique constraint.");
+            });
+    });
 });
 
 describe("PATCH /api/timelines/:timeline_name", () => {
@@ -227,6 +242,33 @@ describe("PATCH /api/timelines/:timeline_name", () => {
                 expect(body.msg).toBe("PSQL ERROR: 23502 - Missing input.");
             });
     });
+    test('200 should cascade update parent id to child',async () => {
+        const patchName = "Northcoders Bootcamp";
+        const update = {
+            timeline_name_update: "Updated Timeline Name",
+            description_update: "Updated Timeline description",
+            begin_date_update: "2024-04-04",
+            finish_date_update: "2024-05-05",
+        };
+        return request(app)
+            .patch(`/api/timelines/${patchName}`)
+            .send(update)
+            .expect(200)
+            .then(({ body }) => {
+                const { timeline } = body;
+                expect(typeof timeline.timeline_key).toBe("number");
+                expect(typeof timeline.timeline_name).toBe("string");
+                expect(typeof timeline.description).toBe("string");
+                expect(timeline.timeline_name).toEqual("Updated Timeline Name");
+                expect(timeline.description).toEqual(
+                    "Updated Timeline description"
+                );
+                expect(typeof timeline.begin_date).toBe("string");
+                expect(typeof timeline.finish_date).toBe("string");
+                expect(timeline.begin_date).toEqual("2024-04-04");
+                expect(timeline.finish_date).toEqual("2024-05-05");
+            });
+    });
 });
 
 describe("DELETE /api/timelines/:timeline_name", () => {
@@ -250,7 +292,6 @@ describe("DELETE /api/timelines/:timeline_name", () => {
 
 describe("GET /api/events", () => {
     test("200 returns events with default limit length", () => {
-
         return request(app)
             .get(`/api/events`)
             .expect(200)
