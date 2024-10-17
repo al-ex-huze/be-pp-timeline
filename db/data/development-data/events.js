@@ -1258,8 +1258,9 @@ module.exports = [
         event_img_url_2: null,
         event_img_url_3: null,
     },
-
     {
+        author: "al-ex-huze",
+        timeline: "Kings and Queens",
         title: "George II",
         body: "King of Great Britain and Ireland",
         start_date: "1727-06-11",
