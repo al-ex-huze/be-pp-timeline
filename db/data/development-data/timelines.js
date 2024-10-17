@@ -23,4 +23,16 @@ module.exports = [
         begin_date: null,
         finish_date: null,
     },
+    {
+        timeline_name: "Projects",
+        description: "Projects",
+        begin_date: null,
+        finish_date: null,
+    },
+    {
+        timeline_name: "Kings and Queens",
+        description: "English/British Monarchs",
+        begin_date: null,
+        finish_date: null,
+    },
 ];
